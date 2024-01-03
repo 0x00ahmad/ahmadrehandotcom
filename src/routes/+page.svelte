@@ -1,59 +1,17 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import Dock from '$lib/components/dock.svelte';
+	import TopAppBar from '$lib/components/top-app-bar.svelte';
+	import backgroundImage1 from '$lib/assets/background-images/planet-view-over-clouds.png';
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+<TopAppBar />
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
+<img src={backgroundImage1} class="absolute inset-0 w-full h-full object-cover z-[-1]" alt="" />
 
-		to your new<br />SvelteKit app
-	</h1>
+<main class="w-screen h-screen">
+	<div class="h-10"></div>
+	<!-- TODO: layout the grid to have moveable icons -->
+	<section class="grid"></section>
+</main>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<Dock />
