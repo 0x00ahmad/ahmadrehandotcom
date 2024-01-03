@@ -1,5 +1,6 @@
 <script>
 	import Header from './Header.svelte';
+	import '../app.css';
 	import './styles.css';
 </script>
 
@@ -10,7 +11,7 @@
 		<slot />
 	</main>
 
-	<footer>
+	<footer class="text-xl text-indigo-500">
 		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 	</footer>
 </div>
