@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Web OS</title>
+	<title>Ahmad Rehan</title>
 	<meta name="description" content="Hey! Welcome to my personal website" />
 </svelte:head>
 
