@@ -1,6 +1,9 @@
 <script>
+	import Navbar from "$lib/components/navbar.svelte";
 </script>
 
-<main class="w-screen flex flex-col gap-4">
+<Navbar />
+
+<main class="w-screen grid place-items-center">
 	<span>Let's start designing shall we?</span>
 </main>
