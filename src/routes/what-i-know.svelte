@@ -30,7 +30,7 @@
 
 <section
 	class="flex flex-col gap-8 items-center text-primary-800"
-	id="what-i-am-currently-doing"
+	id="what-i-know"
 >
 	<HeadingGroup text="What do I know?" image={scribble3} />
 	{#each Object.entries(skills) as [skill, values]}

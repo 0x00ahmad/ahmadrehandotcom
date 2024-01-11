@@ -19,7 +19,7 @@
 	];
 </script>
 
-<section class="flex flex-col gap-4 items-center text-primary-800 py-4 w-full">
+<section class="flex flex-col gap-4 items-center text-primary-800 py-4 w-full" id="footer">
 	<Line cls={"bg-primary-400"} />
 	<div class="flex justify-between w-full items-center">
 		<p class="text-md tracking-wide">&#169; {currentYear} 0x00ahmad</p>
