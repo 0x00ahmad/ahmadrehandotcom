@@ -5,7 +5,7 @@
 
 <section class="flex flex-col gap-8 items-center" id="about-me">
     <HeadingGroup text="Who am I?" image={scribble1} />
-    <p class="text-lg lg:text-xl xl:text-2xl tracking-wide">
+    <p class="text-lg lg:text-xl xl:text-2xl tracking-wide font-sans">
         I am a 19 year Student, with a skill in Software, in pursuit of Hardware
         engineering. I discovered my interest in programming after building my
         own PC. Initially, I was very reluctant to do anything but play video

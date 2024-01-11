@@ -28,7 +28,7 @@
 {#if size == "h1"}
 	<h1
 		class={clsx(
-			"text-5xl lg:text-6x",
+			"text-3xl sm:text-4xl md:text-5xl lg:text-6x",
 			weights[weight ?? "bold"],
 			capitalize && "capitalize",
 			colors[color],

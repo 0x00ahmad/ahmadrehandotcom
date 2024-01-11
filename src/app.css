@@ -7,6 +7,11 @@
   src: url("/fonts/Caveat/variable-weights.ttf");
 }
 
+@font-face {
+  font-family: "Chilanka";
+  src: url("/fonts/Chilanka/chilanka-regular.ttf");
+}
+
 * {
   box-sizing: border-box;
   font-size: 18px;

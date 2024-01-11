@@ -11,18 +11,16 @@
 
 <Navbar />
 
-<div class="h-32 w-screen bg-opacity-0"></div>
+<div id="top" class="h-32 w-screen bg-opacity-0"></div>
 
 <main class="w-screen grid place-items-center">
-	<div class={clsx(MAX_PAGE_WIDTH, "flex w-full flex-col gap-32")}>
+	<div
+		class={clsx(MAX_PAGE_WIDTH, "flex w-full flex-col gap-32 px-4 lg:px-8")}
+	>
 		<ProjectsGrid />
-
 		<AboutMe />
-
 		<WhatIAmDoingRightNow />
-
 		<WhatIKnow />
-
 		<Footer />
 	</div>
 </main>
