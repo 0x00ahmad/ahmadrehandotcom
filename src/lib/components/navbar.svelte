@@ -12,7 +12,7 @@
 		{ name: "About", link: "/#about-me" },
 		{ name: "Learning", link: "/#what-i-am-currently-doing" },
 		{ name: "Skills", link: "/#what-i-know" },
-		{ name: "Contact", link: "/#footer" },
+		{ name: "Explore", link: "/#explore" },
 	];
 
 	let showMobileMenu = false;
@@ -29,7 +29,7 @@
 	<div class={clsx("flex justify-between w-full", MAX_PAGE_WIDTH)}>
 		<a
 			href="/"
-			class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-700 cursor-pointer"
+			class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-700 cursor-pointer font-serif"
 			>Ahmad Rehan</a
 		>
 
@@ -57,7 +57,7 @@
 
 <div
 	class={clsx(
-		"fixed top-0 left-0 w-screen h-screen bg-primary-100 bg-opacity-80 backdrop-blur-md z-[999]",
+		"fixed top-0 left-0 w-screen h-screen bg-primary-100 bg-opacity-90 backdrop-blur-md z-[999]",
 		{ hidden: !showMobileMenu },
 	)}
 >

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Line from "$lib/components/line.svelte";
 	import IconGithubLogo from "~icons/ph/github-logo";
 	import IconLinkedInLogo from "~icons/basil/linkedin-outline";
 	import IconInstagramLogo from "~icons/basil/instagram-outline";
@@ -28,7 +27,7 @@
 >
 	<div class="h-1 w-full border-b border-primary-800"></div>
 	<div class="flex justify-between w-full items-center">
-		<p class="text-md tracking-wide">&#169; {currentYear} 0x00ahmad</p>
+		<p class="text-md tracking-wide font-sans">&#169; {currentYear} 0x00ahmad</p>
 		<div class="flex gap-2 items-center">
 			{#each socialLinks as socialLink}
 				<a
