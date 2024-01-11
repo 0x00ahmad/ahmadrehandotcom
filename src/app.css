@@ -3,29 +3,33 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: "Caveat";
-	src: url("/fonts/Caveat/variable-weights.ttf");
+  font-family: "Caveat";
+  src: url("/fonts/Caveat/variable-weights.ttf");
 }
 
 * {
-	box-sizing: border-box;
-	font-size: 18px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-	font-family:
-		"Caveat",
-		system-ui,
-		-apple-system,
-		BlinkMacSystemFont,
-		"Segoe UI",
-		Roboto,
-		Oxygen,
-		Ubuntu,
-		Cantarell,
-		"Open Sans",
-		"Helvetica Neue",
-		sans-serif;
-	/* background-color: #f9f8f7; */
-	background-color: #efedec;
+  font-family:
+    "Caveat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  /* background-color: #f9f8f7; */
+  background-color: #efedec;
 }
