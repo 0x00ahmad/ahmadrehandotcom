@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ["Chilanka", "sans-serif"],
+      serif: ["Caveat", "serif"],
     },
     extend: {
       colors: {

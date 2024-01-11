@@ -39,7 +39,7 @@
 			{ name: "Swift", icon: MdiLanguageSwift },
 			{ name: "C++", icon: MdiLanguageCpp },
 		],
-		"Web / Mobile / Desktop ~ most used": [
+		"Web / Mobile / Desktop": [
 			{ name: "Svelte", icon: SimpleIconsSvelte },
 			{ name: "Nextjs", icon: TablerBrandNextjs },
 			{ name: "Go Fiber", icon: MaterialSymbolsFiberSmartRecord },
@@ -69,16 +69,19 @@
 	id="what-i-know"
 >
 	<HeadingGroup text="What do I know?" image={scribble3} />
+
 	{#each Object.entries(skills) as [skill, values]}
 		<div class="flex flex-col gap-2 w-full">
-			<Heading text={skill} size={"h4"} />
+			<Heading text={skill} size={"h4"} fontStyle={"sans"} />
 			<div class="flex gap-2 items-center flex-wrap">
 				{#each values as value}
 					<div
-						class="px-2 py-1 bg-primary-700 text-white rounded-md drop-shadow-lg flex items-center gap-2 font-sans"
+						class="px-2 py-1 bg-primary-700 text-white rounded-md drop-shadow-lg flex items-center gap-2"
 					>
-						<svelte:component this={value.icon} class="w-5 h-5" />
-						<p class="text-sm">{value.name}</p>
+						<p class="text-lg md:text-xl tracking-wider">
+							{value.name}
+						</p>
+						<svelte:component this={value.icon} class="w-6 h-6" />
 					</div>
 				{/each}
 			</div>

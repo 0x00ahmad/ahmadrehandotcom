@@ -11,7 +11,7 @@
 	<HeadingGroup text="What am I currently doing?" image={scribble2} />
 	<div class="flex gap-4 md:gap-8 lg:gap-16 flex-col md:flex-row">
 		<div class="flex flex-col gap-4 w-full">
-			<Heading text="Education" size={"h3"} />
+			<Heading text="Education" size={"h3"} fontStyle={"serif"} />
 			<ul class="list-disc flex flex-col gap-4 font-sans p-4">
 				<li class="text-xl">
 					Studying at LUT university, going through my BSc degree,
@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="flex flex-col gap-4 w-full">
-			<Heading text="Work" size={"h3"} />
+			<Heading text="Work" size={"h3"} fontStyle={"serif"} />
 			<ul class="list-disc flex flex-col gap-4 font-sans p-4">
 				<li class="text-xl">
 					Currently focusing on finalizing the planning phase for a

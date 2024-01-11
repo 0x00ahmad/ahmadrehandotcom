@@ -10,6 +10,7 @@
 	export let capitalize: boolean = true;
 	export let color: "black" | "white" | "primary" = "primary";
 	export let overrides: string = "";
+	export let fontStyle: "default" | "sans" | "serif" | "mono" = "default";
 
 	const colors = {
 		white: "text-white",
@@ -23,6 +24,13 @@
 		medium: "font-medium",
 		normal: "font-normal",
 	} as const;
+
+	const fontStyles = {
+		default: "",
+		sans: "font-sans",
+		serif: "font-serif",
+		mono: "font-mono",
+	} as const;
 </script>
 
 {#if size == "h1"}
@@ -33,6 +41,7 @@
 			capitalize && "capitalize",
 			colors[color],
 			overrides,
+			fontStyles[fontStyle],
 		)}
 	>
 		{text}
@@ -45,6 +54,7 @@
 			capitalize && "capitalize",
 			colors[color],
 			overrides,
+			fontStyles[fontStyle],
 		)}
 	>
 		{text}
@@ -57,6 +67,7 @@
 			capitalize && "capitalize",
 			colors[color],
 			overrides,
+			fontStyles[fontStyle],
 		)}
 	>
 		{text}
@@ -69,6 +80,7 @@
 			capitalize && "capitalize",
 			colors[color],
 			overrides,
+			fontStyles[fontStyle],
 		)}
 	>
 		{text}
