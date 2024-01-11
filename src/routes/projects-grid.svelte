@@ -6,6 +6,8 @@
 	import IconApple from "~icons/ic/baseline-apple";
 	import IconWeb from "~icons/ic/baseline-web";
 	import IconDesktop from "~icons/ic/round-desktop-windows";
+	import IconLink from "~icons/solar/link-circle-linear";
+	import IconGithub from "~icons/mdi/github";
 
 	const base = "/images/work";
 
@@ -31,8 +33,8 @@
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			links: {
-				github: "https://github.com",
-				url: "https://github.com",
+				url: "https://github.com/0x00ahmad",
+				github: "https://github.com/0x00ahmad",
 			},
 		},
 		{
@@ -42,8 +44,8 @@
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			links: {
-				github: "https://github.com",
-				url: "https://github.com",
+				url: "https://github.com/0x00ahmad",
+				github: "https://github.com/0x00ahmad",
 			},
 		},
 		{
@@ -53,8 +55,8 @@
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			links: {
-				github: "https://github.com",
-				url: "https://github.com",
+				url: "https://github.com/0x00ahmad",
+				github: "https://github.com/0x00ahmad",
 			},
 		},
 		{
@@ -64,8 +66,8 @@
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			links: {
-				github: "https://github.com",
-				url: "https://github.com",
+				url: "https://github.com/0x00ahmad",
+				github: "https://github.com/0x00ahmad",
 			},
 		},
 	];
@@ -84,15 +86,17 @@
 			class="w-full aspect-square relative bg-no-repeat bg-center bg-cover rounded-lg dropshadow-md shadow-inner shadow-primary-500 border-2 border-primary-300 cursor-pointer duration-300"
 			style={`background-image: url(${work.image})`}
 		>
+			<!-- top left tech icons -->
 			<div class="absolute top-0 left-0 flex gap-2 p-2">
 				{#each getIcons(work.type) as Icon}
 					<div
-						class="bg-primary-950 border border-primary-300 text-white rounded-full p-2"
+						class="bg-primary-950 border border-primary-300 text-primary-200 rounded-full p-2"
 					>
 						<Icon class="w-4 h-4 lg:w-5 lg:h-5" />
 					</div>
 				{/each}
 			</div>
+			<!-- the bottom title and links -->
 			<div
 				class="w-full absolute bottom-0 rounded-md p-4 text-primary-800 bg-primary-950 bg-opacity-75 backdrop-blur-md"
 			>
@@ -100,6 +104,27 @@
 					class="flex flex-col gap-2 text-white md:flex-row justify-between md:items-center"
 				>
 					<span class="text-2xl">{work.title}</span>
+					<div class="flex items-center gap-2">
+						<a
+							class="bg-primary-950 border border-primary-300 text-primary-200 rounded-full p-2"
+							href={work.links.url}
+						>
+							<svelte:component
+								this={IconLink}
+								class="w-4 h-4 lg:w-5 lg:h-5"
+							/>
+						</a>
+
+						<a
+							class="bg-primary-950 border border-primary-300 text-primary-200 rounded-full p-2"
+							href={work.links.github}
+						>
+							<svelte:component
+								this={IconGithub}
+								class="w-4 h-4 lg:w-5 lg:h-5"
+							/>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
