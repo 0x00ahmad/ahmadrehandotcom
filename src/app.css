@@ -8,8 +8,8 @@
 }
 
 @font-face {
-  font-family: "Chilanka";
-  src: url("/fonts/Chilanka/chilanka-regular.ttf");
+  font-family: "Gloria Hallelujah";
+  src: url("/fonts/GloriaHallelujah/GloriaHallelujah-Regular.ttf");
 }
 
 * {
@@ -23,7 +23,7 @@ html {
 
 body {
   font-family:
-    "Chilanka",
+    "Gloria Hallelujah",
     system-ui,
     -apple-system,
     BlinkMacSystemFont,

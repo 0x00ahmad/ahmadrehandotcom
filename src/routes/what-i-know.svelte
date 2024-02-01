@@ -3,6 +3,7 @@
 	import scribble3 from "$lib/assets/scribbles/hu-3.png";
 	import Heading from "$lib/components/heading.svelte";
 	import { SKILLS } from "$lib/utils/skills";
+	import CertificationsList from "./certifications-list.svelte";
 </script>
 
 <section
@@ -28,4 +29,8 @@
 			</div>
 		</div>
 	{/each}
+
+	<Heading text={"Certifications"} fontStyle={"serif"} size={"h2"} />
+
+	<CertificationsList />
 </section>

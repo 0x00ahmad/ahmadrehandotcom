@@ -3,7 +3,7 @@ export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     fontFamily: {
-      sans: ["Chilanka", "sans-serif"],
+      sans: ["Gloria Hallelujah", "sans-serif"],
       serif: ["Caveat", "serif"],
     },
     extend: {
