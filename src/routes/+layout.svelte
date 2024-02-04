@@ -9,10 +9,10 @@
 
 <svelte:head>
 	<title>Ahmad Rehan</title>
-	<meta name="description" content="Hey! Welcome to my personal website" />
+	<meta name="description" content="Well hello there 👋" />
 </svelte:head>
 
-<Navbar />
+<!-- <Navbar /> -->
 
 <div id="top" class="h-32 w-screen bg-opacity-0"></div>
 
@@ -21,6 +21,6 @@
 		class={clsx(MAX_PAGE_WIDTH, "flex w-full flex-col gap-32 px-4 lg:px-8")}
 	>
 		<slot />
-		<Footer />
+		<!-- <Footer /> -->
 	</div>
 </main>
