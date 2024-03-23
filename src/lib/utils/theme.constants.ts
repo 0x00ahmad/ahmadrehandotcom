@@ -5,5 +5,7 @@ import clsx from "clsx";
 export const THEMES = {
   default: {
     primary: clsx(""),
-  }
-}
+  },
+};
+
+export const TRANSITION_ALL = "transition-all duration-150 ease-in-out";

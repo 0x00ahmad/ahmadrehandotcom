@@ -2,17 +2,14 @@
 	import IconMenu from "~icons/material-symbols-light/menu";
 	import IconArrowUp from "~icons/ph/arrow-fat-line-up";
 	import clsx from "clsx";
-	import {
-		MAX_PAGE_WIDTH,
-		COMMON_BUTTON_INNER_SHADOW_STYLE,
-	} from "$lib/utils/constants";
+	import logo from "$lib/assets/logo.png";
+	import { DESKTOP_MAX_PAGE_WIDTH } from "$lib/utils/constants";
+	import Button from "./ui/button/button.svelte";
 
 	const links = [
-		{ name: "Work", link: "/" },
+		{ name: "Home", link: "/" },
+		{ name: "Work", link: "/#work" },
 		{ name: "About", link: "/#about-me" },
-		{ name: "Learning", link: "/#what-i-am-currently-doing" },
-		{ name: "Skills", link: "/#what-i-know" },
-		{ name: "Explore", link: "/#explore" },
 	];
 
 	let showMobileMenu = false;
@@ -23,49 +20,58 @@
 
 <svelte:window bind:scrollY={windowY} bind:outerHeight={pageHeight} />
 
-<nav
-	class="fixed top-0 w-screen grid place-items-center p-4 md:px-8 bg-primary-100 bg-opacity-80 backdrop-blur-md border-b border-primary-600 z-[1000]"
->
-	<div class={clsx("flex justify-between w-full", MAX_PAGE_WIDTH)}>
-		<a
-			href="/"
-			class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-700 cursor-pointer font-serif"
-			>Ahmad Rehan</a
-		>
+<div class="fixed top-5 w-screen grid place-items-center">
+	<nav
+		class={clsx(
+			"flex justify-between w-full p-4 md:px-12 bg-brussian-50 bg-opacity-15 backdrop-blur-lg z-[1000] rounded-full shadow-lg",
+			"border-t-2 border-t-white border-opacity-25",
+			DESKTOP_MAX_PAGE_WIDTH,
+		)}
+	>
+		<a href="/" class={clsx("cursor-pointer")}>
+			<div class="flex items-center justify-between gap-4">
+				<img src={logo} alt="" class="w-16" />
+				<p
+					class="bg-gradient-to-r from-brussian-100 to-brussian-400 bg-clip-text text-transparent text-xl sm:text-2xl md:text-3xl lg:text-4xl"
+				>
+					Ahmad Rehan
+				</p>
+			</div>
+		</a>
 
 		<button
-			class="flex flex-col p-1 rounded-md border-2 border-primary-700 text-primary-700 md:hidden"
+			class="flex flex-col p-1 rounded-md border-2 border-brussian-700 md:hidden text-brussian-100"
 			on:click={() => (showMobileMenu = !showMobileMenu)}
 		>
 			<svelte:component this={IconMenu} class="w-6 h-6 cursor-pointer" />
 		</button>
 
-		<div class="hidden gap-8 items-center text-primary-800 md:flex">
+		<div class="hidden gap-8 items-center md:flex">
 			{#each links as link}
 				<a
 					on:click={() => (showMobileMenu = false)}
 					class={clsx(
-						"text-lg xl:text-xl px-2 py-1",
-						COMMON_BUTTON_INNER_SHADOW_STYLE,
+						"text-lg xl:text-xl px-2 py-1 text-brussian-100",
 					)}
 					href={link.link}>{link.name}</a
 				>
 			{/each}
+			<Button>Contact Me</Button>
 		</div>
-	</div>
-</nav>
+	</nav>
+</div>
 
 <div
 	class={clsx(
-		"fixed top-0 left-0 w-screen h-screen bg-primary-100 bg-opacity-90 backdrop-blur-md z-[999]",
+		"fixed top-0 left-0 w-screen h-screen bg-brussian-100 bg-opacity-90 backdrop-blur-md z-[999]",
 		{ hidden: !showMobileMenu },
 	)}
 >
-	<div class="flex flex-col gap-8 items-center text-primary-800 p-4 w-full">
+	<div class="flex flex-col gap-8 items-center p-4 w-full">
 		{#each links as link}
 			<a
 				class={clsx(
-					"font-sans text-xl p-2 border-b-2 border-primary-500 w-full",
+					"font-sans text-xl p-2 border-b-2 border-brussian-500 w-full",
 				)}
 				on:click={() => (showMobileMenu = false)}
 				href={link.link}>{link.name}</a
@@ -79,7 +85,7 @@
 {#if windowY > pageHeight}
 	<a
 		href="#top"
-		class="fixed bottom-4 right-4 p-4 z-[1000] rounded-full text-primary-100 bg-primary-800 shadow-lg active:bg-primary-600 border-2 border-primary-300 cursor-pointer transition-colors duration-150"
+		class="fixed bottom-4 right-4 p-4 z-[1000] rounded-full bg-brussian-800 shadow-lg active:bg-brussian-600 border-2 border-brussian-300 cursor-pointer transition-colors duration-150"
 		on:click={() => window.scrollTo({ top: 0, behavior: "smooth" })}
 	>
 		<svelte:component this={IconArrowUp} class="w-8 h-8" />

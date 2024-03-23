@@ -12,7 +12,7 @@
 	<meta name="description" content="Well hello there 👋" />
 </svelte:head>
 
-<!-- <Navbar /> -->
+<Navbar />
 
 <div id="top" class="h-32 w-screen bg-opacity-0"></div>
 
