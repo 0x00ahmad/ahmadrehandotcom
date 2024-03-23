@@ -9,3 +9,6 @@
 <div class="w-full grid place-items-center">
 	<p>Yes, I know. Finally getting to it.</p>
 </div>
+
+<div id="work" class="w-full grid place-items-center"></div>
+<div id="about" class="w-full grid place-items-center"></div>

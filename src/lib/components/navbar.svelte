@@ -9,7 +9,7 @@
 	const links = [
 		{ name: "Home", link: "/" },
 		{ name: "Work", link: "/#work" },
-		{ name: "About", link: "/#about-me" },
+		{ name: "About", link: "/#about" },
 	];
 
 	let showMobileMenu = false;
