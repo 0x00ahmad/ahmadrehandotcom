@@ -12,12 +12,14 @@ const buttonVariants = tv({
   variants: {
     variant: {
       default:
-        "bg-vviolet-950 text-brussian-200 drop-shadow-sm shadow-[inset_0_0_14px_0_rgba(72,33,178,1)] hover:shadow-[inset_0_0_14px_0_rgba(89,37,221,1)]",
+        "bg-vviolet-950 text-brussian-200 drop-shadow-sm shadow-[inset_0_0_14px_0_rgba(72,33,178,1)] hover:shadow-[inset_0_0_14px_0_rgba(89,37,221,1)] active:shadow-[inset_0_0_14px_0_rgba(89,37,221,1)]",
+      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+      tertiary:
+        "bg-white bg-opacity-10 text-slate-50 drop-shadow-sm shadow-[inset_0_0_14px_0_rgba(255,255,255,0.3)] hover:shadow-[inset_0_0_14px_0_rgba(255,255,255,0.4)] active:shadow-[inset_0_0_14px_0_rgba(255,255,255,0.4)]",
       destructive:
         "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       outline:
         "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       ghost: "hover:bg-accent hover:text-accent-foreground",
       link: "text-primary underline-offset-4 hover:underline",
     },

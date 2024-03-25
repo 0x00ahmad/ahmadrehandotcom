@@ -46,12 +46,12 @@
 			<svelte:component this={IconMenu} class="w-6 h-6 cursor-pointer" />
 		</button>
 
-		<div class="hidden gap-8 items-center md:flex">
+		<div class="hidden gap-4 items-center md:flex">
 			{#each links as link}
 				<a
 					on:click={() => (showMobileMenu = false)}
 					class={clsx(
-						"text-lg xl:text-xl px-2 py-1 text-brussian-100",
+						"text-md xl:text-lg px-2 py-1 text-vviolet-100",
 					)}
 					href={link.link}>{link.name}</a
 				>

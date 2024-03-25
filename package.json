@@ -11,7 +11,8 @@
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "pages:dev": "wrangler pages dev --compatibility-date=2023-12-18 --proxy 5173 -- npm run dev",
-    "pages:deploy": "npm run build && wrangler pages deploy .svelte-kit/cloudflare"
+    "pages:deploy": "npm run build && wrangler pages deploy .svelte-kit/cloudflare",
+    "yolo": "git add . && git commit -m 'yolo' && git push"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
