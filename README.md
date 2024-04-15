@@ -1,5 +1,5 @@
-# BecomeTaxPayer Web
+# DNBazar
 
-This is the official repository for the user & admin frontend of this project
+This is the official repository for the website/application project
 
 ---
