@@ -6,3 +6,7 @@ export type ServerError = {
 
 export type ServerErrors = Array<ServerError>;
 
+export type Result<T> = {
+    data: T;
+    errors?: ServerErrors;
+};

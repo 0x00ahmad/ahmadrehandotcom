@@ -27,7 +27,7 @@
 {#if size == "h1"}
     <h1
         class={clsx(
-            "font-sans text-3xl lg:text-4xl",
+            "font-sans text-4xl lg:text-5xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],
@@ -38,7 +38,7 @@
 {:else if size == "h2"}
     <h2
         class={clsx(
-            "font-sans text-2xl lg:text-3xl",
+            "font-sans text-3xl lg:text-4xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],
@@ -49,7 +49,7 @@
 {:else if size == "h3"}
     <h3
         class={clsx(
-            "font-sans text-xl lg:text-2xl",
+            "font-sans text-2xl lg:text-3xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],
@@ -60,7 +60,7 @@
 {:else if size == "h4"}
     <h4
         class={clsx(
-            "font-sans text-lg lg:text-xl",
+            "font-sans text-xl lg:text-2xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],

@@ -5,39 +5,30 @@ import {
     text,
 } from "drizzle-orm/sqlite-core";
 
-import { USER_TYPES } from "../../utils/constants";
+import { OAUTH_PROVIDERS, USER_TYPES } from "../../utils/constants";
 
 export const user = sqliteTable("user", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
-    lastLogin: integer("last_login", { mode: "timestamp" }).notNull(),
-    username: text("username", { length: 32 }).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
+    lastLogin: integer("last_login", { mode: "timestamp_ms" }).notNull(),
     email: text("email", { length: 128 }).notNull(),
+    firstName: text("first_name", { length: 32 }).notNull(),
+    lastName: text("last_name", { length: 32 }).notNull(),
     userType: integer("user_type").notNull().default(USER_TYPES.USER),
     disabled: integer("disabled", { mode: "boolean" }).notNull().default(false),
     provider: text("provider", {
-        enum: ["google", "facebook", "linkedin"],
+        enum: [OAUTH_PROVIDERS.GOOGLE, OAUTH_PROVIDERS.FACEBOOK, OAUTH_PROVIDERS.LINKEDIN],
     }).notNull(),
     providerId: text("provider_id", { length: 255 }).notNull(),
 });
 
-export const session = sqliteTable("session", {
-    id: text("id").notNull().primaryKey(),
-    expiresAt: integer("expires_at").notNull(),
-    userId: integer("user_id").notNull().references(() => user.id),
-});
-
-export const userSessionRelation = relations(user, ({ one }) => ({
-    session: one(session)
-}));
-
 export const domain = sqliteTable("domain", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
     name: text("name", { length: 255 }).notNull(),
     listPrice: integer("list_price", { mode: "number" }).notNull(),
     acceptedPrice: integer("accepted_price", { mode: "number" }).notNull(),
-    expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
+    expiresAt: integer("expires_at", { mode: "timestamp_ms" }).notNull(),
     categories: text("categories", { length: 255 }).notNull(),
     sellerId: integer("seller_id", { mode: "number" }).notNull(),
 });

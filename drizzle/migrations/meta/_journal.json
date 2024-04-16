@@ -8,6 +8,27 @@
       "when": 1713257029028,
       "tag": "0000_youthful_the_leader",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1713262870091,
+      "tag": "0001_sleepy_epoch",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1713265266077,
+      "tag": "0002_bright_lockheed",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1713270487952,
+      "tag": "0003_striped_luke_cage",
+      "breakpoints": true
     }
   ]
 }

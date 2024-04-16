@@ -1,8 +1,7 @@
-import type { ServerErrors } from "$lib/types";
-import type { USER_TYPES } from "$lib/utils/enums";
 import { Google } from "arctic";
 
 import { AuthRepo } from "./auth.model";
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI } from "$env/static/private";
 
 export class OAuthRepo extends AuthRepo {
     provider: string;
@@ -34,10 +33,28 @@ export class OAuthRepo extends AuthRepo {
     }
 }
 
-const googleClientId = "googleClientId";
-const googleClientSecret = "googleClientSecret";
-const googleRedirectUri = "googleRedirectUri";
+
+//
+// TODO: abstractificate this
+//
+const googleClientId = GOOGLE_CLIENT_ID;
+const googleClientSecret = GOOGLE_CLIENT_SECRET;
+const googleRedirectUri = GOOGLE_REDIRECT_URI;
 
 export const googleProvider = new Google(googleClientId, googleClientSecret, googleRedirectUri);
 
+
+export class GoogleOAuthProvider extends OAuthRepo {
+    constructor() {
+        super("google", googleClientId, googleClientSecret, googleRedirectUri);
+    }
+
+    async createAuthorizationURL(state: string, codeVerifier: string, options: any) {
+        return;
+    }
+
+    async validateAuthorizationCode(code: string, codeVerifier: string) {
+        return;
+    }
+}
 

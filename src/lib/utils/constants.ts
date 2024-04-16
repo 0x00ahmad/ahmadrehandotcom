@@ -23,8 +23,13 @@ export const CONTACT_INFO = {
 	location: 'some plot, flat, street, city, state, country, zip code, postal code'
 };
 
+export const OAUTH_PROVIDERS = {
+	GOOGLE: 'google',
+	FACEBOOK: 'facebook',
+	LINKEDIN: 'linkedin',
+}
+
 export const USER_TYPES = {
 	ADMIN: 1,
 	USER: 0,
-	SELLER: 2,
 };

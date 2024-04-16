@@ -30,8 +30,7 @@ const config = {
 	importOrderBuiltinModulesToTop: true,
 	importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
 	importOrderMergeDuplicateImports: true,
-	importOrderCombineTypeAndValueImports: true,
-};
+	importOrderCombineTypeAndValueImports: true
+}
 
 module.exports = config;
-

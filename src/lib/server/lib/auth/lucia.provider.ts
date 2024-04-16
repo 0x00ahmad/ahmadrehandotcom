@@ -1,12 +1,13 @@
-import { db } from '$lib/server/db';
-import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle';
-import { Lucia } from 'lucia';
-import { session, user } from '$lib/server/db/schema';
+import { Lucia, TimeSpan } from 'lucia';
 import { env } from '$env/dynamic/private';
+import { HybridDrizzleAndRedisAdapter } from './adapter';
+import { db } from '$lib/server/db';
+import { redisClient } from '$lib/server/redis';
 
-const adapter = new DrizzleSQLiteAdapter(db, session, user);
+const adapter = new HybridDrizzleAndRedisAdapter(db, redisClient);
 
 export const lucia = new Lucia(adapter, {
+	sessionExpiresIn: new TimeSpan(2, "w"),
 	sessionCookie: {
 		attributes: {
 			secure: env.NODE_ENV === 'production'
@@ -15,11 +16,10 @@ export const lucia = new Lucia(adapter, {
 	getUserAttributes: (attrs) => {
 		return {
 			email: attrs.email,
-			username: attrs.username,
 			firstName: attrs.firstName,
 			lastName: attrs.lastName,
 		}
-	}
+	},
 });
 
 // IMPORTANT!
@@ -30,7 +30,6 @@ declare module 'lucia' {
 		DatabaseUserAttributes: {
 			firstName: string;
 			lastName: string;
-			username: string;
 			email: string;
 		}
 

@@ -6,23 +6,27 @@
     import { Button } from "$lib/components/ui/button";
 </script>
 
-<main class="flex w-80 flex-col justify-center">
-    <Title />
-    <p>Sign in to view your orders and make more!</p>
-    <div>
+<div class="grid h-screen w-screen place-items-center">
+    <main
+        class="flex w-max max-w-xl flex-col gap-4 rounded-lg border-2 border-shamrock-500 p-20 shadow"
+    >
+        <Title text={"Sign in"} size={"h1"} />
+        <p class="text-shamrock-600">
+            Choose from one of the providers to sign in
+        </p>
         <div class="flex w-full flex-col items-center justify-center gap-4">
-            <Button class="w-full bg-neutral-700">
+            <Button class="w-full" href={"/auth/signin/google"}>
                 <svelte:component this={IconGoogle} class="mr-2 h-4 w-4" />
-                Sign In With Google
+                Google
             </Button>
-            <Button class="w-full">
+            <Button class="w-full bg-blue-500">
                 <svelte:component this={IconFacebook} class="mr-2 h-4 w-4" />
-                Sign In With Facebook
+                Facebook
             </Button>
-            <Button class="w-full">
+            <Button class="w-full bg-sky-500">
                 <svelte:component this={MdiLinkedin} class="mr-2 h-4 w-4" />
-                Sign In With LinkedIn
+                LinkedIn
             </Button>
         </div>
-    </div>
-</main>
+    </main>
+</div>
