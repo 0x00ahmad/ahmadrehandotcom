@@ -5,6 +5,7 @@
     import { MAX_PAGE_WIDTH, TRANSITION_COLORS } from "$lib/utils/constants";
     import clsx from "clsx";
 
+    import DarkModeToggle from "./dark-mode-toggle.svelte";
     import Logo from "./logo.svelte";
     import Button from "./ui/button/button.svelte";
 
@@ -25,8 +26,7 @@
 <div class="fixed top-5 grid w-screen place-items-center">
     <nav
         class={clsx(
-            "z-[1000] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-10 p-4 backdrop-blur-md md:p-6",
-            "border-t-2 border-t-white border-opacity-25",
+            "z-[1000] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-10 p-4 backdrop-blur-md dark:bg-shamrock-950 dark:bg-opacity-5 md:p-6",
             MAX_PAGE_WIDTH,
         )}
     >
@@ -35,7 +35,6 @@
                 <Logo />
             </div>
         </a>
-
         <div class="flex items-center gap-4">
             <Button
                 on:click={() => {
@@ -43,15 +42,9 @@
                 }}>Sign In</Button
             >
             <span
-                class={cn(
-                    "rounded-md bg-shamrock-50 p-2 text-shamrock-700 focus:bg-opacity-100",
-                    TRANSITION_COLORS,
-                )}
+                class="grid cursor-pointer place-items-center rounded-full bg-shamrock-50 p-4 dark:bg-shamrock-900"
             >
-                <svelte:component
-                    this={IconShoppingCart}
-                    class="h-6 w-6 cursor-pointer"
-                />
+                <svelte:component this={IconShoppingCart} class="h-6 w-6" />
             </span>
         </div>
     </nav>

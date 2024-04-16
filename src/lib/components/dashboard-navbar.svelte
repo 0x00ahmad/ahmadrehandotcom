@@ -3,16 +3,12 @@
     import IconShoppingCart from "~icons/ri/shopping-cart-line";
     import { cn } from "$lib/utils";
     import { TRANSITION_COLORS } from "$lib/utils/constants";
-    import clsx from "clsx";
+    import type { User } from "lucia";
 
     import Logo from "./logo.svelte";
     import Button from "./ui/button/button.svelte";
 
-    const links = [
-        { name: "Home", link: "/" },
-        { name: "Work", link: "/#work" },
-        { name: "About", link: "/#about" },
-    ];
+    export let user: User | null = null;
 
     let showMobileMenu = false;
 
@@ -23,23 +19,31 @@
 <svelte:window bind:scrollY={windowY} bind:outerHeight={pageHeight} />
 
 <nav
-    class={clsx(
+    class={cn(
         "z-[1000] flex w-screen items-center justify-between rounded-md bg-shamrock-50 bg-opacity-10 p-4 md:p-6",
         "border-t-2 border-t-white border-opacity-25",
     )}
 >
-    <a href="/dashboard" class={clsx("cursor-pointer")}>
+    <a href="/u" class={cn("cursor-pointer")}>
         <div class="flex items-center justify-between gap-4">
             <Logo />
         </div>
     </a>
 
     <div class="flex items-center gap-4">
-        <Button
-            on:click={() => {
-                window.location.href = "/auth/signin";
-            }}>Sign In</Button
-        >
+        {#if user}
+            <Button
+                on:click={() => {
+                    window.location.href = "/auth/signout";
+                }}>Sign Out</Button
+            >
+        {:else}
+            <Button
+                on:click={() => {
+                    window.location.href = "/auth/signin";
+                }}>Sign In</Button
+            >
+        {/if}
         <span
             class={cn(
                 "rounded-md bg-shamrock-50 p-2 text-shamrock-700 focus:bg-opacity-100",
@@ -55,19 +59,20 @@
 </nav>
 
 <div
-    class={clsx(
+    class={cn(
         "fixed left-0 top-0 z-[999] h-screen w-screen bg-shamrock-50 bg-opacity-10 backdrop-blur-md",
         { hidden: !showMobileMenu },
     )}
 >
     <div class="flex w-full flex-col items-center gap-8 p-4">
-        {#each links as link}
-            <a
-                class={clsx("w-full border-b-2 border-shamrock-500 p-2 text-xl")}
-                on:click={() => (showMobileMenu = false)}
-                href={link.link}>{link.name}</a
-            >
-        {/each}
+        <div>show sum ship here</div>
+        <!-- {#each  as link} -->
+        <!--     <a -->
+        <!--         class={cn("w-full border-b-2 border-shamrock-500 p-2 text-xl")} -->
+        <!--         on:click={() => (showMobileMenu = false)} -->
+        <!--         href={link.link}>{link.name}</a -->
+        <!--     > -->
+        <!-- {/each} -->
     </div>
 </div>
 

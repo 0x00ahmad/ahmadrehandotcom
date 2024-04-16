@@ -2,6 +2,7 @@
 	"name": "dnbazar",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -19,6 +20,26 @@
 		"db:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
 		"db:studio": "drizzle-kit studio",
 		"build-cf-types": "wrangler types && mv worker-configuration.d.ts src/"
+	},
+	"dependencies": {
+		"@libsql/client": "^0.6.0",
+		"@lucia-auth/adapter-drizzle": "^1.0.7",
+		"@planetscale/database": "^1.16.0",
+		"@upstash/redis": "^1.29.0",
+		"arctic": "^1.5.0",
+		"bits-ui": "^0.20.1",
+		"clsx": "^2.1.0",
+		"drizzle-orm": "^0.30.4",
+		"lucia": "^3.1.1",
+		"lucide-svelte": "^0.368.0",
+		"mode-watcher": "^0.3.0",
+		"oslo": "^1.2.0",
+		"resend": "^3.2.0",
+		"svelte-sonner": "^0.3.22",
+		"tailwind-merge": "^2.2.2",
+		"tailwind-variants": "^0.2.1",
+		"unplugin-auto-import": "^0.17.5",
+		"unplugin-icons": "^0.18.5"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20240320.1",
@@ -50,23 +71,5 @@
 		"vite": "^5.0.3",
 		"vitest": "^1.2.0",
 		"wrangler": "^3.37.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"@libsql/client": "^0.6.0",
-		"@lucia-auth/adapter-drizzle": "^1.0.7",
-		"@planetscale/database": "^1.16.0",
-		"@upstash/redis": "^1.29.0",
-		"arctic": "^1.5.0",
-		"bits-ui": "^0.20.1",
-		"clsx": "^2.1.0",
-		"drizzle-orm": "^0.30.4",
-		"lucia": "^3.1.1",
-		"oslo": "^1.2.0",
-		"resend": "^3.2.0",
-		"tailwind-merge": "^2.2.2",
-		"tailwind-variants": "^0.2.1",
-		"unplugin-auto-import": "^0.17.5",
-		"unplugin-icons": "^0.18.5"
 	}
 }
