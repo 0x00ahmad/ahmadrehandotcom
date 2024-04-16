@@ -4,10 +4,7 @@
     import successSvg from "$lib/assets/graphics/success.svg";
     import Button from "$lib/components/ui/button/button.svelte";
     import { cn } from "$lib/utils";
-    import {
-        DESKTOP_MAX_PAGE_WIDTH,
-        TRANSITION_COLORS,
-    } from "$lib/utils/constants";
+    import { TRANSITION_COLORS } from "$lib/utils/constants";
 
     function searchForDomain(event: any) {
         let query = event.target[0].value;
@@ -24,7 +21,7 @@
         <img
             src={successSvg}
             alt="Success"
-            class="xs:top-[-2em] xs:right-[-2.5em] absolute right-[-2em] top-[-0.4em] min-w-32 lg:right-[-3.5em]"
+            class="absolute right-[-2em] top-[-0.4em] min-w-32 xs:right-[-2.5em] xs:top-[-2em] lg:right-[-3.5em]"
         />
         Business
     </span>

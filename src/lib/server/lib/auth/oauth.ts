@@ -1,29 +1,26 @@
 import type { ServerErrors } from "$lib/types";
 import type { USER_TYPES } from "$lib/utils/enums";
+import { Google } from "arctic";
 
 import { AuthRepo } from "./auth.model";
 
 export class OAuthRepo extends AuthRepo {
-    email: string;
     provider: string;
     providerId: string;
-    username: string;
-    userType: USER_TYPES;
+    providerSecret: string;
+    providerRedirectUri: string;
 
     constructor(
-        email: string,
         provider: string,
         providerId: string,
-        username: string,
-        userType: USER_TYPES,
+        providerSecret: string,
+        providerRedirectUri: string
     ) {
         super();
-
-        this.email = email;
         this.provider = provider;
         this.providerId = providerId;
-        this.username = username;
-        this.userType = userType;
+        this.providerSecret = providerSecret;
+        this.providerRedirectUri = providerRedirectUri;
     }
 
     async login() {
@@ -36,3 +33,11 @@ export class OAuthRepo extends AuthRepo {
         return { success: true, errors: [] };
     }
 }
+
+const googleClientId = "googleClientId";
+const googleClientSecret = "googleClientSecret";
+const googleRedirectUri = "googleRedirectUri";
+
+export const googleProvider = new Google(googleClientId, googleClientSecret, googleRedirectUri);
+
+

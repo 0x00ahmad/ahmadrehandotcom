@@ -37,7 +37,11 @@
         </a>
 
         <div class="flex items-center gap-4">
-            <Button>Sign In</Button>
+            <Button
+                on:click={() => {
+                    window.location.href = "/auth/signin";
+                }}>Sign In</Button
+            >
             <span
                 class={cn(
                     "rounded-md bg-shamrock-50 p-2 text-shamrock-700 focus:bg-opacity-100",

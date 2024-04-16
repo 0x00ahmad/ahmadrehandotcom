@@ -25,5 +25,6 @@ export const CONTACT_INFO = {
 
 export const USER_TYPES = {
 	ADMIN: 1,
-	USER: 0
+	USER: 0,
+	SELLER: 2,
 };

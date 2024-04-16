@@ -1,5 +1,5 @@
 <script>
-    import "../app.pcss";
+    import "../../app.pcss";
 
     import { onNavigate } from "$app/navigation";
     import Footer from "$lib/components/footer.svelte";

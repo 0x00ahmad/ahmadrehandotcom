@@ -9,6 +9,10 @@ declare global {
             cf: CfProperties
             ctx: ExecutionContext
         }
+        interface Locals {
+            user: import("lucia").User | null;
+            session: import("lucia").Session | null;
+        }
     }
 }
 
