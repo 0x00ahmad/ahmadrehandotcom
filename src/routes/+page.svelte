@@ -1,5 +1,6 @@
 <script lang="ts">
     import IconSearch from "~icons/bx/search";
+    import successSvg from "$lib/assets/graphics/success.svg";
     import Button from "$lib/components/ui/button/button.svelte";
     import { cn } from "$lib/utils";
     import {
@@ -12,13 +13,20 @@
     }
 </script>
 
-<main class="grid w-screen place-items-center py-64">
+<main class="grid h-[80vh] place-items-center">
     <div class={cn("flex w-full flex-col gap-12", DESKTOP_MAX_PAGE_WIDTH)}>
         <span
             class="relative text-5xl font-semibold tracking-wider md:text-6xl lg:text-7xl"
         >
             Every
-            <span class="line-through decoration-shamrock-500">Business</span>
+            <span class="relative line-through decoration-shamrock-500">
+                <img
+                    src={successSvg}
+                    alt="Success"
+                    class="xs:top-[-2em] xs:right-[-2.5em] absolute right-[-2em] top-[-0.4em] min-w-32 lg:right-[-3.5em]"
+                />
+                Business
+            </span>
             <br /> Starts with a
             <span class="text-shamrock-700">Domain.</span>
         </span>
@@ -32,7 +40,7 @@
                     "w-full rounded-md border-2 border-slate-200 p-4 text-xl outline-none hover:border-slate-300 focus:border-shamrock-500 focus:ring-2 focus:ring-shamrock-500 focus:ring-offset-2",
                     TRANSITION_COLORS,
                 )}
-                placeholder="Search for a domain"
+                placeholder="Type a name or keyword"
             />
             <Button size={"icon"}>
                 <svelte:component this={IconSearch} />

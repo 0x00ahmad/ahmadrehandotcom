@@ -17,6 +17,10 @@ const config = {
 			sans: ['Outfit', ...fontFamily.sans],
 		},
 		extend: {
+			screens: {
+				xs: '440px',
+				'2xl': '1440px'
+			},
 			colors: {
 				shamrock: {
 					50: '#F0FDF8',

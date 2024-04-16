@@ -1,5 +1,4 @@
 <script lang="ts">
-    import IconMenu from "~icons/material-symbols-light/menu";
     import IconArrowUp from "~icons/ph/arrow-fat-line-up";
     import IconShoppingCart from "~icons/ri/shopping-cart-line";
     import { cn } from "$lib/utils";
@@ -40,18 +39,11 @@
             </div>
         </a>
 
-        <button
-            class="flex flex-col rounded-md border-2 border-shamrock-700 p-1 md:hidden"
-            on:click={() => (showMobileMenu = !showMobileMenu)}
-        >
-            <svelte:component this={IconMenu} class="h-6 w-6 cursor-pointer" />
-        </button>
-
-        <div class="hidden items-center gap-4 md:flex">
+        <div class="flex items-center gap-4">
             <Button>Sign In</Button>
             <span
                 class={cn(
-                    "rounded-md bg-shamrock-50 p-2 focus:bg-opacity-100 text-shamrock-700",
+                    "rounded-md bg-shamrock-50 p-2 text-shamrock-700 focus:bg-opacity-100",
                     TRANSITION_COLORS,
                 )}
             >
