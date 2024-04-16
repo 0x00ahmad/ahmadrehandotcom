@@ -2,10 +2,7 @@
     import IconArrowUp from "~icons/ph/arrow-fat-line-up";
     import IconShoppingCart from "~icons/ri/shopping-cart-line";
     import { cn } from "$lib/utils";
-    import {
-        DESKTOP_MAX_PAGE_WIDTH,
-        TRANSITION_COLORS,
-    } from "$lib/utils/constants";
+    import { MAX_PAGE_WIDTH, TRANSITION_COLORS } from "$lib/utils/constants";
     import clsx from "clsx";
 
     import Logo from "./logo.svelte";
@@ -28,9 +25,9 @@
 <div class="fixed top-5 grid w-screen place-items-center">
     <nav
         class={clsx(
-            "z-[1000] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-10 p-4 backdrop-blur-lg md:p-6",
+            "z-[1000] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-10 p-4 backdrop-blur-md md:p-6",
             "border-t-2 border-t-white border-opacity-25",
-            DESKTOP_MAX_PAGE_WIDTH,
+            MAX_PAGE_WIDTH,
         )}
     >
         <a href="/" class={clsx("cursor-pointer")}>

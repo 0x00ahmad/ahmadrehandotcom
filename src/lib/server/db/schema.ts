@@ -1,74 +1,50 @@
-import { relations } from 'drizzle-orm';
+import { relations } from "drizzle-orm";
 import {
-    boolean,
-    int,
-    json,
-    mysqlEnum,
-    mysqlTable,
+    sqliteTable,
+    integer,
     text,
-    timestamp,
-    varchar
-} from 'drizzle-orm/mysql-core';
+} from "drizzle-orm/sqlite-core";
 
-import type { ProductFeatures } from '../../types';
-import { USER_TYPES } from '../../utils/constants';
+import type { ProductFeatures } from "../../types";
+import { USER_TYPES } from "../../utils/constants";
+import { boolean } from "drizzle-orm/mysql-core";
 
 // INFO: more focused tables
 
-export const user = mysqlTable('user', {
-    id: int('id').autoincrement().primaryKey(),
-    username: varchar('username', { length: 32 }).notNull(),
-    provider: mysqlEnum('provider', ['google', '']).notNull(),
-    providerId: varchar('provider_id', { length: 255 }).notNull(),
-    email: varchar('email', { length: 128 }).notNull(),
-    userType: int('user_type').notNull().default(USER_TYPES.USER),
-    disbled: boolean('disabled').notNull().default(false)
+export const user = sqliteTable("user", {
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+    lastLogin: integer("last_login", { mode: "timestamp" }).notNull(),
+    username: text("username", { length: 32 }).notNull(),
+    provider: text("provider", {
+        enum: ["google", "facebook"],
+    }).notNull(),
+    providerId: text("provider_id", { length: 255 }).notNull(),
+    email: text("email", { length: 128 }).notNull(),
+    userType: integer("user_type").notNull().default(USER_TYPES.USER),
+    disbled: integer("disabled", { mode: "boolean" }).notNull().default(false)
 });
 
-// INFO: this one is for describing "Name" type in the income tax form
-export const entity = mysqlTable('entity', {});
-
-export const personalInfo = mysqlTable('personal_info', {
-    id: int('id').autoincrement().primaryKey(),
-    userId: int('user_id').notNull(),
-    firstName: varchar('first_name', { length: 32 }).notNull(),
-    lastName: varchar('last_name', { length: 32 }).notNull(),
-    email: varchar('email', { length: 128 }).notNull()
+export const domain = sqliteTable("domain", {
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+    name: text("name", { length: 255 }).notNull(),
+    listPrice: integer("list_price", { mode: "number" }).notNull(),
+    acceptedPrice: integer("accepted_price", { mode: "number" }).notNull(),
+    expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
+    categories: text("categories", { length: 255 }).notNull(),
+    sellerId: integer("seller_id", { mode: "number" }).notNull(),
 });
 
-// WARNING: make sure to store the bank credentials as encrypted strings, and decrypt them when required
-export const bankAccount = mysqlTable('bank_account', {});
+export const userDomainRelation = relations(user, ({ many }) => ({
+    sessions: many(domain)
+}));
 
-export const attachment = mysqlTable('attachment', {});
-
-export const address = mysqlTable('address', {});
-
-export const incomeSource = mysqlTable('income_source', {
-    id: int('id').autoincrement().primaryKey(),
-    userId: int('user_id').notNull(),
-    name: varchar('name', { length: 128 }).notNull(),
-    type: varchar('type', { length: 32 }).notNull(),
-    description: text('description').notNull().default(''),
-    isPrimary: boolean('is_primary').notNull().default(false)
-});
-
-export const property = mysqlTable('property', {});
-
-export const business = mysqlTable('business', {});
-
-// INFO: this table is going to be storing information about people related to the user,
-//  such as their employer, partner, etc. which are going to be referred to while filing out the tax forms
-export const relatedEntity = mysqlTable('related_entity', {});
-
-export const filed_form_data = mysqlTable('filed_form_data', {});
-
-// INFO: more general tables
-
-export const contact = mysqlTable('contact', {
-    id: int('id').autoincrement().primaryKey(),
-    firstName: varchar('first_name', { length: 32 }).notNull(),
-    lastName: varchar('last_name', { length: 32 }).notNull(),
-    email: varchar('email', { length: 128 }).notNull(),
-    phoneNumber: varchar('phone_number', { length: 32 }).notNull(),
-    message: text('message').notNull().default('')
+export const contact = sqliteTable("contact", {
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    firstName: text("first_name", { length: 32 }).notNull(),
+    lastName: text("last_name", { length: 32 }).notNull(),
+    email: text("email", { length: 128 }).notNull(),
+    phoneNumber: text("phone_number", { length: 32 }).notNull(),
+    message: text("message").notNull().default("")
 });
