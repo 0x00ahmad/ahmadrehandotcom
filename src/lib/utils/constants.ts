@@ -1,6 +1,9 @@
 export const TRANSITION_ALL = 'transition-all duration-150 ease-in-out';
 export const TRANSITION_COLORS = 'transition-colors duration-150 ease-in-out';
 
+export const MAX_PAGE_WIDTH = "max-w-[80vw]";
+export const DESKTOP_MAX_PAGE_WIDTH = "max-w-[80vw]";
+
 export const SITE_LINKS = [
 	{ name: 'Home', link: '/' },
 	{ name: 'Services', link: '/services' },

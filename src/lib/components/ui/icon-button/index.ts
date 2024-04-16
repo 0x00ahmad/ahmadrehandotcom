@@ -14,11 +14,11 @@ const buttonVariants = tv({
 			link: 'text-primary underline-offset-4 hover:underline'
 		},
 		size: {
-			default: 'h-10 px-4 py-3',
-			sm: 'h-9 px-4',
-			lg: 'h-11 px-8',
-			xl: "h-14 px-8 py-4",
-			icon: 'p-6'
+			default: 'h-10 p-2',
+			sm: 'h-9 p-4',
+			lg: 'h-11 p-6',
+			xl: "h-14 p-8",
+			icon: 'h-10 w-10'
 		}
 	},
 	defaultVariants: {

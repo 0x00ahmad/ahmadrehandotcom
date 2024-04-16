@@ -13,6 +13,9 @@ const config = {
 				'2xl': '1400px'
 			}
 		},
+		fontFamily: {
+			sans: ['Outfit', ...fontFamily.sans],
+		},
 		extend: {
 			colors: {
 				shamrock: {
@@ -67,9 +70,6 @@ const config = {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			fontFamily: {
-				sans: [...fontFamily.sans]
-			}
 		}
 	}
 };
