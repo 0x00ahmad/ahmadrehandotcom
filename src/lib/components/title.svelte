@@ -5,9 +5,9 @@
     type TitleFontWeight = "bold" | "semibold" | "normal" | "medium";
 
     const colors = {
-        white: "text-shamrock-50",
-        black: "text-shamrock-950",
-        primary: "text-shamrock-600",
+        white: "text-shamrock-50 dark:text-shamrock-950",
+        black: "text-shamrock-950 dark:text-shamrock-50",
+        primary: "text-shamrock-600 dark:text-shamrock-100",
     };
 
     const weights = {

@@ -33,3 +33,8 @@ export const USER_TYPES = {
 	ADMIN: 1,
 	USER: 0,
 };
+
+export const DEFAULT_CURRENCY = {
+	name: 'USD',
+	symbol: '$'
+};

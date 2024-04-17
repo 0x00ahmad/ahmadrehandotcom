@@ -1,25 +1,10 @@
 <script lang="ts">
-    import IconSearch from "~icons/bx/search";
-    import { goto } from "$app/navigation";
     import successSvg from "$lib/assets/graphics/success.svg";
-    import Button from "$lib/components/ui/button/button.svelte";
-    import { cn } from "$lib/utils";
-    import { TRANSITION_COLORS } from "$lib/utils/constants";
-    import { toast } from "svelte-sonner";
-
-    function searchForDomain(event: any) {
-        let query = event.target[0].value.trim() as string;
-        // pattern is to only allow a-z, A-Z, 0-9, dots and hyphen
-        if (query.length < 2 || query.match(/[^a-zA-Z0-9.-]/g)) {
-            toast.warning("Please enter a valid domain name.");
-            return;
-        }
-        goto(`/search?q=${query}`);
-    }
+    import DomainSearchInput from "$lib/components/domain-search-input.svelte";
 </script>
 
 <span
-    class="relative text-5xl font-semibold tracking-wider md:text-6xl lg:text-7xl"
+    class="relative text-4xl font-semibold tracking-wider sm:text-5xl md:text-6xl lg:text-7xl"
 >
     Every
     <span class="relative line-through decoration-shamrock-500">
@@ -31,24 +16,7 @@
         Business
     </span>
     <br /> Starts with a
-    <span class="text-shamrock-700">Domain.</span>
+    <span class="text-shamrock-700 dark:text-shamrock-300">Domain.</span>
 </span>
-<form
-    class="flex w-full gap-2"
-    on:submit|preventDefault={searchForDomain}
-    method="post"
->
-    <input
-        type="text"
-        class={cn(
-            "w-full rounded-md border-2 border-slate-200 p-4 text-xl outline-none hover:border-slate-300 focus:border-shamrock-500 focus:ring-2 focus:ring-shamrock-500 focus:ring-offset-2",
-            "dark:border-slate-700 dark:bg-slate-900 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:ring-shamrock-500 dark:focus:ring-offset-slate-900",
-            TRANSITION_COLORS,
-        )}
-        placeholder="Type a name or keyword"
-        minlength="2"
-    />
-    <Button size={"icon"} type="submit">
-        <svelte:component this={IconSearch} />
-    </Button>
-</form>
+
+<DomainSearchInput />

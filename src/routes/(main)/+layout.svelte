@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import "../../app.pcss";
 
     import { onNavigate } from "$app/navigation";
@@ -7,6 +7,10 @@
     import { cn } from "$lib/utils";
     import { MAX_PAGE_WIDTH } from "$lib/utils/constants";
     import { onMount } from "svelte";
+
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
 
     let isLandingPage = false;
 
@@ -19,7 +23,7 @@
     });
 </script>
 
-<Navbar />
+<Navbar user={data.user} />
 
 <div id="top" class="h-32 bg-opacity-0"></div>
 

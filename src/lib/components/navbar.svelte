@@ -1,19 +1,15 @@
 <script lang="ts">
+    import IconClose from "~icons/material-symbols/close-rounded";
     import IconArrowUp from "~icons/ph/arrow-fat-line-up";
+    import IconMenu from "~icons/ri/menu-line";
     import IconShoppingCart from "~icons/ri/shopping-cart-line";
-    import { cn } from "$lib/utils";
-    import { MAX_PAGE_WIDTH, TRANSITION_COLORS } from "$lib/utils/constants";
-    import clsx from "clsx";
+    import cn from "clsx";
+    import type { User } from "lucia";
 
-    import DarkModeToggle from "./dark-mode-toggle.svelte";
     import Logo from "./logo.svelte";
     import Button from "./ui/button/button.svelte";
 
-    const links = [
-        { name: "Home", link: "/" },
-        { name: "Work", link: "/#work" },
-        { name: "About", link: "/#about" },
-    ];
+    export let user: User | null = null;
 
     let showMobileMenu = false;
 
@@ -23,47 +19,89 @@
 
 <svelte:window bind:scrollY={windowY} bind:outerHeight={pageHeight} />
 
-<div class="fixed top-5 grid w-screen place-items-center">
-    <nav
-        class={clsx(
-            "z-[1000] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-10 p-4 backdrop-blur-md dark:bg-shamrock-950 dark:bg-opacity-5 md:p-6",
-            MAX_PAGE_WIDTH,
-        )}
+<nav
+    class={cn(
+        "fixed z-[999] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-15 p-8 backdrop-blur-md dark:bg-shamrock-950 dark:bg-opacity-5 md:p-10",
+    )}
+>
+    <a href="/" class={cn("cursor-pointer")}>
+        <div class="flex items-center justify-between gap-4">
+            <Logo />
+        </div>
+    </a>
+
+    <Button
+        class="md:hidden"
+        on:click={() => (showMobileMenu = !showMobileMenu)}
+        variant={"outline"}
+        size={"iconSm"}
     >
-        <a href="/" class={clsx("cursor-pointer")}>
-            <div class="flex items-center justify-between gap-4">
-                <Logo />
-            </div>
+        <svelte:component this={IconMenu} class="h-6 w-6 cursor-pointer" />
+    </Button>
+
+    <div class="hidden items-center gap-4 md:flex">
+        <a href="/checkout">
+            <Button size={"iconSm"} variant={"ghost"}>
+                <svelte:component this={IconShoppingCart} class="h-6 w-6" />
+            </Button>
         </a>
-        <div class="flex items-center gap-4">
+        {#if user}
+            <Button
+                on:click={() => {
+                    window.location.href = "/u";
+                }}
+            >
+                Dashboard
+            </Button>
+        {:else}
             <Button
                 on:click={() => {
                     window.location.href = "/auth/signin";
-                }}>Sign In</Button
+                }}
             >
-            <span
-                class="grid cursor-pointer place-items-center rounded-full bg-shamrock-50 p-4 dark:bg-shamrock-900"
-            >
-                <svelte:component this={IconShoppingCart} class="h-6 w-6" />
-            </span>
-        </div>
-    </nav>
-</div>
+                Sign In
+            </Button>
+        {/if}
+    </div>
+</nav>
 
 <div
-    class={clsx(
-        "fixed left-0 top-0 z-[999] h-screen w-screen bg-shamrock-50 bg-opacity-10 backdrop-blur-md",
-        { hidden: !showMobileMenu },
+    class={cn(
+        "fixed left-0 top-0 z-[1000] h-screen w-screen bg-white bg-opacity-80 backdrop-blur-xl dark:bg-slate-950 dark:bg-opacity-80 md:hidden",
+        {
+            hidden: !showMobileMenu,
+        },
     )}
 >
-    <div class="flex w-full flex-col items-center gap-8 p-4">
-        {#each links as link}
-            <a
-                class={clsx("w-full border-b-2 border-shamrock-500 p-2 text-xl")}
+    <div class="flex w-full flex-col gap-8 p-8">
+        <div class="flex w-full items-center justify-between gap-2">
+            <Logo />
+            <Button
                 on:click={() => (showMobileMenu = false)}
-                href={link.link}>{link.name}</a
+                variant={"outline"}
+                size={"iconSm"}
             >
-        {/each}
+                <svelte:component this={IconClose} class="h-6 w-6" />
+            </Button>
+        </div>
+
+        <Button
+            variant={"ghost"}
+            href={"/checkout"}
+            class="flex items-center gap-2"
+            on:click={() => (showMobileMenu = false)}
+        >
+            View Shopping Cart
+            <svelte:component this={IconShoppingCart} class="h-6 w-6" />
+        </Button>
+
+        <Button
+            on:click={() => {
+                window.location.href = "/auth/signin";
+            }}
+        >
+            Sign In
+        </Button>
     </div>
 </div>
 

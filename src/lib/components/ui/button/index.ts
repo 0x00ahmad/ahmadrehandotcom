@@ -18,7 +18,9 @@ const buttonVariants = tv({
 			sm: 'h-9 px-4',
 			lg: 'h-11 px-8',
 			xl: "h-14 px-8 py-4",
-			icon: 'p-6'
+			iconSm: 'p-2',
+			icon: 'p-4',
+			iconLg: 'p-6',
 		}
 	},
 	defaultVariants: {

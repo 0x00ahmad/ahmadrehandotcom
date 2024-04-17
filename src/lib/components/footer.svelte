@@ -23,7 +23,9 @@
 <div class={cn("grid w-full place-items-center gap-12")}>
     <footer class={cn("m-4 w-full rounded-lg", MAX_PAGE_WIDTH)}>
         <div class="max-w-screen mx-auto w-full p-4 md:py-8">
-            <div class="sm:flex sm:items-center sm:justify-between">
+            <div
+                class="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between"
+            >
                 <div class="flex items-center gap-8">
                     <a
                         href="https://dnbazar.com/"
@@ -38,22 +40,31 @@
                     class="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mb-0"
                 >
                     <li>
-                        <a href="#" class="me-4 hover:underline md:me-6">About</a>
-                    </li>
-                    <li>
-                        <a href="#" class="me-4 hover:underline md:me-6"
-                            >Policies</a
+                        <a href="/search?q=" class="me-4 hover:underline md:me-6"
+                            >Catalog</a
                         >
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Contact</a>
+                        <a href="/about" class="me-4 hover:underline md:me-6"
+                            >About Us</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/legal" class="me-4 hover:underline md:me-6"
+                            >Legal</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/contact" class="hover:underline">Contact</a>
                     </li>
                 </ul>
             </div>
             <hr
                 class="my-4 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-6"
             />
-            <div class="flex w-full items-center justify-between">
+            <div
+                class="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+            >
                 <span
                     class="block text-sm text-gray-500 dark:text-gray-400 sm:text-center"
                 >
