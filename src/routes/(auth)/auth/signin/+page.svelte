@@ -7,6 +7,11 @@
     import Title from "$lib/components/title.svelte";
     import { Button } from "$lib/components/ui/button";
     import { cn } from "$lib/utils";
+    import { toast } from "svelte-sonner";
+
+    function tmpPrompt() {
+        toast("Please use Google Sign In for now.");
+    }
 </script>
 
 <div
@@ -42,11 +47,11 @@
                     <svelte:component this={IconGoogle} class="mr-2 h-4 w-4" />
                     Google
                 </Button>
-                <Button class="w-full bg-blue-500" href={"/auth/signin/facebook"}>
+                <Button class="w-full bg-blue-500" on:click={tmpPrompt}>
                     <svelte:component this={IconFacebook} class="mr-2 h-4 w-4" />
                     Facebook
                 </Button>
-                <Button class="w-full bg-sky-500" href={"/auth/signin/linkedin"}>
+                <Button class="w-full bg-sky-500" on:click={tmpPrompt}>
                     <svelte:component this={MdiLinkedin} class="mr-2 h-4 w-4" />
                     LinkedIn
                 </Button>
