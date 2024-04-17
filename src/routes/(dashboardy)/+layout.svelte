@@ -9,6 +9,8 @@
 
 <DashboardNavbar user={data.user} />
 
+<div id="top" class="h-36 bg-opacity-0"></div>
+
 <slot />
 
 <Footer />

@@ -7,7 +7,7 @@
     const colors = {
         white: "text-shamrock-50 dark:text-shamrock-950",
         black: "text-shamrock-950 dark:text-shamrock-50",
-        primary: "text-shamrock-600 dark:text-shamrock-100",
+        primary: "text-shamrock-600 dark:text-shamrock-50",
     };
 
     const weights = {

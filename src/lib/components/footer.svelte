@@ -37,25 +37,19 @@
                 </div>
 
                 <ul
-                    class="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mb-0"
+                    class="flex flex-wrap gap-4 font-medium text-slate-500 dark:text-slate-400"
                 >
                     <li>
-                        <a href="/search?q=" class="me-4 hover:underline md:me-6"
-                            >Catalog</a
-                        >
+                        <a href="/search?q=" class="hover:underline">Catalog</a>
                     </li>
                     <li>
-                        <a href="/about" class="me-4 hover:underline md:me-6"
-                            >About Us</a
-                        >
-                    </li>
-                    <li>
-                        <a href="/legal" class="me-4 hover:underline md:me-6"
-                            >Legal</a
-                        >
+                        <a href="/about" class="hover:underline">About Us</a>
                     </li>
                     <li>
                         <a href="/contact" class="hover:underline">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/legal" class="hover:underline">Legal</a>
                     </li>
                 </ul>
             </div>
@@ -63,7 +57,7 @@
                 class="my-4 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-6"
             />
             <div
-                class="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+                class="flex w-full flex-col-reverse gap-8 sm:flex-row sm:items-center sm:justify-between"
             >
                 <span
                     class="block text-sm text-gray-500 dark:text-gray-400 sm:text-center"

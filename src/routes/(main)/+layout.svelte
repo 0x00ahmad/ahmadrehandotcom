@@ -25,7 +25,7 @@
 
 <Navbar user={data.user} />
 
-<div id="top" class="h-32 bg-opacity-0"></div>
+<div id="top" class="h-36 bg-opacity-0"></div>
 
 <main
     class={cn(
