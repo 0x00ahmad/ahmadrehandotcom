@@ -21,7 +21,7 @@
 
 <nav
     class={cn(
-        "fixed z-[999] flex w-full items-center justify-between rounded-md bg-shamrock-50 bg-opacity-15 p-8 backdrop-blur-md dark:bg-shamrock-950 dark:bg-opacity-5 md:p-10",
+        "fixed z-[999] flex w-full items-center justify-between rounded-md border-b-2 bg-shamrock-50 bg-opacity-15 p-6 backdrop-blur-md dark:bg-shamrock-950 dark:bg-opacity-5 md:px-12",
     )}
 >
     <a href="/" class={cn("cursor-pointer")}>

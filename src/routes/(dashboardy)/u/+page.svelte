@@ -1,9 +1,15 @@
 <script lang="ts">
+    import DomainSearchInput from "$lib/components/domain-search-input.svelte";
     import Title from "$lib/components/title.svelte";
+
+    import type { PageData } from "./$types";
+    import StatsCards from "./stats-cards.svelte";
+
+    export let data: PageData;
 </script>
 
 <Title text={"Dashboard"} size={"h1"} />
 
-<div>Not Yet implmented</div>
+<DomainSearchInput defaultPlaceholder="Start searcing for the right domain" />
 
-<a href="/">Back to homepage</a>
+<StatsCards data={data.stats} />

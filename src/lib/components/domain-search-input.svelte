@@ -7,6 +7,7 @@
     import { toast } from "svelte-sonner";
 
     export let defaultValue = "";
+    export let defaultPlaceholder = "Type a name or keyword";
 
     let searching = false;
 
@@ -15,7 +16,7 @@
         let query = event.target[0].value.trim() as string;
         console.log(query);
         // pattern is to only allow a-z, A-Z, 0-9, dots and hyphen
-        if (query.length < 2 || query.match(/[^a-zA-Z0-9.-]/g)) {
+        if (query.length < 1 || query.match(/[^a-zA-Z0-9.-]/g)) {
             toast("Please enter a valid domain name.");
             searching = false;
             return;
@@ -41,8 +42,8 @@
         )}
         disabled={searching}
         value={defaultValue}
-        placeholder="Type a name or keyword"
-        minlength="2"
+        placeholder={defaultPlaceholder}
+        minlength="1"
     />
     <Button size={"iconLg"} type="submit">
         <svelte:component this={IconSearch} />

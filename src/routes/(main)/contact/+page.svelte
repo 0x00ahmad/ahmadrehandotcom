@@ -15,9 +15,7 @@
 
     export let data: PageData;
 
-    const form = superForm(data.form, {
-        validators: zodClient(formSchema),
-    });
+    const form = superForm(data.form, { validators: zodClient(formSchema) });
     const { form: formData, enhance } = form;
 
     let submitting = false;
@@ -27,7 +25,6 @@
         }
         submitting = true;
         return async ({ update, result }) => {
-            console.log(result);
             submitting = false;
             if (result.type === "failure") {
                 toast.error("An error occurred while sending your message.");
@@ -42,7 +39,7 @@
 </script>
 
 <div
-    class="flex grid-cols-4 flex-col justify-center gap-40 p-8 lg:grid lg:h-screen lg:place-items-center lg:gap-12 lg:p-20"
+    class="flex grid-cols-4 flex-col justify-center gap-40 p-8 lg:grid lg:place-items-center lg:gap-12 lg:p-20"
 >
     <div class="col-span-2 flex flex-col gap-12">
         <span
@@ -156,7 +153,9 @@
                     <FieldErrors />
                 </Field>
 
-                <Button class="w-full" type="submit">Send Message</Button>
+                <Button disabled={submitting} class="w-full" type="submit">
+                    Send Message
+                </Button>
             </form>
         </div>
     </div>

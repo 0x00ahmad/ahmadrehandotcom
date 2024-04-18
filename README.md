@@ -9,4 +9,12 @@ Buyer transfers -> both have to notify of domain being transfered.
 
 Release payment to seller. Done
 
+## seller stuff
+
+The sellers gets emailed when:
+
+- sale for their domain
+- transfer is done to them
+
+
 ---

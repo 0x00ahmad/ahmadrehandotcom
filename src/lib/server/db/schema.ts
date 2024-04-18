@@ -22,20 +22,49 @@ export const user = sqliteTable("user", {
     providerId: text("provider_id", { length: 255 }).notNull(),
 });
 
+export const address = sqliteTable("address", {
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    userId: integer("user_id", { mode: "number" }).notNull(),
+    address1: text("address1", { length: 255 }).notNull(),
+    address2: text("address2", { length: 255 }),
+    city: text("city", { length: 64 }).notNull(),
+    country: text("country", { length: 64 }).notNull(),
+    postalCode: text("postal_code", { length: 16 }).notNull(),
+    state: text("state", { length: 64 }).notNull(),
+});
+
+export const userAddressRelation = relations(user, ({ one }) => ({
+    address: one(address)
+}));
+
 export const domain = sqliteTable("domain", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
+    lastModified: integer("last_modified", { mode: "timestamp_ms" }).notNull(),
+    deletedAt: integer("deleted_at", { mode: "timestamp_ms" }),
     name: text("name", { length: 255 }).notNull(),
     listPrice: integer("list_price", { mode: "number" }).notNull(),
     acceptedPrice: integer("accepted_price", { mode: "number" }).notNull(),
     expiresAt: integer("expires_at", { mode: "timestamp_ms" }).notNull(),
     categories: text("categories", { length: 255 }).notNull(),
     sellerId: integer("seller_id", { mode: "number" }).notNull(),
+    views: integer("views", { mode: "number" }).notNull().default(0),
 });
 
 export const userDomainRelation = relations(user, ({ many }) => ({
     domains: many(domain)
 }));
+
+export const transaction = sqliteTable("transaction", {
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
+    amount: integer("amount", { mode: "number" }).notNull(),
+    currency: text("currency", { length: 3 }).notNull(),
+    domainId: integer("domain_id", { mode: "number" }).notNull(),
+    buyerId: integer("buyer_id", { mode: "number" }).notNull(),
+    sellerId: integer("seller_id", { mode: "number" }).notNull(),
+    status: text("status", { length: 32 }).notNull(),
+});
 
 export const contact = sqliteTable("contact", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
