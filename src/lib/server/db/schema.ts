@@ -41,7 +41,6 @@ export const domain = sqliteTable("domain", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
     lastModified: integer("last_modified", { mode: "timestamp_ms" }).notNull(),
-    deletedAt: integer("deleted_at", { mode: "timestamp_ms" }),
     name: text("name", { length: 255 }).notNull(),
     listPrice: integer("list_price", { mode: "number" }).notNull(),
     acceptedPrice: integer("accepted_price", { mode: "number" }).notNull(),
@@ -49,6 +48,8 @@ export const domain = sqliteTable("domain", {
     categories: text("categories", { length: 255 }).notNull(),
     sellerId: integer("seller_id", { mode: "number" }).notNull(),
     views: integer("views", { mode: "number" }).notNull().default(0),
+    status: text("status", { length: 32 }).notNull(),
+    deletedAt: integer("deleted_at", { mode: "timestamp_ms" }),
 });
 
 export const userDomainRelation = relations(user, ({ many }) => ({

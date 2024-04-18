@@ -19,4 +19,6 @@
     </div>
 </main>
 
+<div id="bottom" class="h-20 bg-opacity-0"></div>
+
 <Footer />

@@ -1,3 +1,4 @@
+import { cn } from "$lib/utils";
 import Root from "./input.svelte";
 
 export type FormInputEvent<T extends Event = Event> = T & {
@@ -21,8 +22,13 @@ export type InputEvents = {
 	wheel: FormInputEvent<WheelEvent>;
 };
 
+export const inputStyle = cn(
+	"flex w-full rounded-md border border-input bg-background p-2 px-3 py-2 text-sm ring-shamrock-500 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:ring-shamrock-400",
+)
+
 export {
 	Root,
 	//
 	Root as Input,
 };
+

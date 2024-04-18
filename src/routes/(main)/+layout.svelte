@@ -29,7 +29,7 @@
 
 <main
     class={cn(
-        "h-[80vh]",
+        "min-h-[80vh]",
         isLandingPage ? "grid place-items-center" : "flex justify-center",
     )}
 >

@@ -23,3 +23,11 @@ export const DEFAULT_CURRENCY = {
 	name: 'USD',
 	symbol: '$'
 };
+
+export const DOMAIN_STATUS = {
+	PENDING: 'pending',
+	ACTIVE: 'active',
+	SOLD: 'sold',
+	EXPIRED: 'expired',
+	DELETED: 'deleted',
+}

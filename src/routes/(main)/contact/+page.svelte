@@ -10,7 +10,7 @@
     import { superForm } from "sveltekit-superforms";
     import { zodClient } from "sveltekit-superforms/adapters";
 
-    import type { PageData, SubmitFunction } from "./$types.js";
+    import type { PageData } from "./$types.js";
     import { formSchema } from "./schema";
 
     export let data: PageData;
@@ -19,12 +19,12 @@
     const { form: formData, enhance } = form;
 
     let submitting = false;
-    const formInterceptor: SubmitFunction = async () => {
+    const formInterceptor: any = async () => {
         if (submitting) {
             return;
         }
         submitting = true;
-        return async ({ update, result }) => {
+        return async ({ update, result }: any) => {
             submitting = false;
             if (result.type === "failure") {
                 toast.error("An error occurred while sending your message.");
@@ -39,7 +39,7 @@
 </script>
 
 <div
-    class="flex grid-cols-4 flex-col justify-center gap-40 p-8 lg:grid lg:place-items-center lg:gap-12 lg:p-20"
+    class="flex h-full grid-cols-4 flex-col justify-center gap-40 p-8 lg:grid lg:place-items-center lg:gap-12 lg:p-20"
 >
     <div class="col-span-2 flex flex-col gap-12">
         <span
@@ -70,33 +70,35 @@
                 action={"/contact/?/contact"}
                 use:enhance={formInterceptor}
             >
-                <Field {form} name="firstName">
-                    <Control let:attrs>
-                        <Input
-                            {...attrs}
-                            type={"text"}
-                            placeholder={"First Name"}
-                            required
-                            maxlength={32}
-                            bind:value={$formData.firstName}
-                        />
-                    </Control>
-                    <FieldErrors />
-                </Field>
+                <div class="flex flex-col gap-2 md:flex-row">
+                    <Field {form} name="firstName">
+                        <Control let:attrs>
+                            <Input
+                                {...attrs}
+                                type={"text"}
+                                placeholder={"First Name"}
+                                required
+                                maxlength={32}
+                                bind:value={$formData.firstName}
+                            />
+                        </Control>
+                        <FieldErrors />
+                    </Field>
 
-                <Field {form} name="lastName">
-                    <Control let:attrs>
-                        <Input
-                            {...attrs}
-                            type={"text"}
-                            placeholder={"Last Name"}
-                            required
-                            maxlength={32}
-                            bind:value={$formData.lastName}
-                        />
-                    </Control>
-                    <FieldErrors />
-                </Field>
+                    <Field {form} name="lastName">
+                        <Control let:attrs>
+                            <Input
+                                {...attrs}
+                                type={"text"}
+                                placeholder={"Last Name"}
+                                required
+                                maxlength={32}
+                                bind:value={$formData.lastName}
+                            />
+                        </Control>
+                        <FieldErrors />
+                    </Field>
+                </div>
 
                 <Field {form} name="email">
                     <Control let:attrs>

@@ -4,7 +4,6 @@ import { redirect, type Handle } from "@sveltejs/kit";
 
 // TODO: there is some cloudflare throwing issue here, fix it after done with the more important stuff
 
-
 export const handle: Handle = async ({ event, resolve }) => {
     try {
         const sessionId = event.cookies.get(lucia.sessionCookieName);

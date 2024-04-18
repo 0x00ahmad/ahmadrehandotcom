@@ -5,35 +5,7 @@ import { eq, like } from "drizzle-orm";
 
 export type Domain = typeof domain.$inferSelect & { categories: string[] };
 export type Domains = Domain[];
-
 export type CreateDomain = typeof domain.$inferInsert & { categories: string[] };
-
-// const testDomains = {
-//     data: [
-//         {
-//             id: 1,
-//             name: "exmaple.com",
-//             expiresAt: new Date(),
-//             sellerId: 1,
-//             createdAt: new Date(),
-//             listPrice: 1300,
-//             categories: ["business", "technology"],
-//             acceptedPrice: 1200,
-//         },
-//         {
-//             id: 2,
-//             name: "exmaple22.com",
-//             expiresAt: new Date(),
-//             sellerId: 1,
-//             createdAt: new Date(),
-//             listPrice: 1000,
-//             categories: ["business", "technology"],
-//             acceptedPrice: 1000,
-//         },
-//     ],
-// } as Result<Domains>;
-
-
 
 export const domainRepository = {
     searchDomainNames: async function(query: string) {
@@ -62,5 +34,20 @@ export const domainRepository = {
     },
 
     createDomain: async function(data: CreateDomain) {
+        try {
+            await db.insert(domain).values({
+                ...data,
+                categories: data.categories.join(","),
+            });
+            return { data: true } as Result<boolean>;
+        } catch (err) {
+            return {
+                errors: [{
+                    message: "Failed to create domain, please try again later.",
+                    field: "domain",
+                    type: "create",
+                }],
+            } as Result<boolean>;
+        }
     }
 }
