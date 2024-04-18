@@ -15,27 +15,23 @@
 
     export let data: PageData;
 
-    const form = superForm(data.form, { validators: zodClient(formSchema) });
-    const { form: formData, enhance } = form;
-
     let submitting = false;
-    const formInterceptor: any = async () => {
-        if (submitting) {
-            return;
-        }
-        submitting = true;
-        return async ({ update, result }: any) => {
+    const form = superForm(data.form, {
+        validators: zodClient(formSchema),
+        onSubmit: (_) => {
+            submitting = true;
+        },
+        onResult: (res) => {
             submitting = false;
-            if (result.type === "failure") {
-                toast.error("An error occurred while sending your message.");
+            if (res.result.status !== 200) {
+                toast.error(
+                    "Could not send your message. Please try again later.",
+                );
             }
-            const isSuccess = result.type === "success";
-            await update({ reset: isSuccess });
-            if (isSuccess) {
-                toast.success("Your message has been sent successfully!");
-            }
-        };
-    };
+            toast.success("Your message has been sent!");
+        },
+    });
+    const { form: formData, enhance } = form;
 </script>
 
 <div
@@ -68,7 +64,7 @@
                 class="flex w-full flex-col gap-2"
                 method="post"
                 action={"/contact/?/contact"}
-                use:enhance={formInterceptor}
+                use:enhance
             >
                 <div class="flex flex-col gap-2 md:flex-row">
                     <Field {form} name="firstName">

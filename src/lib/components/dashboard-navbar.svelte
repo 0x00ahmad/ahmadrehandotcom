@@ -1,4 +1,7 @@
 <script lang="ts">
+    import IconDashboard from "~icons/lucide/layout-dashboard";
+    import IconSquareUser from "~icons/lucide/square-user";
+    import IconWallet from "~icons/lucide/wallet";
     import IconClose from "~icons/material-symbols/close-rounded";
     import IconArrowUp from "~icons/ph/arrow-fat-line-up";
     import IconMenu from "~icons/ri/menu-line";
@@ -15,6 +18,13 @@
 
     let windowY = 0;
     let pageHeight = 0;
+
+    const links = [
+        { name: "Dashboard", href: "/u", icon: IconDashboard },
+        { name: "Finances", href: "/u/finances", icon: IconWallet },
+        { name: "Profile", href: "/u/profile", icon: IconSquareUser },
+        { name: "View Shopping Cart", href: "/checkout", icon: IconShoppingCart },
+    ];
 </script>
 
 <svelte:window bind:scrollY={windowY} bind:outerHeight={pageHeight} />
@@ -30,9 +40,11 @@
                 <Logo />
             </div>
         </a>
-        <a href="/u" class="">Dashboard</a>
-        <a href="/u/finances" class="">Finances</a>
-        <a href="/u/profile" class="">Profile</a>
+        {#each links as link}
+            {#if link.href !== "/checkout"}
+                <a href={link.href} class="hidden md:block">{link.name}</a>
+            {/if}
+        {/each}
     </div>
 
     <Button
@@ -84,23 +96,29 @@
             </Button>
         </div>
 
-        <Button
-            variant={"ghost"}
-            href={"/checkout"}
-            class="flex items-center gap-2"
-            on:click={() => (showMobileMenu = false)}
-        >
-            View Shopping Cart
-            <svelte:component this={IconShoppingCart} class="h-6 w-6" />
-        </Button>
+        {#each links as link}
+            <Button
+                variant={"ghost"}
+                href={link.href}
+                class="flex w-full justify-start gap-2 text-start"
+                on:click={() => (showMobileMenu = false)}
+            >
+                <svelte:component this={link.icon} class="h-6 w-6" />
+                {link.name}
+            </Button>
+        {/each}
 
-        <Button
-            on:click={() => {
-                window.location.href = "/auth/signin";
-            }}
-        >
-            Sign In
-        </Button>
+        {#if user}
+            <Button href={"/auth/signout"}>Sign Out</Button>
+        {:else}
+            <Button
+                on:click={() => {
+                    window.location.href = "/auth/signin";
+                }}
+            >
+                Sign In
+            </Button>
+        {/if}
     </div>
 </div>
 

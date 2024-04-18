@@ -22,10 +22,9 @@
     } from "svelte-headless-table/plugins";
     import { readable } from "svelte/store";
 
-    import Actions from "./data-table/data-table-actions.svelte";
-    import DataTableActions from "./data-table/data-table-actions.svelte";
-    import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
-    import type { Domain } from "./schema";
+    import type { Domain } from "../schema";
+    import TableCheckbox from "./domains-table-checkbox.svelte";
+    import MoreInfoBtn from "./more-info-btn.svelte";
 
     export let data: Domain[] = [];
 
@@ -51,7 +50,7 @@
         table.column({
             header: (_, { pluginStates }) => {
                 const { allPageRowsSelected } = pluginStates.select;
-                return createRender(DataTableCheckbox, {
+                return createRender(TableCheckbox, {
                     checked: allPageRowsSelected,
                 });
             },
@@ -60,7 +59,7 @@
                 const { getRowState } = pluginStates.select;
                 const { isSelected } = getRowState(row);
 
-                return createRender(DataTableCheckbox, {
+                return createRender(TableCheckbox, {
                     checked: isSelected,
                 });
             },
@@ -69,27 +68,18 @@
                 filter: { exclude: true },
             },
         }),
-        table.column({
-            header: "Status",
-            accessor: "status",
-            plugins: { sort: { disable: true }, filter: { exclude: true } },
-        }),
 
         table.column({
             header: "Domain",
             accessor: "name",
             cell: ({ value }) => value.toLowerCase(),
             plugins: {
-                filter: {
-                    getFilterValue(value) {
-                        return value.toLowerCase();
-                    },
-                },
+                filter: { getFilterValue: (v) => v.toLowerCase() },
             },
         }),
 
         table.column({
-            header: "List Price",
+            header: "Listed Price",
             accessor: "listPrice",
             cell: ({ value }) => {
                 const formatted = new Intl.NumberFormat("en-US", {
@@ -128,6 +118,16 @@
         }),
 
         table.column({
+            header: "Status",
+            accessor: "status",
+            cell: ({ value }) => {
+                let x = value.toLowerCase();
+                return x.charAt(0).toUpperCase() + x.slice(1);
+            },
+            plugins: { sort: { disable: true }, filter: { exclude: true } },
+        }),
+
+        table.column({
             header: "Expires At",
             accessor: "expiresAt",
             cell: ({ value }) => {
@@ -141,7 +141,7 @@
             accessor: ({ id }) => id,
             header: "",
             cell: ({ value }) => {
-                return createRender(DataTableActions, { id: value.toString() });
+                return createRender(MoreInfoBtn, { domainId: value });
             },
         }),
     ]);
@@ -218,11 +218,13 @@
                                             "[&:has([role=checkbox])]:pl-3",
                                         )}
                                     >
-                                        {#if cell.id === "amount"}
+                                        {#if cell.id
+                                            .toLowerCase()
+                                            .includes("price") || cell.id === "views"}
                                             <div class="text-right">
                                                 <Render of={cell.render()} />
                                             </div>
-                                        {:else if cell.id === "email"}
+                                        {:else if cell.id === "name"}
                                             <Button
                                                 variant="ghost"
                                                 on:click={props.sort.toggle}
@@ -260,7 +262,9 @@
                                         class="[&:has([role=checkbox])]:pl-3"
                                         {...attrs}
                                     >
-                                        {#if cell.id === "amount"}
+                                        {#if cell.id
+                                            .toLowerCase()
+                                            .includes("price") || cell.id === "views"}
                                             <div class="text-right font-medium">
                                                 <Render of={cell.render()} />
                                             </div>

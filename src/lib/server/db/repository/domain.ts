@@ -33,6 +33,12 @@ export const domainRepository = {
         });
     },
 
+    getDomainById: async function(id: number) {
+        return await db.query.domain.findFirst({
+            where: eq(domain.id, id),
+        });
+    },
+
     createDomain: async function(data: CreateDomain) {
         try {
             await db.insert(domain).values({

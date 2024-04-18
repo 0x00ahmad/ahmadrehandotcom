@@ -29,7 +29,7 @@
 
 <div class="flex grid-cols-4 flex-col justify-center gap-8 p-8 lg:grid lg:gap-12">
     <div
-        class="col-span-1 flex flex-col gap-2 rounded-lg border border-slate-200 dark:border-slate-600 p-4 shadow"
+        class="col-span-1 flex flex-col gap-2 rounded-lg border border-slate-200 p-4 shadow dark:border-slate-600"
     >
         {#each notices as notice}
             <button
@@ -37,7 +37,7 @@
                     chosenNotice = notice.id;
                 }}
                 class={cn(
-                    "cursor-pointer rounded-sm p-2 text-start font-normal text-shamrock-950 hover:bg-shamrock-100 dark:hover:bg-shamrock-900 hover:text-shamrock-600 dark:text-shamrock-300",
+                    "cursor-pointer rounded-sm p-2 text-start font-normal text-shamrock-950 hover:bg-shamrock-100 hover:text-shamrock-600 dark:text-shamrock-300 dark:hover:bg-shamrock-900",
                     chosenNotice === notice.id
                         ? "bg-shamrock-200 text-shamrock-700 dark:bg-shamrock-900 dark:text-shamrock-50"
                         : "",
