@@ -66,7 +66,7 @@
 </Breadcrumb.Root>
 
 <div class="grid place-items-center">
-    <Card.Root class="w-full max-w-[40vw]">
+    <Card.Root class="w-full max-w-xl">
         <Card.Header>
             <Title text={"Add new domain"} />
         </Card.Header>

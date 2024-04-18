@@ -35,14 +35,17 @@ export const userRepository = {
         }
         return { data: newUser[0] } as Result<NewUserType>;
     },
+
     getUserById: async function(id: number) {
         return await db.query.user.findFirst({
             where: eq(user.id, id),
         });
     },
+
     getUserByEmail: async function(email: string) {
         return await db.query.user.findFirst({
             where: eq(user.email, email),
         });
     },
+
 };

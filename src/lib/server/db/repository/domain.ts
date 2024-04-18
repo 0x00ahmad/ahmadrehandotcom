@@ -1,7 +1,8 @@
 import { db } from "..";
 import { domain } from "../schema";
 import type { Result } from "$lib/types";
-import { eq, like } from "drizzle-orm";
+import { and, eq, like } from "drizzle-orm";
+import { DOMAIN_STATUS } from "$lib/utils/constants";
 
 export type Domain = typeof domain.$inferSelect & { categories: string[] };
 export type Domains = Domain[];
@@ -11,7 +12,10 @@ export const domainRepository = {
     searchDomainNames: async function(query: string) {
         try {
             const matches = await db.query.domain.findMany({
-                where: like(domain.name, `%${query}%`),
+                where: and(
+                    like(domain.name, `%${query}%`),
+                    eq(domain.status, DOMAIN_STATUS.ACTIVE),
+                ),
                 orderBy: (results, { asc }) => [asc(results.name)],
             });
             return { data: matches } as any as Result<Domains>;
@@ -52,6 +56,54 @@ export const domainRepository = {
                     message: "Failed to create domain, please try again later.",
                     field: "domain",
                     type: "create",
+                }],
+            } as Result<boolean>;
+        }
+    },
+
+    saveChanges: async function(
+        id: number,
+        sellerId: number,
+        listPrice: number,
+        acceptedPrice: number,
+        expiresAt: Date,
+        status: string,
+    ) {
+        try {
+            await db.update(domain).set({
+                listPrice,
+                acceptedPrice,
+                expiresAt,
+                status,
+            }).where(
+                and(eq(domain.id, id), eq(domain.sellerId, sellerId))
+            );
+            return { data: true } as Result<boolean>;
+        } catch (err) {
+            return {
+                errors: [{
+                    message: "Failed to save changes, please try again later.",
+                    field: "domain",
+                    type: "save",
+                }],
+            } as Result<boolean>;
+        }
+    },
+
+    softDeleteDomain: async function(id: number, sellerId: number) {
+        try {
+            await db.update(domain).set({
+                status: DOMAIN_STATUS.DELETED,
+            }).where(
+                and(eq(domain.id, id), eq(domain.sellerId, sellerId))
+            );
+            return { data: true } as Result<boolean>;
+        } catch (err) {
+            return {
+                errors: [{
+                    message: "Failed to delete domain, please try again later.",
+                    field: "domain",
+                    type: "delete",
                 }],
             } as Result<boolean>;
         }

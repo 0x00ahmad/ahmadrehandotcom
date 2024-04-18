@@ -3,10 +3,10 @@ import { fail, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { message, superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
-import { createDomainSchema } from "./schema";
+import { domainInfoSchema } from "./schema";
 
 export const load: PageServerLoad = async ({ url }) => {
-    const form = await superValidate(zod(createDomainSchema));
+    const form = await superValidate(zod(domainInfoSchema));
 
     const pathname = url.pathname;
     const splits = pathname.split("/");
@@ -19,8 +19,9 @@ export const load: PageServerLoad = async ({ url }) => {
 };
 
 export const actions = {
-    addDomain: async ({ request, locals }) => {
+    saveChanges: async ({ request, locals }) => {
         const user = locals.user
+        const domainId = parseInt(request.url.split("/").pop()!)
 
         if (!user) {
             return fail(401, {
@@ -28,7 +29,7 @@ export const actions = {
             });
         }
 
-        const form = await superValidate(request, zod(createDomainSchema));
+        const form = await superValidate(request, zod(domainInfoSchema));
 
         if (!form.valid) {
             return fail(400, { form, errors: form.errors });
@@ -36,18 +37,14 @@ export const actions = {
 
         const data = form.data;
 
-        const res = await domainRepository.createDomain({
-            name: data.name,
-            listPrice: data.listPrice,
-            acceptedPrice: data.acceptedPrice,
-            expiresAt: new Date(data.expiresAt),
-            sellerId: user.id,
-            status: "active",
-            createdAt: new Date(),
-            lastModified: new Date(),
-            // INFO: this will be added by the user on their own
-            categories: [] as any,
-        })
+        const res = await domainRepository.saveChanges(
+            domainId,
+            user.id,
+            data.listPrice,
+            data.acceptedPrice,
+            new Date(data.expiresAt),
+            data.status,
+        )
         if (res.errors) return { status: 400, errors: res.errors }
 
         return message(form, "Domain added successfully!")

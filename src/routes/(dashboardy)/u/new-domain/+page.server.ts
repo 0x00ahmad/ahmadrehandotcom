@@ -4,6 +4,7 @@ import type { PageServerLoad } from "./$types";
 import { message, superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { createDomainSchema } from "./schema";
+import { DOMAIN_STATUS } from "$lib/utils/constants";
 
 export const load: PageServerLoad = async (_) => {
     const form = await superValidate(zod(createDomainSchema));
@@ -35,7 +36,7 @@ export const actions = {
             acceptedPrice: data.acceptedPrice,
             expiresAt: new Date(data.expiresAt),
             sellerId: user.id,
-            status: "active",
+            status: DOMAIN_STATUS.INACTIVE,
             createdAt: new Date(),
             lastModified: new Date(),
             // INFO: this will be added by the user on their own

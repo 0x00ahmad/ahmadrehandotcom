@@ -27,6 +27,7 @@ export const DEFAULT_CURRENCY = {
 export const DOMAIN_STATUS = {
 	PENDING: 'pending',
 	ACTIVE: 'active',
+	INACTIVE: 'inactive',
 	SOLD: 'sold',
 	EXPIRED: 'expired',
 	DELETED: 'deleted',
