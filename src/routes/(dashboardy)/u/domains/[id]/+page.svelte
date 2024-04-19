@@ -5,9 +5,8 @@
     import * as Breadcrumb from "$lib/components/ui/breadcrumb";
     import Button from "$lib/components/ui/button/button.svelte";
     import * as Card from "$lib/components/ui/card";
+    import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
     import { inputStyle } from "$lib/components/ui/input";
-    import Input from "$lib/components/ui/input/input.svelte";
-    import Switch from "$lib/components/ui/switch/switch.svelte";
     import { DOMAIN_STATUS } from "$lib/utils/constants";
     import { Control, Field, FieldErrors, Label } from "formsnap";
     import { onMount } from "svelte";
@@ -25,6 +24,8 @@
 
     const form = superForm(data.form!, {
         validators: zodClient(domainInfoSchema),
+        dataType: "json",
+        resetForm: false,
         onSubmit: (event) => {
             const data = $formData;
             if (data.listPrice < data.acceptedPrice) {
@@ -34,13 +35,6 @@
             }
             if (data.expiresAt < new Date().toISOString().split("T")[0]) {
                 toast.error("Expiry date cannot be in the past.");
-                event.cancel();
-                return;
-            }
-            if (data.name.match(/[^a-zA-Z0-9.-]/)) {
-                toast.error(
-                    "Domain name can only contain alphanumeric characters, hyphens, and periods.",
-                );
                 event.cancel();
                 return;
             }
@@ -54,6 +48,11 @@
                 return;
             }
             submitting = true;
+
+            event.jsonData({
+                ...data,
+                status: data.status,
+            });
         },
         onResult: (res) => {
             submitting = false;
@@ -61,6 +60,7 @@
                 toast.error(
                     "An error occured while adding a domain. Please try again later.",
                 );
+                return;
             }
             toast.success("Changes saved successfully.");
         },
@@ -97,7 +97,10 @@
 
 <div class="grid place-items-center">
     <div class="flex w-full max-w-4xl flex-col gap-12">
-        <Title text={"Domain Info"} />
+        <Title
+            capitalize={false}
+            text={`${data.domain?.name ?? "Domain"} Info`}
+        />
         <div class="flex flex-col gap-8 md:flex-row">
             <Card.Root class="w-full">
                 <Card.Header>
@@ -126,26 +129,7 @@
                 </Card.Content>
             </Card.Root>
         </div>
-        <form
-            action={`/u/domains/${data.domain?.id}/?/saveChanges`}
-            class="flex flex-col gap-2"
-            method="post"
-            use:enhance
-        >
-            <Field {form} name="name">
-                <Control let:attrs>
-                    <Label>Domain Name</Label>
-                    <Input
-                        {...attrs}
-                        type={"text"}
-                        required
-                        maxlength={128}
-                        bind:value={$formData.name}
-                    />
-                </Control>
-                <FieldErrors />
-            </Field>
-
+        <form class="flex flex-col gap-2" method="post" use:enhance>
             <div class="flex flex-col gap-4 md:flex-row">
                 <Field {form} name="listPrice">
                     <Control let:attrs>
@@ -199,12 +183,14 @@
             </Field>
 
             {#if [DOMAIN_STATUS.ACTIVE, DOMAIN_STATUS.INACTIVE].includes(data.domain?.status ?? "")}
-                <Field {form} name="status">
-                    <Control let:attrs>
-                        <div class="flex items-center gap-2">
-                            <Switch
+                <div class="flex items-center gap-2">
+                    <Field {form} name="status">
+                        <Control let:attrs>
+                            <Checkbox
                                 {...attrs}
-                                value={$formData.status}
+                                name="status"
+                                checked={$formData.status ===
+                                    DOMAIN_STATUS.ACTIVE}
                                 on:click={(e) => {
                                     const prevState =
                                         e.detail.currentTarget.getAttribute(
@@ -218,11 +204,11 @@
                                 }}
                                 required
                             />
-                            <p>Activate domain for listing</p>
-                        </div>
-                    </Control>
-                    <FieldErrors />
-                </Field>
+                        </Control>
+                        <FieldErrors />
+                    </Field>
+                    <p>Activate domain on the marketplace</p>
+                </div>
             {/if}
 
             <div class="flex w-full">
@@ -241,7 +227,10 @@
         </form>
 
         <div class="flex w-full justify-end">
-            <DeleteDomainDialog />
+            <DeleteDomainDialog
+                domainName={data.domain?.name ?? ""}
+                domainId={data.domainId}
+            />
         </div>
     </div>
 </div>

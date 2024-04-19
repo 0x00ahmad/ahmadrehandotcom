@@ -10,10 +10,12 @@ import Description from "./dialog-description.svelte";
 
 const Root = DialogPrimitive.Root;
 const Trigger = DialogPrimitive.Trigger;
+const Close = DialogPrimitive.Close;
 
 export {
 	Root,
 	Title,
+	Close,
 	Portal,
 	Footer,
 	Header,
@@ -24,6 +26,7 @@ export {
 	//
 	Root as Dialog,
 	Title as DialogTitle,
+	Close as DialogClose,
 	Portal as DialogPortal,
 	Footer as DialogFooter,
 	Header as DialogHeader,

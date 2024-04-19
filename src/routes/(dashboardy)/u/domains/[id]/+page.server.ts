@@ -10,16 +10,17 @@ export const load: PageServerLoad = async ({ url }) => {
 
     const pathname = url.pathname;
     const splits = pathname.split("/");
+    const domainId = parseInt(splits[splits.length - 1]);
 
     const domain = await domainRepository.getDomainById(
-        parseInt(splits[splits.length - 1])
+        domainId
     );
 
-    return { form, domain, errors: undefined };
+    return { form, domainId, domain, errors: undefined };
 };
 
 export const actions = {
-    saveChanges: async ({ request, locals }) => {
+    default: async ({ request, locals }) => {
         const user = locals.user
         const domainId = parseInt(request.url.split("/").pop()!)
 
@@ -36,6 +37,8 @@ export const actions = {
         }
 
         const data = form.data;
+
+        console.log(data)
 
         const res = await domainRepository.saveChanges(
             domainId,

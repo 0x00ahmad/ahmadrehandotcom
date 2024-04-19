@@ -1,7 +1,7 @@
 import { db } from "..";
 import { domain } from "../schema";
 import type { Result } from "$lib/types";
-import { and, eq, like } from "drizzle-orm";
+import { and, eq, like, not } from "drizzle-orm";
 import { DOMAIN_STATUS } from "$lib/utils/constants";
 
 export type Domain = typeof domain.$inferSelect & { categories: string[] };
@@ -32,14 +32,20 @@ export const domainRepository = {
 
     getUsersDomains: async function(userId: number) {
         return await db.query.domain.findMany({
-            where: eq(domain.sellerId, userId),
+            where: and(
+                eq(domain.sellerId, userId),
+                not(eq(domain.status, DOMAIN_STATUS.DELETED)),
+            ),
             orderBy: (results, { desc }) => [desc(results.createdAt)],
         });
     },
 
     getDomainById: async function(id: number) {
         return await db.query.domain.findFirst({
-            where: eq(domain.id, id),
+            where: and(
+                eq(domain.id, id),
+                not(eq(domain.status, DOMAIN_STATUS.DELETED)),
+            ),
         });
     },
 
@@ -94,6 +100,7 @@ export const domainRepository = {
         try {
             await db.update(domain).set({
                 status: DOMAIN_STATUS.DELETED,
+                deletedAt: new Date(),
             }).where(
                 and(eq(domain.id, id), eq(domain.sellerId, sellerId))
             );
