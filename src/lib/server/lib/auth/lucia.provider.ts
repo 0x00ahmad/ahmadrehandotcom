@@ -3,6 +3,7 @@ import { HybridDrizzleAndRedisAdapter } from './adapter';
 import { db } from '$lib/server/db';
 import { redisClient } from '$lib/server/redis';
 import { dev } from '$app/environment';
+import 'dotenv/config'
 
 const adapter = new HybridDrizzleAndRedisAdapter(db, redisClient);
 
