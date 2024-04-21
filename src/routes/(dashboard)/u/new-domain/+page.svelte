@@ -142,7 +142,7 @@
                     {#if submitting}
                         Processing...
                     {:else}
-                        Add Domain
+                        Create
                     {/if}
                 </Button>
             </form>

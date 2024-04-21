@@ -52,8 +52,5 @@ export const actions = {
 
         return message(form, "Domain added successfully!")
     },
-    deleteDomain: async ({ request, locals }) => {
-
-    },
 } satisfies Actions;
 

@@ -43,6 +43,13 @@
       "when": 1713464150090,
       "tag": "0005_military_expediter",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1713639769853,
+      "tag": "0006_regular_lady_deathstrike",
+      "breakpoints": true
     }
   ]
 }

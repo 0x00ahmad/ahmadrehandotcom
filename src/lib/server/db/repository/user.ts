@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "..";
-import { user } from "../schema";
+import { address, user } from "../schema";
 import { USER_TYPES } from "$lib/utils/enums";
 import type { Result } from "$lib/types";
 
@@ -47,5 +47,56 @@ export const userRepository = {
             where: eq(user.email, email),
         });
     },
+
+    getPersonalInfo: async function(userId: number) {
+        const u = await db.query.user.findFirst({
+            where: eq(user.id, userId),
+        });
+        const addr = await db.query.address.findFirst({
+            where: eq(address.userId, userId),
+        });
+
+        return { ...u, ...addr }
+    },
+
+    savePersonalInfo: async function(
+        userId: number,
+        personalInfo: {
+            firstName: string,
+            lastName: string,
+            email: string,
+            phoneNumber: string,
+        },
+        addressInfo: {
+            address1: string,
+            address2: string,
+            city: string,
+            country: string,
+            postalCode: string,
+            state: string,
+
+        }
+    ) {
+        try {
+            await db.transaction(async (trx) => {
+                await trx.update(user).set({
+                    ...personalInfo,
+                }).where(eq(user.id, userId));
+                await trx.update(address).set({
+                    ...addressInfo,
+                }).where(eq(address.userId, userId));
+            });
+            return { data: true } as Result<boolean>;
+        } catch (err) {
+            return {
+                errors: [{
+                    message: "Failed to save personal info, please try again later.",
+                    field: "user",
+                    type: "update",
+                }],
+            } as Result<boolean>;
+        }
+    },
+
 
 };

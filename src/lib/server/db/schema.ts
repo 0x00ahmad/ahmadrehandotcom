@@ -12,6 +12,7 @@ export const user = sqliteTable("user", {
     createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
     lastLogin: integer("last_login", { mode: "timestamp_ms" }).notNull(),
     email: text("email", { length: 128 }).notNull(),
+    phoneNumber: text("phone_number", { length: 24 }),
     firstName: text("first_name", { length: 32 }).notNull(),
     lastName: text("last_name", { length: 32 }).notNull(),
     userType: integer("user_type").notNull().default(USER_TYPES.USER),

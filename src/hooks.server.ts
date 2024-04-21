@@ -1,8 +1,6 @@
 import { lucia } from "$lib/server/lib/auth/lucia.provider";
 
-import { redirect, type Handle } from "@sveltejs/kit";
-
-// TODO: there is some cloudflare throwing issue here, fix it after done with the more important stuff
+import { type Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
     try {
@@ -15,12 +13,16 @@ export const handle: Handle = async ({ event, resolve }) => {
             event.locals.user = null;
             event.locals.session = null;
             if (pathname.startsWith("/u") || pathname.startsWith("/api")) {
-                return redirect(302, "/auth/signin")
+                return Response.redirect("/auth/signin", 302);
             }
             return resolve(event);
         }
 
         const { session, user } = await lucia.validateSession(sessionId);
+
+        if ((!session || !user) && pathname.startsWith("/u")) {
+            return Response.redirect("/auth/signin", 302);
+        }
 
         if (session && session.fresh) {
             const sessionCookie = lucia.createSessionCookie(session.id);
@@ -42,6 +44,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         event.locals.session = session;
         return resolve(event);
     } catch (e) {
+        console.log("Error in middleware")
         console.error(e);
         return resolve(event);
     }
