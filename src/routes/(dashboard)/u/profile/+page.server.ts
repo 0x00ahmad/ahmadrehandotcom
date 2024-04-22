@@ -15,7 +15,7 @@ export const load: PageServerLoad = async (e) => {
         return { form, errors: [{ message: "You must be logged in to view this page." }] };
     }
 
-    const personalInfo = await userRepository.getUserById(user.id);
+    const personalInfo = await userRepository.getPersonalInfo(user.id);
 
     return { form, personalInfo, errors: undefined };
 };

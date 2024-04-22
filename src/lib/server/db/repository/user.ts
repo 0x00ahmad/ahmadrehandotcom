@@ -82,12 +82,26 @@ export const userRepository = {
                 await trx.update(user).set({
                     ...personalInfo,
                 }).where(eq(user.id, userId));
-                await trx.update(address).set({
-                    ...addressInfo,
-                }).where(eq(address.userId, userId));
+
+                const doesAddressExist = await db.query.address.findFirst({
+                    where: eq(address.userId, userId),
+                });
+                if (!doesAddressExist) {
+                    await trx.insert(address).values({
+                        ...addressInfo,
+                        userId,
+                    }).returning({
+                        id: address.id,
+                    });
+                } else {
+                    await trx.update(address).set({
+                        ...addressInfo,
+                    }).where(eq(address.userId, userId));
+                }
             });
             return { data: true } as Result<boolean>;
         } catch (err) {
+            console.error(err);
             return {
                 errors: [{
                     message: "Failed to save personal info, please try again later.",

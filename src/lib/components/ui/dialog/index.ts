@@ -15,7 +15,6 @@ const Close = DialogPrimitive.Close;
 export {
 	Root,
 	Title,
-	Close,
 	Portal,
 	Footer,
 	Header,
@@ -23,10 +22,10 @@ export {
 	Overlay,
 	Content,
 	Description,
+	Close,
 	//
 	Root as Dialog,
 	Title as DialogTitle,
-	Close as DialogClose,
 	Portal as DialogPortal,
 	Footer as DialogFooter,
 	Header as DialogHeader,
@@ -34,4 +33,5 @@ export {
 	Overlay as DialogOverlay,
 	Content as DialogContent,
 	Description as DialogDescription,
+	Close as DialogClose
 };

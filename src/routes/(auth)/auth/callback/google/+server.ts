@@ -44,20 +44,17 @@ export async function GET(event: RequestEvent): Promise<Response> {
         });
         const googleUser = (await response.json()) as GoogleUser;
 
-        console.log(googleUser)
-
         const doesUserExist = await db.query.user.findFirst({
             where: and(eq(user.provider, OAUTH_PROVIDERS.GOOGLE), eq(user.providerId, googleUser.sub))
         });
 
-        console.log(doesUserExist);
         let sessionCookie: Cookie;
         if (doesUserExist) {
-            console.log('blud exists, returning a new session')
+            console.log("the user exists, returning a new session")
             const session = await lucia.createSession(doesUserExist.id, {});
             sessionCookie = lucia.createSessionCookie(session.id);
         } else {
-            console.log('blud does not exist, creating a new user')
+            console.log("the user does not exist, creating a new user")
             const newUser = await userRepository.createUser(
                 googleUser.email,
                 googleUser.given_name,

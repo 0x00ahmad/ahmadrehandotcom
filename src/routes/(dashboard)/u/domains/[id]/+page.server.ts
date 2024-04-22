@@ -38,8 +38,6 @@ export const actions = {
 
         const data = form.data;
 
-        console.log(data)
-
         const res = await domainRepository.saveChanges(
             domainId,
             user.id,
