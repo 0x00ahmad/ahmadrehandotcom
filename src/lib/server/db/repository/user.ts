@@ -64,7 +64,6 @@ export const userRepository = {
         personalInfo: {
             firstName: string,
             lastName: string,
-            email: string,
             phoneNumber: string,
         },
         addressInfo: {

@@ -1,41 +1,48 @@
 import { browser } from '$app/environment';
+import { writable } from 'svelte/store';
 
 const LS_CART_KEY = 'cart';
 
 export type CartItem = {
-    id: string;
+    id: string | number;
     name: string;
     price: number;
 }
 
-export class Cart {
-    items: CartItem[] = [];
-
-    constructor() {
-        this.items = this.getCart();
-
+export function getCart(): CartItem[] {
+    if (!browser) {
+        return [];
     }
-
-    private getCart(): CartItem[] {
-        if (!browser) {
-            return this.items;
-        }
-        const out = localStorage.getItem(LS_CART_KEY);
-        return (!!out ? JSON.parse(out) : []) as CartItem[];
-    };
-
-    addItem(item: CartItem) {
-        this.items.push(item);
-        localStorage.setItem(LS_CART_KEY, JSON.stringify(this.items));
-    }
-
-    removeItem(id: string) {
-        this.items = this.items.filter((item) => item.id !== id);
-        localStorage.setItem(LS_CART_KEY, JSON.stringify(this.items));
-    }
-
-    clear() {
-        this.items = [];
-        localStorage.removeItem(LS_CART_KEY);
-    }
+    const out = localStorage.getItem(LS_CART_KEY);
+    return !!out ? JSON.parse(out) : [];
 }
+
+export const cart = writable(getCart());
+
+cart.subscribe((val) => {
+    if (!browser) {
+        return;
+    }
+    localStorage.setItem(LS_CART_KEY, JSON.stringify(val));
+});
+
+
+export function addToCart(item: CartItem) {
+    cart.update((cart) => {
+        return [
+            ...cart.filter((i) => i.id !== item.id),
+            item,
+        ]
+    });
+}
+
+export function removeFromCart(id: string | number) {
+    cart.update((items) => {
+        return items.filter((i) => i.id !== id);
+    });
+}
+
+export function clearCart() {
+    cart.set([]);
+}
+

@@ -8,8 +8,7 @@
 
 	import Logo from "./logo.svelte";
 	import Button from "./ui/button/button.svelte";
-	import { Cart } from "$lib/client/cart";
-	import { onMount } from "svelte";
+	import { cart } from "$lib/client/cart";
 
 	export let user: User | null = null;
 
@@ -17,12 +16,6 @@
 
 	let windowY = 0;
 	let pageHeight = 0;
-
-	let cart: Cart;
-
-	onMount(() => {
-		cart = new Cart();
-	});
 </script>
 
 <svelte:window bind:scrollY={windowY} bind:outerHeight={pageHeight} />
@@ -52,7 +45,7 @@
 			<span
 				class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-shamrock-500 p-1 text-xs text-white"
 			>
-				{cart ? cart.items.length : 0}
+				{$cart.length}
 			</span>
 			<Button size={"iconSm"} variant={"ghost"}>
 				<svelte:component this={IconShoppingCart} class="h-6 w-6" />

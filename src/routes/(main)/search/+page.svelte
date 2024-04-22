@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IconCartAdd from "~icons/material-symbols/add-shopping-cart";
 	import IconCartCheck from "~icons/mdi/cart-check";
+	import IconCartMinus from "~icons/mdi/cart-minus";
 	import DomainSearchInput from "$lib/components/domain-search-input.svelte";
 	import Title from "$lib/components/title.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
@@ -8,16 +9,10 @@
 	import { DEFAULT_CURRENCY, TRANSITION_COLORS } from "$lib/utils/constants";
 
 	import type { PageData } from "./$types";
-	import { Cart } from "$lib/client/cart";
-	import { onMount } from "svelte";
+	import { addToCart, cart, removeFromCart } from "$lib/client/cart";
+	import { goto } from "$app/navigation";
 
 	export let data: PageData;
-
-	let cart: Cart = new Cart();
-
-	onMount(() => {
-		cart = new Cart();
-	});
 </script>
 
 <DomainSearchInput defaultValue={data.query} />
@@ -49,12 +44,38 @@
 						weight={"semibold"}
 					/>
 					{#if cart}
-						{#if !!cart.items.find((item) => item.name === domain.name)}
-							<Button size={"icon"} variant={"secondary"}>
-								<svelte:component this={IconCartCheck} class="h-6 w-6" />
-							</Button>
+						{#if !!$cart.find((item) => item.name === domain.name)}
+							<div class="flex items-center gap-2">
+								<Button
+									size={"icon"}
+									variant={"destructive"}
+									on:click={() => {
+										removeFromCart(domain.id);
+									}}
+								>
+									<svelte:component this={IconCartMinus} class="h-6 w-6" />
+								</Button>
+								<Button
+									size={"icon"}
+									variant={"secondary"}
+									on:click={() => {
+										goto("/checkout");
+									}}
+								>
+									<svelte:component this={IconCartCheck} class="h-6 w-6" />
+								</Button>
+							</div>
 						{:else}
-							<Button size={"icon"}>
+							<Button
+								size={"icon"}
+								on:click={() => {
+									addToCart({
+										id: domain.id,
+										name: domain.name,
+										price: domain.listPrice
+									});
+								}}
+							>
 								<svelte:component this={IconCartAdd} class="h-6 w-6" />
 							</Button>
 						{/if}

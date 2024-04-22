@@ -79,6 +79,21 @@
 				method="post"
 				use:enhance
 			>
+				<Field {form} name="email">
+					<Control let:attrs>
+						<LabelledInput label="Email">
+							<Input
+								{...attrs}
+								type={"email"}
+								required
+								disabled
+								value={$formData.email}
+							/>
+						</LabelledInput>
+					</Control>
+					<FieldErrors />
+				</Field>
+
 				<div class="flex w-full flex-col gap-2 md:flex-row">
 					<Field {form} name="firstName">
 						<Control let:attrs>
@@ -110,21 +125,6 @@
 						<FieldErrors />
 					</Field>
 				</div>
-
-				<Field {form} name="email">
-					<Control let:attrs>
-						<LabelledInput label="Email">
-							<Input
-								{...attrs}
-								type={"email"}
-								required
-								maxlength={128}
-								bind:value={$formData.email}
-							/>
-						</LabelledInput>
-					</Control>
-					<FieldErrors />
-				</Field>
 
 				<Field {form} name="phoneNumber">
 					<Control let:attrs>

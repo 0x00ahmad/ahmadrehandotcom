@@ -4,7 +4,7 @@ export const personalInfoSchema = z.object({
     // personal info
     firstName: z.string().min(2).max(64),
     lastName: z.string().min(2).max(64),
-    email: z.string().email().min(3).max(128),
+    email: z.string().email().min(0).max(128), // this does not change
     phoneNumber: z.string().min(3).max(16),
     // address
     address1: z.string().min(3).max(255),
