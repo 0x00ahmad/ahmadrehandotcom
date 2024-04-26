@@ -20,9 +20,9 @@
     ];
 </script>
 
-<div class={cn("grid w-full place-items-center")}>
+<div class={cn("grid w-full place-items-center pt-12")}>
     <footer class={cn("w-full rounded-lg", MAX_PAGE_WIDTH)}>
-        <div class="max-w-screen w-full md:py-8">
+        <div class="max-w-screen w-fullmd:py-8">
             <div
                 class="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between"
             >

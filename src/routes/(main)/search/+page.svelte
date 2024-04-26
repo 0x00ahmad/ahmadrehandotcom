@@ -1,15 +1,18 @@
 <script lang="ts">
 	import IconCartAdd from "~icons/material-symbols/add-shopping-cart";
 	import IconCartCheck from "~icons/mdi/cart-check";
-	import IconCartMinus from "~icons/mdi/cart-minus";
 	import DomainSearchInput from "$lib/components/domain-search-input.svelte";
 	import Title from "$lib/components/title.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import { cn } from "$lib/utils";
-	import { DEFAULT_CURRENCY, TRANSITION_COLORS } from "$lib/utils/constants";
+	import {
+		DEFAULT_CURRENCY,
+		NAV_LINKS,
+		TRANSITION_COLORS
+	} from "$lib/utils/constants";
 
 	import type { PageData } from "./$types";
-	import { addToCart, cart, removeFromCart } from "$lib/client/cart";
+	import { addToCart, cart } from "$lib/client/cart";
 	import { goto } from "$app/navigation";
 
 	export let data: PageData;
@@ -24,7 +27,7 @@
 		{#each data.domains as domain}
 			<div
 				class={cn(
-					"flex cursor-pointer items-center justify-between gap-8 rounded-md border-2 border-shamrock-400 bg-shamrock-50 bg-opacity-15 p-4 hover:border-shamrock-500 hover:bg-opacity-70 hover:shadow-shamrock-600 dark:border-shamrock-700 dark:bg-shamrock-950 dark:bg-opacity-15 dark:hover:border-shamrock-600 dark:hover:bg-opacity-40",
+					"flex cursor-pointer flex-col justify-between gap-4 rounded-md border-2 border-shamrock-400 bg-shamrock-50 bg-opacity-15 p-4 hover:border-shamrock-500 hover:bg-opacity-70 hover:shadow-shamrock-600 dark:border-shamrock-700 dark:bg-shamrock-950 dark:bg-opacity-15 dark:hover:border-shamrock-600 dark:hover:bg-opacity-40 md:flex-row md:items-center",
 					TRANSITION_COLORS
 				)}
 			>
@@ -47,27 +50,18 @@
 						{#if !!$cart.find((item) => item.name === domain.name)}
 							<div class="flex items-center gap-2">
 								<Button
-									size={"icon"}
-									variant={"destructive"}
-									on:click={() => {
-										removeFromCart(domain.id);
-									}}
-								>
-									<svelte:component this={IconCartMinus} class="h-6 w-6" />
-								</Button>
-								<Button
-									size={"icon"}
+									size={"iconSm"}
 									variant={"secondary"}
 									on:click={() => {
-										goto("/checkout");
+										goto(NAV_LINKS.cart);
 									}}
 								>
-									<svelte:component this={IconCartCheck} class="h-6 w-6" />
+									<svelte:component this={IconCartCheck} class="h-4 w-4" />
 								</Button>
 							</div>
 						{:else}
 							<Button
-								size={"icon"}
+								size={"iconSm"}
 								on:click={() => {
 									addToCart({
 										id: domain.id,
@@ -76,7 +70,7 @@
 									});
 								}}
 							>
-								<svelte:component this={IconCartAdd} class="h-6 w-6" />
+								<svelte:component this={IconCartAdd} class="h-4 w-4" />
 							</Button>
 						{/if}
 					{/if}

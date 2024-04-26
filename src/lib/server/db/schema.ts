@@ -68,6 +68,8 @@ export const transaction = sqliteTable("transaction", {
     status: text("status", { length: 32 }).notNull(),
 });
 
+// INFO: misc tables
+
 export const contact = sqliteTable("contact", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     firstName: text("first_name", { length: 32 }).notNull(),

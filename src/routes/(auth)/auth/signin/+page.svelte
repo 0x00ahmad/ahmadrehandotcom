@@ -10,7 +10,7 @@
 	import { toast } from "svelte-sonner";
 
 	function tmpPrompt() {
-		toast("Please use Google Sign In for now.");
+		toast("Coming soon! Please use Google Sign In for now.");
 	}
 </script>
 

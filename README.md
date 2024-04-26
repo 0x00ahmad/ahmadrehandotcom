@@ -2,22 +2,20 @@
 
 This is the official repository for the website/application project
 
-First client pays in advance, at this point we have a new transaction row in status awaiting transfer
-
-Buyer begins by paying in advance to our merchant (Wise for now)
-
-The seller gets notified
--> forwards domain code to the buyer
--> Buyer receives code and transfers the domain
--> both have to notify of domain being transfered.
-
-Release payment to seller. Done
-
-## seller stuff
-
-The sellers gets emailed when:
-
-- sale for their domain
-- transfer is done to them
-
 ---
+
+## Todo list (because why not)
+
+Buyer intializes a purchase
+
+- A pending transfer for a domain made for buyer, sellers domain moved to PENDING
+- Seller uploads transfer code through domain info page
+- Buyer gets emailed of the auth code.
+- Buyer uses the code to transfer the domain.
+- Buyer enters our confirmation code as mx record
+- Buyer clicks "confirm & check" in order to add a job to our db to confirm these changes
+- We check the dns records for change using our headless backend on railway or somewhere else
+- We confirm and update the domain's statuses for both buyer/seller
+- We release the payment
+
+Done

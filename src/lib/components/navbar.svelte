@@ -1,4 +1,7 @@
 <script lang="ts">
+	import IconDashboard from "~icons/lucide/layout-dashboard";
+	import IconSquareUser from "~icons/lucide/square-user";
+	import IconWallet from "~icons/lucide/wallet";
 	import IconClose from "~icons/material-symbols/close-rounded";
 	import IconArrowUp from "~icons/ph/arrow-fat-line-up";
 	import IconMenu from "~icons/ri/menu-line";
@@ -9,6 +12,7 @@
 	import Logo from "./logo.svelte";
 	import Button from "./ui/button/button.svelte";
 	import { cart } from "$lib/client/cart";
+	import { NAV_LINKS } from "$lib/utils/constants";
 
 	export let user: User | null = null;
 
@@ -16,6 +20,19 @@
 
 	let windowY = 0;
 	let pageHeight = 0;
+
+	const cartLink = {
+		name: "View Shopping Cart",
+		href: NAV_LINKS.cart,
+		icon: IconShoppingCart
+	};
+
+	const links = [
+		{ name: "Dashboard", href: NAV_LINKS.dashboard.home, icon: IconDashboard },
+		{ name: "Finances", href: NAV_LINKS.dashboard.finances, icon: IconWallet },
+		{ name: "Profile", href: NAV_LINKS.dashboard.profile, icon: IconSquareUser },
+		cartLink
+	];
 </script>
 
 <svelte:window bind:scrollY={windowY} bind:outerHeight={pageHeight} />
@@ -25,11 +42,21 @@
 		"fixed z-[999] flex w-full items-center justify-between rounded-md border-b-2 bg-shamrock-50 bg-opacity-15 p-6 backdrop-blur-md dark:bg-shamrock-950 dark:bg-opacity-5 md:px-12"
 	)}
 >
-	<a href="/" class={cn("cursor-pointer")}>
-		<div class="flex items-center justify-between gap-4">
-			<Logo />
-		</div>
-	</a>
+	<div class="flex items-center gap-4">
+		<a href="/" class={cn("cursor-pointer")}>
+			<div class="flex items-center justify-between gap-4">
+				<Logo />
+			</div>
+		</a>
+
+		{#if !!user}
+			{#each links as link}
+				{#if link.href !== NAV_LINKS.cart}
+					<a href={link.href} class="hidden md:block">{link.name}</a>
+				{/if}
+			{/each}
+		{/if}
+	</div>
 
 	<Button
 		class="md:hidden"
@@ -41,7 +68,7 @@
 	</Button>
 
 	<div class="hidden items-center gap-4 md:flex">
-		<a href="/checkout" class="relative">
+		<a href={NAV_LINKS.cart} class="relative">
 			<span
 				class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-shamrock-500 p-1 text-xs text-white"
 			>
@@ -52,17 +79,11 @@
 			</Button>
 		</a>
 		{#if user}
-			<Button
-				on:click={() => {
-					window.location.href = "/u";
-				}}
-			>
-				Dashboard
-			</Button>
+			<Button href={"/auth/signout"}>Sign Out</Button>
 		{:else}
 			<Button
 				on:click={() => {
-					window.location.href = "/auth/signin";
+					window.location.href = NAV_LINKS.signin;
 				}}
 			>
 				Sign In
@@ -91,23 +112,37 @@
 			</Button>
 		</div>
 
-		<Button
-			variant={"ghost"}
-			href={"/checkout"}
-			class="flex items-center gap-2"
-			on:click={() => (showMobileMenu = false)}
-		>
-			View Shopping Cart
-			<svelte:component this={IconShoppingCart} class="h-6 w-6" />
-		</Button>
-
-		<Button
-			on:click={() => {
-				window.location.href = "/auth/signin";
-			}}
-		>
-			Sign In
-		</Button>
+		{#if user}
+			{#each links as link}
+				<Button
+					variant={"ghost"}
+					href={link.href}
+					class="flex w-full justify-start gap-2 text-start"
+					on:click={() => (showMobileMenu = false)}
+				>
+					<svelte:component this={link.icon} class="h-6 w-6" />
+					{link.name}
+				</Button>
+			{/each}
+			<Button href={"/auth/signout"}>Sign Out</Button>
+		{:else}
+			<Button
+				variant={"ghost"}
+				href={cartLink.href}
+				class="flex w-full justify-start gap-2 text-start"
+				on:click={() => (showMobileMenu = false)}
+			>
+				<svelte:component this={cartLink.icon} class="h-6 w-6" />
+				{cartLink.name}
+			</Button>
+			<Button
+				on:click={() => {
+					window.location.href = "/auth/signin";
+				}}
+			>
+				Sign In
+			</Button>
+		{/if}
 	</div>
 </div>
 
