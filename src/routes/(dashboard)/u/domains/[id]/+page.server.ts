@@ -56,7 +56,6 @@ export const actions = {
 			domainId,
 			user.id,
 			data.listPrice,
-			data.acceptedPrice,
 			new Date(data.expiresAt),
 			data.transferCode,
 			data.status
@@ -64,5 +63,5 @@ export const actions = {
 		if (res.errors) return { status: 400, errors: res.errors, form };
 
 		return message(form, "Domain added successfully!");
-	}
+	},
 } satisfies Actions;

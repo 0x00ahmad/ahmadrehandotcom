@@ -9,7 +9,7 @@ export type Domains = Domain[];
 export type CreateDomain = typeof domain.$inferInsert & { categories: string[] };
 
 export const domainRepository = {
-	searchDomainNames: async function (query: string, userId?: number) {
+	searchDomainNames: async function(query: string, userId?: number) {
 		try {
 			let condition = and(
 				like(domain.name, `%${query}%`),
@@ -48,7 +48,7 @@ export const domainRepository = {
 		}
 	},
 
-	getAllDomainsById: async function (domainsIds: number[]) {
+	getAllDomainsById: async function(domainsIds: number[]) {
 		return await db.query.domain.findMany({
 			where: and(
 				inArray(domain.id, domainsIds),
@@ -57,23 +57,23 @@ export const domainRepository = {
 		});
 	},
 
-	getUsersDomains: async function (userId: number) {
-		return await db.query.domain.findMany({
+	getUsersDomains: async function(userId: number) {
+		return (await db.query.domain.findMany({
 			where: and(
 				eq(domain.sellerId, userId),
 				not(eq(domain.status, DOMAIN_STATUS.DELETED))
 			),
 			orderBy: (results, { desc }) => [desc(results.createdAt)]
-		});
+		})) as Domains;
 	},
 
-	getDomainById: async function (id: number) {
+	getDomainById: async function(id: number) {
 		return await db.query.domain.findFirst({
 			where: and(eq(domain.id, id), not(eq(domain.status, DOMAIN_STATUS.DELETED)))
 		});
 	},
 
-	createDomain: async function (data: CreateDomain) {
+	createDomain: async function(data: CreateDomain) {
 		try {
 			await db.insert(domain).values({
 				...data,
@@ -93,7 +93,7 @@ export const domainRepository = {
 		}
 	},
 
-	deactivateDomainIfTransferCodeInvalid: async function (
+	deactivateDomainIfTransferCodeInvalid: async function(
 		id: number,
 		sellerId: number,
 		status: string,
@@ -143,11 +143,10 @@ export const domainRepository = {
 		return { data: true };
 	},
 
-	saveChanges: async function (
+	saveChanges: async function(
 		id: number,
 		sellerId: number,
 		listPrice: number,
-		acceptedPrice: number,
 		expiresAt: Date,
 		transferCode: string,
 		status: string,
@@ -160,41 +159,45 @@ export const domainRepository = {
 		}
 		if (!domainInfo) {
 			return {
-				errors: [
-					{
-						message: "Domain not found, please try again later.",
-						field: "domain",
-						type: "save"
-					}
-				]
+				errors: [{ message: "Domain not found, please try again later." }]
+			};
+		}
+		if (
+			![
+				DOMAIN_STATUS.ACTIVE,
+				DOMAIN_STATUS.INACTIVE,
+				DOMAIN_STATUS.ON_HOLD
+			].includes(domainInfo.status)
+		) {
+			return {
+				errors: [{ message: "Cannot update domain info with current status" }]
 			};
 		}
 		try {
+			if (domainInfo.status === DOMAIN_STATUS.ON_HOLD) {
+				await db
+					.update(domain)
+					.set({ transferCode })
+					.where(and(eq(domain.id, id), eq(domain.sellerId, sellerId)));
+				return {
+					errors: [
+						{ message: "Only saved domain transfer code in it's current status" }
+					]
+				};
+			}
 			await db
 				.update(domain)
-				.set({
-					listPrice,
-					acceptedPrice,
-					expiresAt,
-					transferCode,
-					status
-				})
+				.set({ listPrice, expiresAt, transferCode, status })
 				.where(and(eq(domain.id, id), eq(domain.sellerId, sellerId)));
 			return { data: true };
 		} catch (err) {
 			return {
-				errors: [
-					{
-						message: "Failed to save changes, please try again later.",
-						field: "domain",
-						type: "save"
-					}
-				]
+				errors: [{ message: "Failed to save changes, please try again later." }]
 			};
 		}
 	},
 
-	softDeleteDomain: async function (id: number, sellerId: number) {
+	softDeleteDomain: async function(id: number, sellerId: number) {
 		try {
 			await db
 				.update(domain)
@@ -206,18 +209,12 @@ export const domainRepository = {
 			return { data: true } as Result<boolean>;
 		} catch (err) {
 			return {
-				errors: [
-					{
-						message: "Failed to delete domain, please try again later.",
-						field: "domain",
-						type: "delete"
-					}
-				]
+				errors: [{ message: "Failed to delete domain, please try again later." }]
 			} as Result<boolean>;
 		}
 	},
 
-	changeDomainStatus: async function (
+	changeDomainStatus: async function(
 		id: number,
 		sellerId: number,
 		status: string
@@ -234,28 +231,35 @@ export const domainRepository = {
 					{
 						message:
 							(err as any).message ??
-							"Failed to change domain status, please try again later.",
-						field: "domain",
-						type: "status"
+							"Failed to change domain status, please try again later."
 					}
 				]
 			};
 		}
 	},
-	moveDomainToPendingForTransferState: async function (
+
+	moveDomainToPendingForTransferState: async function(
 		buyerId: number,
 		domains: Domain[]
 	) {
 		try {
 			db.transaction(async (trx) => {
 				for (const d of domains) {
-					console.log(
-						`Pendificating domain ${d.id} for ${buyerId}+${d.sellerId}`
-					);
 					await trx
 						.update(domain)
-						.set({ status: DOMAIN_STATUS.PENDING, sellerId: d.sellerId, buyerId })
+						.set({ status: DOMAIN_STATUS.ON_HOLD, sellerId: d.sellerId, buyerId })
 						.where(and(eq(domain.id, d.id), eq(domain.sellerId, d.sellerId)));
+					await trx.insert(domain).values({
+						...d,
+						id: undefined,
+						status: DOMAIN_STATUS.TO_CONFIRM,
+						sellerId: buyerId,
+						views: 0,
+						buyerId: undefined,
+						createdAt: new Date(),
+						deletedAt: undefined,
+						lastModified: new Date()
+					});
 				}
 			});
 			return { data: true };
@@ -266,6 +270,60 @@ export const domainRepository = {
 						message:
 							(err as any).message ??
 							"Failed to change domain status, please try again later.",
+						field: "domain",
+						type: "status"
+					}
+				]
+			};
+		}
+	},
+
+	confirmDomainTransferFromBuyer: async function(
+		domainId: number,
+		buyerId: number
+	): Promise<Result<boolean>> {
+		try {
+			await db.transaction(async (trx) => {
+				// this is the one the buyer owns
+				const yes = await trx
+					.update(domain)
+					.set({ status: DOMAIN_STATUS.INACTIVE })
+					.where(and(eq(domain.id, domainId), eq(domain.sellerId, buyerId)))
+					.returning({ id: domain.id, name: domain.name });
+
+				if (!yes || yes.length < 1) {
+					return {
+						errors: [
+							{
+								message:
+									"Failed to save confirmation changes, please try again later.",
+								field: "domain",
+								type: "status"
+							}
+						]
+					};
+				}
+
+				// the one the previous seller owned
+				await trx
+					.update(domain)
+					.set({ status: DOMAIN_STATUS.SOLD })
+					.where(
+						and(
+							eq(domain.buyerId, buyerId),
+							eq(domain.name, yes[0].name),
+							not(eq(domain.sellerId, buyerId))
+						)
+					);
+			});
+			return { data: true };
+		} catch (err) {
+			return {
+				errors: [
+					{
+						message:
+							(err as any).message ??
+							"Failed to save confirmation changes, please try again later.",
 						field: "domain",
 						type: "status"
 					}

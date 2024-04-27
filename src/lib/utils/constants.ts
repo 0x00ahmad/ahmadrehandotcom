@@ -36,14 +36,14 @@ export const TRANSACTION_STATUS = {
 export const DOMAIN_STATUS = {
 	ACTIVE: "active",
 	INACTIVE: "inactive",
-	PENDING: "pending", // for the buyer
-	OFFERED: "offered", // for the seller
-	SOLD: "sold", // to show to the seller when the domain is sold
-	PURCHASED: "purchased", // to show to the buyer when the domain is purchased
-	EXPIRED: "expired",
-	DELETED: "deleted",
 
-	DECLINED: "declined" // to show to the buyer when the offer is declined
+	TO_CONFIRM: "to_confirm", // for the buyer
+	ON_HOLD: "on_hold", // for the seller
+	SOLD: "sold", // for the seller
+	DECLINED: "declined", // to show to the buyer when the offer is declined
+
+	EXPIRED: "expired",
+	DELETED: "deleted"
 };
 
 export const NAV_LINKS = {

@@ -1,83 +1,30 @@
 <script lang="ts">
 	import IconBringToFront from "~icons/lucide/bring-to-front";
 	import IconView from "~icons/lucide/view";
+	import IconClipboard from "~icons/lucide/clipboard";
 	import Title from "$lib/components/title.svelte";
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb";
-	import Button from "$lib/components/ui/button/button.svelte";
 	import * as Card from "$lib/components/ui/card";
-	import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
-	import { inputStyle } from "$lib/components/ui/input";
-	import { DOMAIN_STATUS } from "$lib/utils/constants";
-	import { Control, Field, FieldErrors, Label } from "formsnap";
-	import { onMount } from "svelte";
-	import { toast } from "svelte-sonner";
-	import { superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
 
 	import type { PageData } from "./$types";
 	import DeleteDomainDialog from "./delete-domain-dialog.svelte";
-	import { domainInfoSchema } from "./schema";
-	import LabelledInput from "$lib/components/labelled-input.svelte";
+	import { snakeToSpacedPascal } from "$lib/utils/string.utils";
+	import DomainInfoForm from "./domain-info-form.svelte";
+	import { DOMAIN_STATUS } from "$lib/utils/constants";
+	import Input from "$lib/components/ui/input/input.svelte";
+	import Button from "$lib/components/ui/button/button.svelte";
+	import { toast } from "svelte-sonner";
+	import GenericConfirmationAlert from "$lib/components/molecules/generic-confirmation-alert.svelte";
 
 	export let data: PageData;
 
-	let submitting = false;
-
-	const form = superForm(data.form!, {
-		validators: zodClient(domainInfoSchema),
-		dataType: "json",
-		resetForm: false,
-		onSubmit: (event) => {
-			const data = $formData;
-			if (data.listPrice < data.acceptedPrice) {
-				toast.error("Accepted price cannot be greater than list price.");
-				event.cancel();
-				return;
-			}
-			if (data.expiresAt < new Date().toISOString().split("T")[0]) {
-				toast.error("Expiry date cannot be in the past.");
-				event.cancel();
-				return;
-			}
-			if (![DOMAIN_STATUS.ACTIVE, DOMAIN_STATUS.INACTIVE].includes(data.status)) {
-				toast.error("Invalid domain status.");
-				event.cancel();
-				return;
-			}
-			submitting = true;
-
-			event.jsonData({
-				...data,
-				status: data.status
-			});
-		},
-		onResult: (res) => {
-			submitting = false;
-			if (res.result.status !== 200) {
-				toast.error(
-					// @ts-ignore
-					res.result?.data.errors?.[0]?.message ??
-						"An error occured while adding a domain. Please try again later."
-				);
-				return;
-			}
-			toast.success("Changes saved successfully.");
-		}
-	});
-	const { form: formData, enhance } = form;
-	onMount(() => {
-		if (data.domain === undefined) {
-			return;
-		}
-		for (const key of Object.keys($formData)) {
-			// @ts-ignore
-			$formData[key] = data.domain[key];
-		}
-		$formData.expiresAt = new Date(data.domain.expiresAt)
-			.toISOString()
-			.split("T")[0];
-	});
 	let iconStyling = "h-6 w-6 text-shamrock-500 dark:text-shamrock-400";
+
+	function confirmDomainTransfer() {
+		fetch(`/u/domains/${data.domainId}/confirm-transfer`, {
+			method: "post"
+		});
+	}
 </script>
 
 <Breadcrumb.Root>
@@ -98,17 +45,19 @@
 	<div class="flex w-full max-w-4xl flex-col gap-12">
 		<Title capitalize={false} text={data.domain?.name ?? "Domain"} />
 		<div class="flex flex-col gap-8 md:flex-row">
-			<Card.Root class="w-full">
-				<Card.Header>
-					<div class="flex w-full items-center justify-between gap-4">
-						<Card.Title>Views</Card.Title>
-						<svelte:component this={IconView} class={iconStyling} />
-					</div>
-				</Card.Header>
-				<Card.Content>
-					<p>{data.domain?.views ?? "- -"}</p>
-				</Card.Content>
-			</Card.Root>
+			{#if data.domain?.status !== DOMAIN_STATUS.TO_CONFIRM}
+				<Card.Root class="w-full">
+					<Card.Header>
+						<div class="flex w-full items-center justify-between gap-4">
+							<Card.Title>Views</Card.Title>
+							<svelte:component this={IconView} class={iconStyling} />
+						</div>
+					</Card.Header>
+					<Card.Content>
+						<p>{data.domain?.views ?? "- -"}</p>
+					</Card.Content>
+				</Card.Root>
+			{/if}
 
 			<Card.Root class="w-full">
 				<Card.Header>
@@ -118,128 +67,61 @@
 					</div>
 				</Card.Header>
 				<Card.Content>
-					<p class="capitalize">{data.domain?.status ?? "- -"}</p>
+					<p class="capitalize">
+						{snakeToSpacedPascal(data.domain?.status ?? "- -")}
+					</p>
 				</Card.Content>
 			</Card.Root>
 		</div>
-		<form class="flex flex-col gap-4" method="post" use:enhance>
-			<div class="flex flex-col gap-4 md:flex-row">
-				<div class="flex w-full flex-col gap-2">
-					<Field {form} name={"listPrice"}>
-						<Control let:attrs>
-							<Label>List Price</Label>
-							<input
-								{...attrs}
-								class={inputStyle}
-								type="number"
-								min={5}
-								max={10000}
-								bind:value={$formData.listPrice}
-								required
-							/>
-						</Control>
-						<FieldErrors />
-					</Field>
+
+		{#if data.domain}
+			{#if data.domain.status === DOMAIN_STATUS.SOLD}
+				<div class="flex w-full flex-col items-center justify-center gap-4">
+					<Title text="Domain Sold" size={"h3"} />
+					<p class="text-md lg:text-lg">
+						This domain has been sold. You can no longer make any changes to it.
+					</p>
+				</div>
+			{:else if data.domain.status === DOMAIN_STATUS.TO_CONFIRM}
+				<Title text="Domain Confirmation" size={"h3"} />
+				<div class="flex w-full items-end gap-2">
+					<div class="flex w-full flex-col gap-2">
+						<label for="transfercode">Transfer code</label>
+						<Input
+							name="transfercode"
+							value={data.domain.transferCode ?? ""}
+							type="text"
+							class="w-full"
+							disabled
+						/>
+					</div>
+					<Button
+						on:click={() => {
+							navigator.clipboard.writeText(data.domain?.transferCode ?? "");
+							toast.success("Transfer code copied to clipboard");
+						}}
+						class="flex items-center gap-2"
+					>
+						<svelte:component this={IconClipboard} class="h-4 w-4" />
+						Copy to clipboard
+					</Button>
 				</div>
 
-				<div class="flex w-full flex-col gap-2">
-					<Field {form} name="acceptedPrice">
-						<Control let:attrs>
-							<div class="flex w-full flex-col gap-2">
-								<Label>Accepted Price (Coming soon!)</Label>
-								<input
-									{...attrs}
-									required
-									type="number"
-									min={5}
-									max={10000}
-									bind:value={$formData.acceptedPrice}
-									class={inputStyle}
-								/>
-							</div>
-						</Control>
-						<FieldErrors />
-					</Field>
-				</div>
-			</div>
-
-			<div class="flex flex-col gap-4 md:flex-row">
-				<div class="flex w-full flex-col gap-2">
-					<Field {form} name="expiresAt">
-						<Control let:attrs>
-							<LabelledInput label={"Expires At"}>
-								<input
-									{...attrs}
-									type="date"
-									bind:value={$formData.expiresAt}
-									class={inputStyle}
-									required
-								/>
-							</LabelledInput>
-						</Control>
-						<FieldErrors />
-					</Field>
-				</div>
-				<div class="flex w-full flex-col gap-2">
-					<Field {form} name="transferCode">
-						<Control let:attrs>
-							<LabelledInput label={"Transfer Code"}>
-								<input
-									{...attrs}
-									minlength="5"
-									required
-									bind:value={$formData.transferCode}
-									class={inputStyle}
-								/>
-							</LabelledInput>
-						</Control>
-						<FieldErrors />
-					</Field>
-				</div>
-			</div>
-
-			{#if [DOMAIN_STATUS.ACTIVE, DOMAIN_STATUS.INACTIVE].includes(data.domain?.status ?? "")}
-				<div class="flex items-center gap-2">
-					<Field {form} name="status">
-						<Control let:attrs>
-							<Checkbox
-								{...attrs}
-								name="status"
-								checked={$formData.status === DOMAIN_STATUS.ACTIVE}
-								on:click={(e) => {
-									const prevState =
-										e.detail.currentTarget.getAttribute("data-state");
-									if (prevState === "checked") {
-										$formData.status = DOMAIN_STATUS.INACTIVE;
-									} else {
-										$formData.status = DOMAIN_STATUS.ACTIVE;
-									}
-								}}
-								required
-							/>
-						</Control>
-						<FieldErrors />
-					</Field>
-					<p>Activate domain on the marketplace</p>
+				<GenericConfirmationAlert
+					onConfirm={confirmDomainTransfer}
+					title="Confirm Domain Transfer"
+					description="Are you sure that you want to confirm the transfer of ownership of this domain to you? This action is irreversible."
+					triggerText="Confirm Ownership Transfer"
+				/>
+			{:else}
+				<DomainInfoForm {data} />
+				<div class="flex w-full justify-end">
+					<DeleteDomainDialog
+						domainName={data.domain?.name ?? ""}
+						domainId={data.domainId}
+					/>
 				</div>
 			{/if}
-
-			<div class="flex w-full">
-				<Button disabled={submitting} class="w-full md:w-max" type="submit">
-					{#if submitting}
-						Processing...
-					{:else}
-						Save Changes
-					{/if}
-				</Button>
-			</div>
-		</form>
-
-		<div class="flex w-full justify-end">
-			<DeleteDomainDialog
-				domainName={data.domain?.name ?? ""}
-				domainId={data.domainId}
-			/>
-		</div>
+		{/if}
 	</div>
 </div>
