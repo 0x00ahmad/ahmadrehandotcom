@@ -19,11 +19,13 @@
 	let chosen = options[0];
 	$: value = chosen.value;
 
-	if (defaultVal.length > 0) {
-		chosen =
-			options.find((f) => f.value.toLowerCase().includes(defaultVal)) ??
-			options[0];
-		value = chosen.value;
+	$: {
+		if (defaultVal.length > 0) {
+			chosen =
+				options.find((f) => f.value.toLowerCase().includes(defaultVal)) ??
+				options[0];
+			value = chosen.value;
+		}
 	}
 
 	$: selectedValue =

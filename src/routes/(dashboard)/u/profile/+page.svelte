@@ -95,35 +95,39 @@
 				</Field>
 
 				<div class="flex w-full flex-col gap-2 md:flex-row">
-					<Field {form} name="firstName">
-						<Control let:attrs>
-							<LabelledInput label="First Name">
-								<Input
-									{...attrs}
-									type={"text"}
-									required
-									maxlength={32}
-									bind:value={$formData.firstName}
-								/>
-							</LabelledInput>
-						</Control>
-						<FieldErrors />
-					</Field>
+					<div class="flex w-full flex-col gap-2">
+						<Field {form} name="firstName">
+							<Control let:attrs>
+								<LabelledInput label="First Name">
+									<Input
+										{...attrs}
+										type={"text"}
+										required
+										maxlength={32}
+										bind:value={$formData.firstName}
+									/>
+								</LabelledInput>
+							</Control>
+							<FieldErrors />
+						</Field>
+					</div>
 
-					<Field {form} name="lastName">
-						<Control let:attrs>
-							<LabelledInput label="Last Name">
-								<Input
-									{...attrs}
-									type={"text"}
-									required
-									maxlength={32}
-									bind:value={$formData.lastName}
-								/>
-							</LabelledInput>
-						</Control>
-						<FieldErrors />
-					</Field>
+					<div class="flex w-full flex-col gap-2">
+						<Field {form} name="lastName">
+							<Control let:attrs>
+								<LabelledInput label="Last Name">
+									<Input
+										{...attrs}
+										type={"text"}
+										required
+										maxlength={32}
+										bind:value={$formData.lastName}
+									/>
+								</LabelledInput>
+							</Control>
+							<FieldErrors />
+						</Field>
+					</div>
 				</div>
 
 				<Field {form} name="phoneNumber">
@@ -173,7 +177,7 @@
 					<Control let:attrs>
 						<LabelledInput label="Country">
 							<CountriesSelect
-								defaultVal={$formData.country}
+								bind:defaultVal={$formData.country}
 								options={COUNTRIES_SELECT}
 								otherAttrs={{
 									...attrs,
@@ -190,32 +194,36 @@
 				</Field>
 
 				<div class="flex w-full flex-col gap-2 md:flex-row">
-					<Field {form} name="city">
-						<Control let:attrs>
-							<LabelledInput label="City">
-								<Input
-									{...attrs}
-									required
-									maxlength={64}
-									bind:value={$formData.city}
-								/>
-							</LabelledInput>
-						</Control>
-						<FieldErrors />
-					</Field>
-					<Field {form} name="state">
-						<Control let:attrs>
-							<LabelledInput label="State">
-								<Input
-									{...attrs}
-									required
-									maxlength={64}
-									bind:value={$formData.state}
-								/>
-							</LabelledInput>
-						</Control>
-						<FieldErrors />
-					</Field>
+					<div class="flex w-full flex-col gap-2">
+						<Field {form} name="city">
+							<Control let:attrs>
+								<LabelledInput label="City">
+									<Input
+										{...attrs}
+										required
+										maxlength={64}
+										bind:value={$formData.city}
+									/>
+								</LabelledInput>
+							</Control>
+							<FieldErrors />
+						</Field>
+					</div>
+					<div class="flex w-full flex-col gap-2">
+						<Field {form} name="state">
+							<Control let:attrs>
+								<LabelledInput label="State">
+									<Input
+										{...attrs}
+										required
+										maxlength={64}
+										bind:value={$formData.state}
+									/>
+								</LabelledInput>
+							</Control>
+							<FieldErrors />
+						</Field>
+					</div>
 				</div>
 
 				<Field {form} name="postalCode">

@@ -50,6 +50,13 @@
       "when": 1713639769853,
       "tag": "0006_regular_lady_deathstrike",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1714177746418,
+      "tag": "0007_small_sleeper",
+      "breakpoints": true
     }
   ]
 }

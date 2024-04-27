@@ -47,14 +47,14 @@
 					<svelte:component this={IconGoogle} class="mr-2 h-4 w-4" />
 					Google
 				</Button>
-				<Button class="w-full bg-blue-500" on:click={tmpPrompt}>
-					<svelte:component this={IconFacebook} class="mr-2 h-4 w-4" />
-					Facebook
-				</Button>
-				<Button class="w-full bg-sky-500" on:click={tmpPrompt}>
-					<svelte:component this={MdiLinkedin} class="mr-2 h-4 w-4" />
-					LinkedIn
-				</Button>
+				<!-- <Button class="w-full bg-blue-500" on:click={tmpPrompt}> -->
+				<!-- 	<svelte:component this={IconFacebook} class="mr-2 h-4 w-4" /> -->
+				<!-- 	Facebook -->
+				<!-- </Button> -->
+				<!-- <Button class="w-full bg-sky-500" on:click={tmpPrompt}> -->
+				<!-- 	<svelte:component this={MdiLinkedin} class="mr-2 h-4 w-4" /> -->
+				<!-- 	LinkedIn -->
+				<!-- </Button> -->
 			</div>
 		</div>
 	</div>

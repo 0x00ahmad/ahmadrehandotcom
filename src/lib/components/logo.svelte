@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import logo from "$lib/assets/logo.png";
+	import logoLight from "$lib/assets/logo-light.png";
+	import logoDark from "$lib/assets/logo-dark.png";
+	import { mode } from "mode-watcher";
 
 	export let size: "sm" | "md" | "lg" = "md";
 
@@ -14,4 +16,8 @@
 	};
 </script>
 
-<img src={logo} alt="DNBazar" class={cn(sizes[size])} />
+{#if $mode === "dark"}
+	<img src={logoLight} alt="DNBazar" class={cn(sizes[size])} />
+{:else}
+	<img src={logoDark} alt="DNBazar" class={cn(sizes[size])} />
+{/if}

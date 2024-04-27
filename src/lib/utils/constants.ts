@@ -3,6 +3,8 @@ export const TRANSITION_COLORS = 'transition-colors duration-150 ease-in-out';
 
 export const MAX_PAGE_WIDTH = "max-w-[90vw]";
 
+export const noReplySenderEmail = "noreply@dnbazar.com";
+
 export const CONTACT_INFO = {
 	email: 'contact@dnbazar.com',
 	phone: '+000-000-0000'
@@ -51,7 +53,7 @@ export const NAV_LINKS = {
 	signin: "/auth/signin",
 	dashboard: {
 		home: "/u",
-		finances: "/u/finance",
+		finances: "/u/finances",
 		profile: "/u/profile",
 	},
 	cart: "/cart",
