@@ -32,6 +32,7 @@
 		resetForm: false,
 		onSubmit: (event) => {
 			submitting = true;
+			console.log($cart.map((item) => item.id));
 			event.jsonData({
 				id: generateId(32),
 				domainIds: $cart.map((item) => item.id)
@@ -39,12 +40,11 @@
 		},
 		onResult: (res) => {
 			submitting = false;
+			console.log(res);
 			if (res.result.status !== 200) {
-				toast.error(
-					"Could not update your personal information. Please try again later."
-				);
+				toast.error("Couple not complete transaction. Please try again later.");
 			}
-			toast.success("Info saved successfully.");
+			toast.success("Transaction completed successfully.");
 		}
 	});
 	const { form: formData, enhance } = form;
@@ -109,7 +109,7 @@
 						class="w-full"
 						use:enhance
 					>
-						<Button class="w-full">Proceed with transaction</Button>
+						<Button class="w-full" type="submit">Proceed with transaction</Button>
 					</form>
 					<small>
 						By proceeding with the transaction, you agree to our

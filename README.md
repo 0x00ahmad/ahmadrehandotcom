@@ -10,7 +10,6 @@ Buyer intializes a purchase
 
 - A pending transfer for a domain made for buyer, sellers domain moved to PENDING
 - Seller uploads transfer code through domain info page
-- Buyer gets emailed of the auth code.
 - Buyer uses the code to transfer the domain.
 - Buyer enters our confirmation code as mx record
 - Buyer clicks "confirm & check" in order to add a job to our db to confirm these changes

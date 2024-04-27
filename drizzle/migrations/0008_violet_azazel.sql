@@ -1,0 +1,1 @@
+ALTER TABLE domain ADD `buyer_id` integer;

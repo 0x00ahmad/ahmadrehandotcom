@@ -9,13 +9,21 @@ export type Domains = Domain[];
 export type CreateDomain = typeof domain.$inferInsert & { categories: string[] };
 
 export const domainRepository = {
-	searchDomainNames: async function (query: string) {
+	searchDomainNames: async function (query: string, userId?: number) {
 		try {
-			const matches = await db.query.domain.findMany({
-				where: and(
+			let condition = and(
+				like(domain.name, `%${query}%`),
+				eq(domain.status, DOMAIN_STATUS.ACTIVE)
+			);
+			if (userId) {
+				condition = and(
 					like(domain.name, `%${query}%`),
-					eq(domain.status, DOMAIN_STATUS.ACTIVE)
-				),
+					eq(domain.status, DOMAIN_STATUS.ACTIVE),
+					not(eq(domain.sellerId, userId))
+				);
+			}
+			const matches = await db.query.domain.findMany({
+				where: condition,
 				orderBy: (results, { asc }) => [asc(results.name)],
 				columns: {
 					id: true,
@@ -42,7 +50,10 @@ export const domainRepository = {
 
 	getAllDomainsById: async function (domainsIds: number[]) {
 		return await db.query.domain.findMany({
-			where: inArray(domain.id, domainsIds)
+			where: and(
+				inArray(domain.id, domainsIds),
+				not(eq(domain.status, DOMAIN_STATUS.DELETED))
+			)
 		});
 	},
 
@@ -211,9 +222,55 @@ export const domainRepository = {
 		sellerId: number,
 		status: string
 	) {
-		await db
-			.update(domain)
-			.set({ status })
-			.where(and(eq(domain.id, id), eq(domain.sellerId, sellerId)));
+		try {
+			await db
+				.update(domain)
+				.set({ status })
+				.where(and(eq(domain.id, id), eq(domain.sellerId, sellerId)));
+			return { data: true };
+		} catch (err) {
+			return {
+				errors: [
+					{
+						message:
+							(err as any).message ??
+							"Failed to change domain status, please try again later.",
+						field: "domain",
+						type: "status"
+					}
+				]
+			};
+		}
+	},
+	moveDomainToPendingForTransferState: async function (
+		buyerId: number,
+		domains: Domain[]
+	) {
+		try {
+			db.transaction(async (trx) => {
+				for (const d of domains) {
+					console.log(
+						`Pendificating domain ${d.id} for ${buyerId}+${d.sellerId}`
+					);
+					await trx
+						.update(domain)
+						.set({ status: DOMAIN_STATUS.PENDING, sellerId: d.sellerId, buyerId })
+						.where(and(eq(domain.id, d.id), eq(domain.sellerId, d.sellerId)));
+				}
+			});
+			return { data: true };
+		} catch (err) {
+			return {
+				errors: [
+					{
+						message:
+							(err as any).message ??
+							"Failed to change domain status, please try again later.",
+						field: "domain",
+						type: "status"
+					}
+				]
+			};
+		}
 	}
 };

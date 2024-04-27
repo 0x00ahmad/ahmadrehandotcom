@@ -17,7 +17,7 @@ export async function sendEmail(
 		html: body
 	});
 
-	console.log(data, error);
+	console.log("At the send email function: ", data, error);
 
 	if (error) {
 		return {

@@ -49,6 +49,7 @@ export const domain = sqliteTable("domain", {
 	expiresAt: integer("expires_at", { mode: "timestamp_ms" }).notNull(),
 	categories: text("categories", { length: 255 }).notNull(),
 	sellerId: integer("seller_id", { mode: "number" }).notNull(),
+	buyerId: integer("buyer_id", { mode: "number" }),
 	views: integer("views", { mode: "number" }).notNull().default(0),
 	status: text("status", { length: 32 }).notNull(),
 	deletedAt: integer("deleted_at", { mode: "timestamp_ms" })

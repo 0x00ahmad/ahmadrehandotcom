@@ -6,13 +6,10 @@ import { proceedTransactionSchema } from "./schema";
 import { fail } from "@sveltejs/kit";
 import { transactionRepository } from "$lib/server/db/repository/transaction";
 import { domainRepository } from "$lib/server/db/repository/domain";
-import { DOMAIN_STATUS } from "$lib/utils/constants";
-import { sendEmail } from "$lib/server/lib/email/send.email";
 import {
 	sendDomainPurchasedEmailToBuyer,
 	sendDomainPurchasedEmailToSeller
 } from "$lib/server/lib/email/domain.purhased.email";
-import { userRepository } from "$lib/server/db/repository/user";
 
 export const load = (async () => {
 	const form = await superValidate(zod(proceedTransactionSchema));
@@ -34,14 +31,13 @@ export const actions = {
 			return fail(400, { form, errors: form.errors });
 		}
 
-		const data = form.data;
+		const domainIds = form.data.domainIds;
 
-		console.log("Data : ", data);
+		console.log("Data : ", domainIds);
 
-		const domains = await domainRepository.getAllDomainsById(data.domainIds);
+		const domains = await domainRepository.getAllDomainsById(domainIds);
 
 		const domainAndSellerIds = {} as { [key: number]: number[] };
-		const sellersDomains = {} as { [key: number]: {}[] };
 		let totalAmount = 0;
 
 		for (const domain of domains) {
@@ -53,38 +49,52 @@ export const actions = {
 			}
 			domainAndSellerIds[sellerId] = [domain.id];
 		}
+		console.log(domains);
 
-		// send an email to the user
+		console.log("Domain and Seller Ids : ", domainAndSellerIds);
 
-		const trasnaction = await transactionRepository.createTransactions({
+		// make the transaction and change the domain status
+
+		const transaction = await transactionRepository.createTransactions({
 			currency: "USD",
 			amount: totalAmount,
 			buyerId: buyer.id,
-			domainsIds: data.domainIds,
+			domainsIds: domainIds,
 			domainAndSellerIds
 		});
 
-		await domainRepository.changeDomainStatus(
-			data.domainIds[0],
+		console.log("Transaction : ", transaction);
+
+		if (transaction.errors) {
+			return fail(400, { form, errors: transaction.errors });
+		}
+
+		const chRes = await domainRepository.moveDomainToPendingForTransferState(
 			buyer.id,
-			DOMAIN_STATUS.PENDING
+			// @ts-ignore
+			domains
 		);
+
+		console.log("Response : ", chRes);
+
+		if (chRes.errors) {
+			return fail(400, { form, errors: chRes.errors });
+		}
 
 		// send an email to the user
 
-		const testsendto = ["delivered@resend.dev"];
-		const allDomainNames = [] as string[];
-
-		for (const [sellerId, domainIds] of Object.entries(domainAndSellerIds)) {
-			const domainNamesOfSeller = [];
-			for (const domain of domains) {
-				if (domain.sellerId === parseInt(sellerId)) {
-					domainNamesOfSeller.push(domain.name);
-				}
-			}
-			await sendDomainPurchasedEmailToSeller(testsendto, domainNamesOfSeller);
-		}
-		await sendDomainPurchasedEmailToBuyer(testsendto, allDomainNames);
+		// const testsendto = ["delivered@resend.dev"]; // TODO: make this our email in prod
+		// const allDomainNames = [] as string[];
+		// for (const sellerId of Object.keys(domainAndSellerIds)) {
+		// 	const domainNamesOfSeller = [];
+		// 	for (const domain of domains) {
+		// 		if (domain.sellerId === parseInt(sellerId)) {
+		// 			domainNamesOfSeller.push(domain.name);
+		// 		}
+		// 	}
+		// 	await sendDomainPurchasedEmailToSeller(testsendto, domainNamesOfSeller);
+		// }
+		// await sendDomainPurchasedEmailToBuyer(testsendto, allDomainNames);
 
 		return message(form, "Form posted successfully!");
 	}
