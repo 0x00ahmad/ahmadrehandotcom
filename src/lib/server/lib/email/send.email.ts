@@ -6,7 +6,7 @@ const resend = new Resend(env.RESEND_API_KEY);
 
 export async function sendEmail(
 	from: string,
-	to: string,
+	to: string[],
 	subject: string,
 	body: string
 ): Promise<Result<any>> {
