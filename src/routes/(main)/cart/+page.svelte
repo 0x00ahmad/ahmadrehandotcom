@@ -2,7 +2,7 @@
 	import DomainSearchInput from "$lib/components/domain-search-input.svelte";
 	import IconTrash from "~icons/lucide/trash-2";
 	import * as Card from "$lib/components/ui/card";
-	import { cart, removeFromCart } from "$lib/client/cart";
+	import { cart, clearCart, removeFromCart } from "$lib/client/cart";
 	import cartGif from "$lib/assets/graphics/cart.gif";
 	import opportunities from "$lib/assets/graphics/opportunities.png";
 	import Title from "$lib/components/title.svelte";
@@ -19,6 +19,7 @@
 	import { proceedTransactionSchema } from "./schema";
 	import { toast } from "svelte-sonner";
 	import { generateId } from "lucia";
+	import { goto } from "$app/navigation";
 
 	export let data: PageData;
 
@@ -40,11 +41,12 @@
 		},
 		onResult: (res) => {
 			submitting = false;
-			console.log(res);
 			if (res.result.status !== 200) {
 				toast.error("Couple not complete transaction. Please try again later.");
 			}
 			toast.success("Transaction completed successfully.");
+			clearCart();
+			goto(NAV_LINKS.dashboard.home);
 		}
 	});
 	const { form: formData, enhance } = form;

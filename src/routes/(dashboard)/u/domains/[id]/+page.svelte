@@ -10,20 +10,23 @@
 	import DeleteDomainDialog from "./delete-domain-dialog.svelte";
 	import { snakeToSpacedPascal } from "$lib/utils/string.utils";
 	import DomainInfoForm from "./domain-info-form.svelte";
-	import { DOMAIN_STATUS } from "$lib/utils/constants";
+	import { DOMAIN_STATUS, NAV_LINKS } from "$lib/utils/constants";
 	import Input from "$lib/components/ui/input/input.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import { toast } from "svelte-sonner";
 	import GenericConfirmationAlert from "$lib/components/molecules/generic-confirmation-alert.svelte";
+	import { goto } from "$app/navigation";
 
 	export let data: PageData;
 
 	let iconStyling = "h-6 w-6 text-shamrock-500 dark:text-shamrock-400";
 
 	function confirmDomainTransfer() {
-		fetch(`/u/domains/${data.domainId}/confirm-transfer`, {
-			method: "post"
-		});
+		fetch(`/u/domains/${data.domainId}/confirm-transfer`, { method: "post" });
+		toast.success("Domain transfer confirmed successfully, redirecting...");
+		setTimeout(() => {
+			goto(NAV_LINKS.dashboard.home);
+		}, 2000);
 	}
 </script>
 

@@ -14,7 +14,7 @@ export const load: PageServerLoad = async (_) => {
 
 export const actions = {
     addDomain: async ({ request, locals }) => {
-        const user = locals.user
+        const user = locals.user;
 
         if (!user) {
             return fail(401, {
@@ -33,18 +33,17 @@ export const actions = {
         const res = await domainRepository.createDomain({
             name: data.name,
             listPrice: data.listPrice,
-            acceptedPrice: data.acceptedPrice,
+            acceptedPrice: data.listPrice,
             expiresAt: new Date(data.expiresAt),
             sellerId: user.id,
             status: DOMAIN_STATUS.INACTIVE,
             createdAt: new Date(),
             lastModified: new Date(),
             // INFO: this will be added by the user on their own
-            categories: [] as any,
-        })
-        if (res.errors) return { status: 400, errors: res.errors }
+            categories: [] as any
+        });
+        if (res.errors) return { status: 400, errors: res.errors };
 
-        return message(form, "Domain added successfully!")
-    },
+        return message(form, "Domain added successfully!");
+    }
 } satisfies Actions;
-
