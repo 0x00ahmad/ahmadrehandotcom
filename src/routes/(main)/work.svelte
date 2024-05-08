@@ -21,10 +21,11 @@
 	] as Work[];
 </script>
 
-<Title size={"h3"} text={"My Work"} />
+<Title size={"h3"} text={"Work"} />
 
 <div
 	class="flex flex-col gap-4 rounded-lg bg-gradient-to-r from-emerald-700 to-emerald-600 p-6 pb-0 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:grid-cols-2"
+	id="work"
 >
 	<div class="">
 		<img
@@ -58,7 +59,7 @@
 </div>
 
 <div
-	class="bg-gradient-to-l from-azure-600 to-azure-500 flex h-80 flex-col gap-4 rounded-lg p-6 pb-0 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:grid-cols-2"
+	class="from-azure-600 to-azure-500 flex h-80 flex-col gap-4 rounded-lg bg-gradient-to-l p-6 pb-0 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:grid-cols-2"
 >
 	<div class="flex h-full flex-col justify-center gap-8 p-8">
 		<div class="flex flex-col gap-2">
