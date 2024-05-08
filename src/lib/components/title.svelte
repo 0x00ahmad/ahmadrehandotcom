@@ -5,9 +5,9 @@
     type TitleFontWeight = "bold" | "semibold" | "normal" | "medium";
 
     const colors = {
-        white: "text-shamrock-50 dark:text-shamrock-950",
-        black: "text-shamrock-950 dark:text-shamrock-50",
-        primary: "text-shamrock-600 dark:text-shamrock-50",
+        white: "text-indigo-50 dark:text-indigo-950",
+		black: "inline-block bg-gradient-to-r from-gray-500 to-slate-900 bg-clip-text font-semibold text-transparent",
+        primary: "text-indigo-600 dark:text-indigo-50",
     };
 
     const weights = {
@@ -27,7 +27,7 @@
 {#if size == "h1"}
     <h1
         class={clsx(
-            "font-sans text-4xl lg:text-5xl",
+            "w-max text-4xl lg:text-5xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],
@@ -38,7 +38,7 @@
 {:else if size == "h2"}
     <h2
         class={clsx(
-            "font-sans text-3xl lg:text-4xl",
+            "w-max text-3xl lg:text-4xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],
@@ -49,7 +49,7 @@
 {:else if size == "h3"}
     <h3
         class={clsx(
-            "font-sans text-2xl lg:text-3xl",
+            "w-max text-2xl lg:text-3xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],
@@ -60,7 +60,7 @@
 {:else if size == "h4"}
     <h4
         class={clsx(
-            "font-sans text-xl lg:text-2xl",
+            "w-max text-xl lg:text-2xl",
             weights[weight ?? "bold"],
             capitalize && "capitalize",
             colors[color],

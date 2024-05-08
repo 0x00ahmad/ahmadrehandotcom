@@ -1,7 +1,7 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
 
-    const colors = { default: "text-shamrock-950 dark:text-shamrock-50" };
+    const colors = { default: "text-indigo-950 dark:text-indigo-50" };
 
     export let color: keyof typeof colors = "default";
 </script>

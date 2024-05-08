@@ -14,7 +14,7 @@
 
 <CheckboxPrimitive.Root
     class={cn(
-        "peer box-content h-4 w-4 shrink-0 rounded-sm border border-shamrock-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-shamrock-500 data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50",
+        "peer box-content h-4 w-4 shrink-0 rounded-sm border border-indigo-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[state=checked]:bg-indigo-500 data-[state=checked]:text-primary-foreground data-[disabled=true]:opacity-50",
         className,
     )}
     bind:checked

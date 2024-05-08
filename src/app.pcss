@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/outfit-variable.ttf") format("truetype");
+  font-family: "Readex Pro";
+  src: url("/fonts/ReadexPro/readexpro-variable.ttf") format("truetype");
 }
 
 @layer base {
@@ -71,7 +71,6 @@
 
     --ring: 216 12.2% 83.9%;
   }
-
 }
 
 @layer base {
@@ -79,13 +78,14 @@
     @apply border-border;
   }
 
-
   html {
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: "Readex Pro", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 
   body {
     @apply bg-background text-foreground;
+    background-image: url("/images/noise.png");
+    background-color: #f6f6fc;
   }
 }

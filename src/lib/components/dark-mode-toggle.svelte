@@ -8,7 +8,7 @@
 
 <DropdownMenu.Root>
     <DropdownMenu.Trigger asChild let:builder>
-        <Button builders={[builder]} variant="outline">
+        <Button builders={[builder]} variant="outline" size={"iconSm"}>
             <svelte:component this={IconSun} class="h-6 w-6 dark:hidden" />
             <svelte:component
                 this={IconMoonStars}

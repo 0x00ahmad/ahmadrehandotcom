@@ -1,7 +1,14 @@
+import IconDashboard from "~icons/lucide/layout-dashboard";
+import IconSquareUser from "~icons/lucide/square-user";
+import IconWallet from "~icons/lucide/wallet";
+
 export const TRANSITION_ALL = "transition-all duration-150 ease-in-out";
 export const TRANSITION_COLORS = "transition-colors duration-150 ease-in-out";
 
-export const MAX_PAGE_WIDTH = "max-w-[90vw]";
+export const HEADING_DEFAULT_GRADIENT =
+	"inline-block bg-gradient-to-r from-gray-500 to-gray-700 bg-clip-text text-transparent";
+
+export const MAX_PAGE_WIDTH = "max-w-[100vw] sm:max-w-[80vw] xl:max-w-[60rem]";
 
 export const noReplySenderEmail = "noreply@dnbazar.com";
 
@@ -48,15 +55,22 @@ export const DOMAIN_STATUS = {
 
 export const NAV_LINKS = {
 	landing: "/",
-	legal: "/legal",
-	contact: "/contact",
-	about: "/about",
-	signin: "/auth/signin",
-	dashboard: {
-		home: "/u",
-		finances: "/u/finances",
-		profile: "/u/profile"
-	},
-	cart: "/cart",
-	checkout: "/checkout"
+	work: "/#work",
+	personal_projects: "/#personal-projects",
+	skills: "/#skills",
+	resume: "/resume",
+
+	contact: "/contact"
 };
+
+export const SITE_LINKS = [
+	{ name: "Home", href: NAV_LINKS.landing, icon: IconDashboard },
+	{ name: "Work", href: NAV_LINKS.work, icon: IconWallet },
+	{
+		name: "Personal Projects",
+		href: NAV_LINKS.personal_projects,
+		icon: IconSquareUser
+	},
+	{ name: "Skills", href: NAV_LINKS.skills, icon: IconWallet },
+	{ name: "Resume", href: NAV_LINKS.resume, icon: IconWallet }
+];

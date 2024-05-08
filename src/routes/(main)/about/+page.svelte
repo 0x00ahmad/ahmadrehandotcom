@@ -1,5 +1,4 @@
 <script lang="ts">
-    import visionSVG from "$lib/assets/graphics/vision.svg";
     import ParagraphText from "$lib/components/paragraph-text.svelte";
     import Title from "$lib/components/title.svelte";
 </script>
@@ -12,13 +11,8 @@
             class="relative text-3xl font-semibold tracking-wider sm:text-4xl md:text-5xl lg:text-6xl"
         >
             Providing a simple and elegant way to kickstart your
-            <span class="relative line-through decoration-shamrock-500">
+            <span class="relative line-through decoration-indigo-500">
                 idea.
-                <img
-                    src={visionSVG}
-                    alt="Vision"
-                    class="absolute bottom-[-3.5em] right-0 h-40 w-40 sm:right-[-0.5em] md:bottom-[-3em] lg:h-60 lg:w-60"
-                />
             </span>
         </span>
     </div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import journeySVG from "$lib/assets/graphics/journey.svg";
     import ParagraphText from "$lib/components/paragraph-text.svelte";
     import Title from "$lib/components/title.svelte";
     import { Button } from "$lib/components/ui/button";
@@ -42,19 +41,11 @@
             class="relative text-3xl font-semibold tracking-wider sm:text-4xl md:text-5xl lg:text-6xl"
         >
             Helping you with the most important step in your
-            <span class="relative line-through decoration-shamrock-500">
-                business.
-                <img
-                    src={journeySVG}
-                    alt="Journey"
-                    class="absolute bottom-[-8rem] right-0 h-40 w-40 sm:right-8 md:bottom-[-3em] lg:h-60 lg:w-60"
-                />
-            </span>
         </span>
     </div>
     <div class="col-span-2 grid w-full place-items-center lg:flex">
         <div
-            class="flex w-full max-w-xl flex-col gap-6 rounded-xl border-2 border-slate-100 bg-white p-6 shadow dark:border-slate-500 dark:bg-slate-950 dark:shadow dark:shadow-shamrock-600 md:p-8 xl:p-12"
+            class="flex w-full max-w-xl flex-col gap-6 rounded-xl border-2 border-slate-100 bg-white p-6 shadow dark:border-slate-500 dark:bg-slate-950 dark:shadow dark:shadow-indigo-600 md:p-8 xl:p-12"
         >
             <Title text={"Let's Talk"} size={"h1"} />
             <ParagraphText>

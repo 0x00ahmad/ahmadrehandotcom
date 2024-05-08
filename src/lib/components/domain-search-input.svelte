@@ -36,8 +36,8 @@
 	<input
 		type="text"
 		class={cn(
-			"w-full rounded-md border-2 border-slate-200 p-4 text-xl outline-none hover:border-slate-300 focus:border-shamrock-500 focus:ring-2 focus:ring-shamrock-500 focus:ring-offset-2 disabled:bg-slate-100",
-			"dark:border-slate-700 dark:bg-slate-900 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:ring-shamrock-500 dark:focus:ring-offset-slate-900 dark:disabled:bg-slate-800",
+			"w-full rounded-md border-2 border-slate-200 p-4 text-xl outline-none hover:border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-slate-100",
+			"dark:border-slate-700 dark:bg-slate-900 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:ring-indigo-500 dark:focus:ring-offset-slate-900 dark:disabled:bg-slate-800",
 			TRANSITION_COLORS
 		)}
 		disabled={searching}
