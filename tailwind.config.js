@@ -2,9 +2,7 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-	darkMode: ["class"],
 	content: ["./src/**/*.{html,js,svelte,ts}"],
-	safelist: ["dark"],
 	theme: {
 		container: {
 			center: true,
@@ -12,7 +10,7 @@ const config = {
 			screens: { "2xl": "1400px" }
 		},
 		fontFamily: {
-			sans: ["Outfit", ...fontFamily.sans]
+			sans: ["Readex Pro", ...fontFamily.sans]
 		},
 		extend: {
 			screens: {
@@ -20,6 +18,20 @@ const config = {
 				"2xl": "1440px"
 			},
 			colors: {
+				shamrock: {
+					50: "#F0FDF8",
+					100: "#CDFAEB",
+					200: "#9BF4D8",
+					300: "#61E7C2",
+					400: "#46D5B2",
+					500: "#18B490",
+					600: "#109176",
+					700: "#117460",
+					800: "#135C4E",
+					900: "#144D42",
+					950: "#052E28"
+				},
+				// for work
 				azure: {
 					50: "#f3f6fc",
 					100: "#e6ecf8",

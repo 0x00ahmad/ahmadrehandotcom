@@ -6,17 +6,23 @@
 	import Logo from "./logo.svelte";
 	import Button from "./ui/button/button.svelte";
 	import { NAV_LINKS, SITE_LINKS, TRANSITION_COLORS } from "$lib/utils/constants";
+
+	let scrolledPos = 0;
 </script>
+
+<svelte:window bind:scrollY={scrolledPos} />
 
 <nav
 	class={cn(
-		"fixed z-[999] flex w-full items-center justify-between rounded-md  bg-indigo-50 bg-opacity-15 p-6 backdrop-blur-md dark:bg-indigo-950 dark:bg-opacity-5 md:px-12"
+		"fixed z-[999] flex w-full items-center justify-between rounded-md p-6 md:px-12",
+		scrolledPos > 50
+			? "bg-white bg-opacity-40 backdrop-blur-lg"
+			: "bg-transparent",
+		TRANSITION_COLORS
 	)}
 >
 	<a href="/" class={cn("cursor-pointer")}>
-		<div class="flex items-center justify-between gap-4">
-			<Logo />
-		</div>
+		<Logo />
 	</a>
 
 	<div class="hidden items-center gap-8 lg:flex">
@@ -28,7 +34,7 @@
 				window.location.href = NAV_LINKS.contact;
 			}}
 		>
-			Let's talk
+			Contact me
 		</Button>
 	</div>
 
@@ -58,7 +64,7 @@
 							window.location.href = NAV_LINKS.contact;
 						}}
 					>
-						Let's talk
+						Contact me
 					</Button>
 				</div>
 			</Sheet.Content>

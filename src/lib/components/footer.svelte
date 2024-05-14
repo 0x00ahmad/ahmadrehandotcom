@@ -4,7 +4,7 @@
 	import IconXTwitter from "~icons/fa6-brands/x-twitter";
 	import IconFacebookLogo from "~icons/ic/baseline-facebook";
 	import { cn } from "$lib/utils";
-	import { MAX_PAGE_WIDTH } from "$lib/utils/constants";
+	import { MAX_PAGE_WIDTH, SITE_LINKS } from "$lib/utils/constants";
 
 	import DarkModeToggle from "./dark-mode-toggle.svelte";
 	import Logo from "./logo.svelte";
@@ -32,34 +32,16 @@
 				>
 					<Logo size={"sm"} />
 				</a>
-
-				<ul
-					class="flex flex-wrap gap-4 font-medium text-slate-500 dark:text-slate-400"
-				>
-					<li>
-						<a href="/search?q=" class="hover:underline">Catalog</a>
-					</li>
-					<li>
-						<a href="/about" class="hover:underline">About Us</a>
-					</li>
-					<li>
-						<a href="/contact" class="hover:underline">Contact</a>
-					</li>
-					<li>
-						<a href="/legal" class="hover:underline">Legal</a>
-					</li>
-				</ul>
 			</div>
-			<hr class="my-4 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-6" />
+			<hr class="my-4 border-gray-200 sm:mx-auto lg:my-6" />
 			<div
 				class="flex w-full flex-col-reverse gap-8 sm:flex-row sm:items-center sm:justify-between"
 			>
-				<span
-					class="block text-sm text-gray-500 dark:text-gray-400 sm:text-center"
-				>
+				<span class="block text-sm text-gray-500 sm:text-center">
 					&#169; {currentYear}
-					<a href="https://ahmadrehan.com/" class="hover:underline"> Ahmad Rehan.</a> All
-					Rights Reserved.
+					<a href="https://ahmadrehan.com/" class="hover:underline">
+						Ahmad Rehan.</a
+					> All Rights Reserved.
 				</span>
 
 				<div class="flex items-center gap-4">
@@ -68,7 +50,7 @@
 							href={socialLink.link}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+							class="text-gray-500 hover:text-gray-700"
 						>
 							<svelte:component this={socialLink.icon} class="h-6 w-6" />
 						</a>

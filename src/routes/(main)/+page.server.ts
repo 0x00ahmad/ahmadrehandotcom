@@ -1,10 +1,10 @@
-import { message, superValidate } from 'sveltekit-superforms';
-import { zod } from 'sveltekit-superforms/adapters';
-import type { Actions } from './$types';
-import type { PageServerLoad } from './$types';
-import { formSchema } from './schema';
-import { fail } from '@sveltejs/kit';
-import { contactRepository } from '$lib/server/db/repository/contact';
+import { message, superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
+import type { Actions } from "./$types";
+import type { PageServerLoad } from "./$types";
+import { formSchema } from "./schema";
+import { fail } from "@sveltejs/kit";
+import { contactRepository } from "$lib/server/db/repository/contact";
 
 export const load = (async () => {
     const form = await superValidate(zod(formSchema));
@@ -26,11 +26,11 @@ export const actions = {
             firstName: data.firstName,
             lastName: data.lastName,
             phoneNumber: data.phone ?? "",
-            message: data.message,
-        })
+            message: data.message
+        });
 
         // TODO: send an email to our team
 
-        return message(form, 'Form posted successfully!');
-    },
+        return message(form, "Form posted successfully!");
+    }
 } satisfies Actions;

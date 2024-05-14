@@ -5,9 +5,9 @@
     type TitleFontWeight = "bold" | "semibold" | "normal" | "medium";
 
     const colors = {
-        white: "text-indigo-50 dark:text-indigo-950",
+        white: "text-indigo-50",
 		black: "inline-block bg-gradient-to-r from-gray-500 to-slate-900 bg-clip-text font-semibold text-transparent",
-        primary: "text-indigo-600 dark:text-indigo-50",
+        primary: "text-indigo-600",
     };
 
     const weights = {

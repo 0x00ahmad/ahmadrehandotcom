@@ -17,9 +17,9 @@ export type Option = {
 	value: string;
 };
 
-export type Work = {
-	title: string;
-	description: string;
-	image: string;
-	baseColor: string;
-};
+// export type Work = {
+// 	title: string;
+// 	description: string;
+// 	image: string;
+// 	baseColor: string;
+// }

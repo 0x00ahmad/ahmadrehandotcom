@@ -9,9 +9,8 @@
 
 <Navbar />
 
-
-<main class={cn("flex flex-col items-center px-6")}>
-	<div class={cn("flex w-full flex-col gap-12", MAX_PAGE_WIDTH)}>
+<main class={cn("flex flex-col items-center gap-32 px-6")}>
+	<div class={cn("flex w-full flex-col gap-20", MAX_PAGE_WIDTH)}>
 		<slot />
 	</div>
 	<Footer />

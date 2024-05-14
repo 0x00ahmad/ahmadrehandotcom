@@ -1,5 +1,4 @@
 import IconDashboard from "~icons/lucide/layout-dashboard";
-import IconSquareUser from "~icons/lucide/square-user";
 import IconWallet from "~icons/lucide/wallet";
 
 export const TRANSITION_ALL = "transition-all duration-150 ease-in-out";
@@ -12,10 +11,9 @@ export const MAX_PAGE_WIDTH = "max-w-[100vw] sm:max-w-[80vw] xl:max-w-[60rem]";
 
 export const noReplySenderEmail = "noreply@dnbazar.com";
 
-export const CONTACT_INFO = {
-	email: "contact@dnbazar.com",
-	phone: "+000-000-0000"
-};
+export const CONTACT_EMAIL = "contact@ahmadrehan.com";
+
+export const MAILTO_LINK = "mailto:" + CONTACT_EMAIL;
 
 export const OAUTH_PROVIDERS = {
 	GOOGLE: "google",
@@ -60,17 +58,17 @@ export const NAV_LINKS = {
 	skills: "/#skills",
 	resume: "/resume",
 
-	contact: "/contact"
+	contact: MAILTO_LINK
 };
 
 export const SITE_LINKS = [
 	{ name: "Home", href: NAV_LINKS.landing, icon: IconDashboard },
 	{ name: "Work", href: NAV_LINKS.work, icon: IconWallet },
-	{
-		name: "Personal Projects",
-		href: NAV_LINKS.personal_projects,
-		icon: IconSquareUser
-	},
+	// {
+	// 	name: "Personal Projects",
+	// 	href: NAV_LINKS.personal_projects,
+	// 	icon: IconSquareUser
+	// },
 	{ name: "Skills", href: NAV_LINKS.skills, icon: IconWallet },
 	{ name: "Resume", href: NAV_LINKS.resume, icon: IconWallet }
 ];
