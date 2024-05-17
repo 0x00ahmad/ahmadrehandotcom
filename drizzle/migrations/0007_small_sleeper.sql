@@ -1,1 +1,0 @@
-ALTER TABLE domain ADD `transfer_code` text(255);
