@@ -15,9 +15,8 @@
 <nav
 	class={cn(
 		"fixed z-[999] flex w-full items-center justify-between rounded-md p-6 md:px-12",
-		scrolledPos > 50
-		? "bg-white/80 backdrop-blur-md"
-			: "bg-transparent",
+		// scrolledPos > 50 ? "bg-white/20 backdrop-blur-lg" : "bg-transparent",
+		"bg-white/20 backdrop-blur-lg",
 		TRANSITION_COLORS
 	)}
 >
