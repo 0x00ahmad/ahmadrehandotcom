@@ -56,7 +56,7 @@ export const NAV_LINKS = {
 	work: "/#work",
 	personal_projects: "/#personal-projects",
 	skills: "/#skills",
-	resume: "/resume",
+	resume: "/files/ahmad-rehan-resume.pdf",
 
 	contact: MAILTO_LINK
 };
