@@ -17,7 +17,7 @@
 
 <HowIWork />
 
-<div class="flex w-full flex-col gap-4">
+<div class="flex w-full flex-col gap-4 mt-24">
 	<div
 		class="flex w-full flex-col-reverse items-center justify-between gap-8 md:grid md:grid-cols-3 md:gap-8 lg:gap-16"
 	>
