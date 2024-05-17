@@ -8,6 +8,8 @@
 	import { NAV_LINKS, SITE_LINKS, TRANSITION_COLORS } from "$lib/utils/constants";
 
 	let scrolledPos = 0;
+
+	let open = false;
 </script>
 
 <svelte:window bind:scrollY={scrolledPos} />
@@ -37,7 +39,7 @@
 	</div>
 
 	<div class="lg:hidden">
-		<Sheet.Root>
+		<Sheet.Root bind:open>
 			<Sheet.Trigger let:builder asChild>
 				<Button builders={[builder]} variant={"ghost"} size={"iconSm"}>
 					<svelte:component this={IconMenu} class="h-6 w-6 cursor-pointer" />
@@ -52,6 +54,9 @@
 								TRANSITION_COLORS
 							)}
 							href={item.href}
+							on:click={() => {
+								open = false;
+							}}
 						>
 							{item.name}
 						</a>
