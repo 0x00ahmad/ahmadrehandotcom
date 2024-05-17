@@ -16,7 +16,7 @@
 	class={cn(
 		"fixed z-[999] flex w-full items-center justify-between rounded-md p-6 md:px-12",
 		scrolledPos > 50
-			? "bg-white bg-opacity-40 backdrop-blur-lg"
+		? "bg-white/80 backdrop-blur-md"
 			: "bg-transparent",
 		TRANSITION_COLORS
 	)}
