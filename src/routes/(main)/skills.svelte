@@ -12,7 +12,7 @@
 		{ name: "data engineering", strength: 100 },
 		{ name: "data science", strength: 80 },
 		{ name: "UX design", strength: 75 },
-		{ name: "communication", strength: 75 },
+		{ name: "communication", strength: 85 },
 		{ name: "adaptability", strength: 90 }
 	];
 </script>
