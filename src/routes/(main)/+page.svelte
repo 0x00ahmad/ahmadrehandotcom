@@ -2,7 +2,6 @@
 	import ParagraphText from "$lib/components/paragraph-text.svelte";
 	import Title from "$lib/components/title.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
-	import { cn } from "$lib/utils";
 	import { NAV_LINKS } from "$lib/utils/constants";
 	import HeroSection from "./hero-section.svelte";
 	import HowIWork from "./how-i-work.svelte";
@@ -26,15 +25,15 @@
 			<Title color={"primary"} text={"Let's work together"} size={"h2"} />
 
 			<ParagraphText cls={"text-lg lg:text-xl"}>
-				Tell me more about your project or anything else that you would like to
-				discuss
+				Tell me something about yourself, or your project, or your idea. I'm
+				always interested to hear about new opportunities and challenges.
 			</ParagraphText>
 			<div>
 				<Button href={NAV_LINKS.contact}>Let's talk</Button>
 			</div>
 		</div>
 
-		<div class="col-span-1 flex w-full flex-col gap-4">
+		<div class="col-span-1 flex w-full flex-col gap-4 justify-center items-center">
 			<img
 				src="/images/pfp.jpg"
 				alt="Ahmad Rehan"

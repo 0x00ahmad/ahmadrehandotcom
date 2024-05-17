@@ -1,8 +1,7 @@
 <script lang="ts">
-	import IconInstagramLogo from "~icons/basil/instagram-outline";
 	import IconLinkedInLogo from "~icons/basil/linkedin-outline";
 	import IconXTwitter from "~icons/fa6-brands/x-twitter";
-	import IconFacebookLogo from "~icons/ic/baseline-facebook";
+	import IconGithubLogo from "~icons/lucide/github";
 	import { cn } from "$lib/utils";
 	import { MAX_PAGE_WIDTH } from "$lib/utils/constants";
 
@@ -12,10 +11,9 @@
 	const currentYear = now.getFullYear();
 
 	const socialLinks = [
-		{ icon: IconInstagramLogo, link: "#" },
-		{ icon: IconXTwitter, link: "#" },
-		{ icon: IconFacebookLogo, link: "#" },
-		{ icon: IconLinkedInLogo, link: "#" }
+		{ icon: IconLinkedInLogo, link: "https://www.linkedin.com/in/mahmadrehan" },
+		{ icon: IconGithubLogo, link: "https://github.com/0x00ahmad" },
+		{ icon: IconXTwitter, link: "https://x.com/0x00ahmad" }
 	];
 </script>
 

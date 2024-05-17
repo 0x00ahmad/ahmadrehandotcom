@@ -38,7 +38,7 @@
 			An engineer and a designer focused on building visually pleasing solutions.
 		</span>
 
-		<div class="col-span-1 flex w-full flex-col gap-4">
+		<div class="col-span-1 flex w-full flex-col gap-4 justify-center items-center">
 			<img
 				src="/images/pfp.jpg"
 				alt="Ahmad Rehan"

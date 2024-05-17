@@ -19,7 +19,8 @@
 		"db:drop": "drizzle-kit drop --config=drizzle.config.ts",
 		"db:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
 		"db:studio": "drizzle-kit studio",
-		"build-cf-types": "wrangler types && mv worker-configuration.d.ts src/"
+		"build-cf-types": "wrangler types && mv worker-configuration.d.ts src/",
+		"wh": "wrangler help"
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.5.2",
