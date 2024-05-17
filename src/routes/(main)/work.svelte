@@ -13,7 +13,7 @@
 	<img
 		src="/work/dnb-showcase.png"
 		alt={"DNBazar Showcase"}
-		class="image-cover h-full rounded-md md:rounded-t-md"
+		class="image-cover h-full rounded-md md:rounded-b-none"
 	/>
 
 	<div class="flex h-full flex-col justify-center gap-8 pb-8 lg:p-8">
@@ -41,7 +41,7 @@
 </div>
 
 <div
-	class="from-azure-600 to-azure-500 flex flex-col gap-4 rounded-lg bg-gradient-to-l p-6 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:h-96 lg:grid-cols-2"
+	class="flex flex-col-reverse gap-4 rounded-lg bg-gradient-to-l from-azure-600 to-azure-500 p-6 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:h-96 lg:grid-cols-2"
 >
 	<div class="flex h-full flex-col gap-8 pb-8 lg:justify-center lg:p-8">
 		<div class="flex flex-col gap-2">
@@ -57,7 +57,7 @@
 				href={"https://becometaxpayer.com"}
 				target="_blank"
 				class={cn(
-					"bg-azure-700/90 hover:bg-azure-800 focus:bg-azure-800 rounded-md p-4 px-6 text-white",
+					"rounded-md bg-azure-700/90 p-4 px-6 text-white hover:bg-azure-800 focus:bg-azure-800",
 					TRANSITION_COLORS
 				)}
 			>
@@ -69,6 +69,6 @@
 	<img
 		src="/work/btp-showcase.png"
 		alt={"BecomeTaxPayer Showcase"}
-		class="image-cover h-full rounded-md md:rounded-t-md"
+		class="image-cover h-full rounded-md md:rounded-b-none"
 	/>
 </div>

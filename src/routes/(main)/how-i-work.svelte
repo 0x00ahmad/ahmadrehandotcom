@@ -46,18 +46,25 @@
 <Title size={"h3"} text={"How I work"} />
 
 <div class="relative flex flex-col gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
+	<img
+		src={blobGroup}
+		alt={"Blob Group"}
+		class="absolute -bottom-4 right-16 h-auto blur-3xl"
+	/>
 	{#each yes as yis}
 		<div
-			class="flex w-full flex-col gap-6 break-words rounded-lg border-4 border-indigo-500 bg-white/60 p-4 drop-shadow backdrop-blur-sm"
+			class="flex w-full flex-col gap-6 break-words rounded-lg border-4 border-indigo-500 bg-white/60 p-4 backdrop-blur-sm"
 		>
 			<svelte:component
 				this={yis.icon}
 				class="h-12 w-12 text-indigo-600 md:h-16 md:w-16 lg:h-20 lg:w-20"
 			/>
-			<p class="text-xl font-semibold capitalize md:text-2xl lg:h-[2em]">
+			<p
+				class="text-xl font-semibold capitalize text-indigo-800 md:text-2xl lg:h-[2em]"
+			>
 				{yis.title}
 			</p>
-			<p class="lg:h-[8em]">{yis.text}</p>
+			<p class="text-indigo-900 lg:h-[8em]">{yis.text}</p>
 		</div>
 	{/each}
 </div>
