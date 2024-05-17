@@ -11,13 +11,19 @@
 		{ name: "linux", strength: 100 },
 		{ name: "data engineering", strength: 100 },
 		{ name: "data science", strength: 80 },
-		{ name: "UX design", strength: 75 }
+		{ name: "UX design", strength: 75 },
+		{ name: "communication", strength: 75 },
+		{ name: "adaptability", strength: 90 }
 	];
 </script>
 
+<div id="skills"></div>
+
 <Title size={"h3"} text={"My Skillset"} />
 
-<div class="grid w-full grid-cols-1 xs:grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
+<div
+	class="grid w-full grid-cols-1 gap-8 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+>
 	{#each skills as skill}
 		<div class="flex flex-col gap-2">
 			<p class="md:text-md text-sm capitalize lg:text-lg">{skill.name}</p>

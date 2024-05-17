@@ -41,7 +41,7 @@
 </div>
 
 <div
-	class="from-azure-600 to-azure-500 flex flex-col gap-4 rounded-lg bg-gradient-to-l p-6 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:h-80 lg:grid-cols-2"
+	class="from-azure-600 to-azure-500 flex flex-col gap-4 rounded-lg bg-gradient-to-l p-6 text-white drop-shadow-lg md:p-8 md:pb-0 lg:grid lg:h-96 lg:grid-cols-2"
 >
 	<div class="flex h-full flex-col gap-8 pb-8 lg:justify-center lg:p-8">
 		<div class="flex flex-col gap-2">

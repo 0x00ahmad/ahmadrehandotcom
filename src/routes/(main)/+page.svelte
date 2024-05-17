@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ParagraphText from "$lib/components/paragraph-text.svelte";
+	import Title from "$lib/components/title.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import { cn } from "$lib/utils";
 	import { NAV_LINKS } from "$lib/utils/constants";
@@ -16,38 +18,28 @@
 
 <HowIWork />
 
-<!-- <div class="flex w-full flex-col gap-8 bg-white/90 p-8 drop-shadow-md"> -->
-<!-- 	<Title text={"Have any thoughts?"} /> -->
-<!-- 	<ParagraphText>Don't hesitate to send me a message if you</ParagraphText> -->
-<!-- 	<ContactForm {data} /> -->
-<!-- </div> -->
+<div class="flex w-full flex-col gap-4">
+	<div
+		class="flex w-full flex-col-reverse items-center justify-between gap-8 md:grid md:grid-cols-3 md:gap-8 lg:gap-16"
+	>
+		<div class="col-span-2 flex w-full flex-col gap-4 break-words">
+			<Title color={"primary"} text={"Let's work together"} size={"h2"} />
 
-<div
-	class="relative grid min-h-[100vh] w-full place-items-center gap-8 lg:min-h-[64vh]"
->
-	<div class="flex w-full flex-col gap-4">
-		<div
-			class="flex w-full flex-col-reverse items-center justify-between gap-8 md:flex-row"
-		>
-			<span
-				class={cn(
-					"relative inline-block h-full max-w-2xl bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-2xl font-semibold tracking-wider text-transparent md:h-44 md:text-3xl lg:text-4xl"
-				)}
-			>
-				Have any thoughts? <br />
-				Don't hesitate to drop me a message about them.
-			</span>
-
-			<div class="col-span-1 flex w-full flex-col gap-4">
-				<img
-					src="/images/pfp.jpg"
-					alt="Ahmad Rehan"
-					class="h-40 w-40 rounded-full border-4 border-indigo-800 drop-shadow-md md:h-48 md:w-48 lg:h-64 lg:w-64"
-				/>
+			<ParagraphText cls={"text-lg lg:text-xl"}>
+				Tell me more about your project or anything else that you would like to
+				discuss
+			</ParagraphText>
+			<div>
+				<Button href={NAV_LINKS.contact}>Let's talk</Button>
 			</div>
 		</div>
-		<div>
-			<Button href={NAV_LINKS.contact}>Let's talk</Button>
+
+		<div class="col-span-1 flex w-full flex-col gap-4">
+			<img
+				src="/images/pfp.jpg"
+				alt="Ahmad Rehan"
+				class="h-36 w-36 rounded-full border-4 border-indigo-800 drop-shadow-md md:h-44 md:w-44 lg:h-52 lg:w-52"
+			/>
 		</div>
 	</div>
 </div>

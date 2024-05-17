@@ -7,7 +7,7 @@ export const TRANSITION_COLORS = "transition-colors duration-150 ease-in-out";
 export const HEADING_DEFAULT_GRADIENT =
 	"inline-block bg-gradient-to-r from-gray-500 to-gray-700 bg-clip-text text-transparent";
 
-export const MAX_PAGE_WIDTH = "max-w-[100vw] sm:max-w-[80vw] xl:max-w-[60rem]";
+export const MAX_PAGE_WIDTH = "max-w-[100vw] sm:max-w-[80vw] xl:max-w-[70rem]";
 
 export const noReplySenderEmail = "noreply@dnbazar.com";
 

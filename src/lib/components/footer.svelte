@@ -4,9 +4,8 @@
 	import IconXTwitter from "~icons/fa6-brands/x-twitter";
 	import IconFacebookLogo from "~icons/ic/baseline-facebook";
 	import { cn } from "$lib/utils";
-	import { MAX_PAGE_WIDTH, SITE_LINKS } from "$lib/utils/constants";
+	import { MAX_PAGE_WIDTH } from "$lib/utils/constants";
 
-	import DarkModeToggle from "./dark-mode-toggle.svelte";
 	import Logo from "./logo.svelte";
 
 	const now = new Date();
@@ -40,8 +39,9 @@
 				<span class="block text-sm text-gray-500 sm:text-center">
 					&#169; {currentYear}
 					<a href="https://ahmadrehan.com/" class="hover:underline">
-						Ahmad Rehan.</a
-					> All Rights Reserved.
+						Ahmad Rehan.
+					</a>
+					All Rights Reserved.
 				</span>
 
 				<div class="flex items-center gap-4">
