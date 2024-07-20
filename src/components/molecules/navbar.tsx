@@ -15,17 +15,16 @@ function Navbar() {
     <>
       <div className="fixed top-0 z-30 w-screen">
         <nav className="w-full p-2 sm:p-4">
-          <MaxWidthWrapper className="bg-brand-50 border-2 border-brand-300 rounded-lg backdrop-blur-md flex items-center justify-between p-4 px-6 md:px-10 md:py-4">
-            <div className="flex items-center gap-12">
-              <Logo />
-              <ul className="hidden items-center gap-8 lg:flex">
-                {navLinks.map((nl, i) => (
-                  <li key={i}>
-                    <a href={nl.href}>{nl.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <MaxWidthWrapper className="bg-brand-50/80 border-2 border-brand-200 rounded-lg backdrop-blur-sm drop-shadow-sm flex items-center justify-between py-4 max-w-5xl">
+            <Logo />
+
+            <ul className="hidden items-center gap-8 lg:flex w-full justify-center">
+              {navLinks.map((nl, i) => (
+                <li key={i} className="text-brand-900">
+                  <a href={nl.href}>{nl.label}</a>
+                </li>
+              ))}
+            </ul>
             <div className="hidden items-center gap-2 lg:flex">
               <Button
                 onClick={() => {

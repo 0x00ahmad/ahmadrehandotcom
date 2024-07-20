@@ -4,9 +4,8 @@ export const defaultSender = "ar.com@derivativeui.com";
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/resume", label: "Resume" },
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
-  { href: "/skills", label: "Skills" },
+  { href: "/resume", label: "Resume" },
+  { href: "/about", label: "About" },
 ];
