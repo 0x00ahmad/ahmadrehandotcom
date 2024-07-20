@@ -5,72 +5,62 @@ import Title from "@/components/atoms/title";
 import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 import { TRANSITION_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { LucideStore } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-import { CgWebsite } from "react-icons/cg";
-import { HiOutlineDeviceMobile } from "react-icons/hi";
-import { FiFileText } from "react-icons/fi";
-
-const services = [
-  {
-    icon: CgWebsite,
-    title: "Website Design",
-    description:
-      "Creating stunning websites for your online presence that will convert visitors into users/customers.",
-  },
-  {
-    icon: HiOutlineDeviceMobile,
-    title: "Mobile App Development",
-    description:
-      "Building mobile applications for both Android and iOS platforms that will help you reach your audience.",
-  },
-  {
-    icon: LucideStore,
-    title: "E-commerce",
-    description:
-      "Helping you bootstrap and manage an online store that to sell your products to the right audience.",
-  },
-  {
-    icon: FiFileText,
-    title: "Copywriting",
-    description:
-      "Writing compelling content for your website, mobile app, or e-commerce store that will engage your audience.",
-  },
-];
+import { LuArrowRight } from "react-icons/lu";
+import { services } from "@/lib/services";
 
 function ServicesList() {
-  return (
-    <MaxWidthWrapper className="flex flex-col gap-12">
-      <SectionTitle title="Services" />
+    return (
+        <MaxWidthWrapper className="flex flex-col gap-12">
+            <SectionTitle
+                title="Services"
+                cta={{
+                    children: (
+                        <div className="flex h-full w-full items-center gap-2">
+                            <p>View more</p>
+                            <LuArrowRight className="h-4 w-auto" />
+                        </div>
+                    ),
+                    link: "/services",
+                }}
+            />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service, i) => (
-          <Link key={i} href={"#"}>
-            <motion.div
-              className={cn(
-                "group flex h-full flex-col gap-4 rounded-lg border-2 border-brand-100 p-8 text-brand-950 bg-brand-50/20 backdrop-blur-lg",
-                TRANSITION_COLORS,
-              )}
-              whileHover={{ scale: 1.05 }}
-            >
-              <div
-                className={cn(
-                  "grid rounded-full p-6 shadow-sm bg-brand-50 w-max",
-                )}
-              >
-                <service.icon className="h-10 w-auto" />
-              </div>
-              <Title title={service.title} size="h3" />
-              <p className="text-start">{service.description}</p>
-            </motion.div>
-          </Link>
-        ))}
-      </div>
-    </MaxWidthWrapper>
-  );
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {services.map((service, i) => (
+                    <Link key={i} href={"/contact?service=" + service.title}>
+                        <motion.div
+                            className={cn(
+                                "group flex h-full flex-col gap-4 rounded-lg border-2 border-brand-100 bg-brand-50/20 p-8 text-brand-950 shadow-md backdrop-blur-lg",
+                                TRANSITION_COLORS,
+                            )}
+                            whileHover={{ scale: 1.05 }}
+                            whileInView={"visible"}
+                            viewport={{ once: true }}
+                            initial={"hidden"}
+                            transition={{ duration: 0.2 }}
+                            variants={{
+                                hidden: { opacity: 0, scale: 0.5 },
+                                visible: { opacity: 1, scale: 1 },
+                            }}
+                        >
+                            <div
+                                className={cn(
+                                    "grid w-max rounded-full bg-brand-100 p-6 shadow-sm",
+                                )}
+                            >
+                                <service.icon className="h-10 w-auto" />
+                            </div>
+                            <Title title={service.title} size="h3" />
+                            <p className="text-start">{service.description}</p>
+                        </motion.div>
+                    </Link>
+                ))}
+            </div>
+        </MaxWidthWrapper>
+    );
 }
 
 export default ServicesList;

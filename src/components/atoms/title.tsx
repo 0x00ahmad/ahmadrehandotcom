@@ -10,6 +10,7 @@ const weights = {
 const colors = {
   black: "text-neutral-900",
   primary: "text-brand-950",
+  primary900: "text-brand-900",
   secondary: "text-sgreen",
   muted: "text-neutral-400",
   gradientPrimary:

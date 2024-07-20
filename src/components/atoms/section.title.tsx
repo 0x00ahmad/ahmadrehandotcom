@@ -2,24 +2,46 @@ import React from "react";
 import Title from "./title";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-function SectionTitle({ title, cta }: { title: string; cta?: string }) {
-  return (
-    <div className="flex items-center justify-between gap-8">
-      <div className="flex items-center gap-2">
-        <Image
-          src={"/assets/signature.svg"}
-          alt=""
-          width={0}
-          height={0}
-          sizes="100%"
-          className={"w-auto h-8"}
-        />
-        <Title color="primary" title={title} size="h2" />
-      </div>
-      {cta && <Button variant={"muted"}>{cta}</Button>}
-    </div>
-  );
+function SectionTitle({
+    title,
+    cta,
+}: {
+    title: string;
+    cta?: {
+        children: React.ReactNode;
+        link: string;
+    };
+}) {
+    return (
+        <div
+            className={cn(
+                "gap-8",
+                !!cta
+                    ? "flex flex-col md:flex-row md:items-center md:justify-between"
+                    : "grid place-items-center",
+            )}
+        >
+            <div className="flex items-center gap-2">
+                <Image
+                    src={"/assets/a.svg"}
+                    alt=""
+                    width={0}
+                    height={0}
+                    sizes="100%"
+                    className={"h-8 w-auto"}
+                />
+                <Title color="primary" title={title} size="h2" />
+            </div>
+            {cta && (
+                <Link href={cta.link}>
+                    <Button variant={"muted"}>{cta.children}</Button>
+                </Link>
+            )}
+        </div>
+    );
 }
 
 export default SectionTitle;
