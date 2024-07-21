@@ -15,8 +15,8 @@ function ExperienceSection() {
         <>
             <p className="whitespace-normal break-words">
                 As a self-employed Software Developer & Solutions Designer, I
-                have successfully delivered solutions to all kinds of clients'
-                problems. Some notable delivered results include:
+                have successfully delivered solutions to all kinds of problems
+                of clients. Some notable delivered results include:
             </p>
 
             <ul className="flex list-disc flex-col gap-4 pl-4">

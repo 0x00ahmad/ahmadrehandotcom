@@ -94,7 +94,7 @@ const steps = [
                     be:
                 </p>
                 <ul className={commonListStyle}>
-                    <li>A rough wireframe of a website/mobile app's UX/UI</li>
+                    <li>A rough wireframe of a website/mobile app&apos;s UX/UI</li>
                     <li>Copywriting drafts</li>
                     <li>Project documentation for backend systems</li>
                 </ul>

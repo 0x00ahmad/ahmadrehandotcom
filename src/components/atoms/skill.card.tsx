@@ -6,9 +6,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 function SkillCard(props: { title: string; skills: any[] }) {
-    if (!props) return null;
-    const { title, skills } = props;
     const [open, setOpen] = React.useState(false);
+
+    if (!props) return null;
+
+    const { title, skills } = props;
 
     return (
         <>

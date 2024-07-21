@@ -9,16 +9,18 @@ function BGSplashText() {
     const pathname = usePathname();
     const [changingPath, setChangingPath] = React.useState(false);
 
-    let timeout: NodeJS.Timeout;
+    const [timeout, _setTimeout] = React.useState<NodeJS.Timeout | null>(null);
 
     React.useEffect(() => {
         if (!window || !document) return;
         setChangingPath(true);
         if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            setPageHeight(document.documentElement.scrollHeight);
-            setChangingPath(false);
-        }, 100);
+        _setTimeout(
+            setTimeout(() => {
+                setPageHeight(document.documentElement.scrollHeight);
+                setChangingPath(false);
+            }, 100),
+        );
     }, [pathname, window.innerWidth, window.innerHeight, window.outerWidth]);
 
     return (

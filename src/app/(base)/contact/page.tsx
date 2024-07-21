@@ -30,9 +30,9 @@ function ContactPage({ searchParams }: { searchParams: { service?: string } }) {
                         color="primary"
                     />
                     <p className="prose text-lg font-medium text-brand-950 xl:text-xl">
-                        I'm always open to new opportunities and collaborations.
-                        Feel free to reach out to me if you have any questions
-                        or just want to say hi.
+                        I&apos;m always open to new opportunities and
+                        collaborations. Feel free to reach out to me if you have
+                        any questions or just want to say hi.
                     </p>
 
                     <Image
@@ -47,6 +47,7 @@ function ContactPage({ searchParams }: { searchParams: { service?: string } }) {
                     <div className="flex flex-col gap-8">
                         {socials.map((social, i) => (
                             <motion.div
+                                key={i}
                                 whileInView={"visible"}
                                 viewport={{ once: true }}
                                 initial={"hidden"}

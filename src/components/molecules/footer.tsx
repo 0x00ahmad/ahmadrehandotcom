@@ -15,7 +15,7 @@ function Footer() {
                 <div className="grid w-full grid-cols-1 items-center justify-between gap-8 md:grid-cols-2">
                     <div className="flex flex-col gap-8">
                         <h2 className="text-4xl font-semibold text-brand-950 md:text-5xl xl:text-6xl">
-                            Let's work together
+                            Let&apos;s work together
                         </h2>
                         <Link href={"/contact"} className="w-max">
                             <Button
