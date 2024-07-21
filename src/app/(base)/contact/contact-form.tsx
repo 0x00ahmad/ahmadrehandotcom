@@ -18,12 +18,16 @@ import { toast } from "sonner";
 import { contactFormSchema } from "@/lib/models";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
-import Title from "@/components/atoms/title";
 
-function ContactForm() {
+function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
     const form = useForm<z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),
-        defaultValues: { name: "", email: "", subject: "", message: "" },
+        defaultValues: {
+            name: "",
+            email: "",
+            subject: defaultSubject ?? "",
+            message: "",
+        },
     });
 
     async function onSubmit(data: z.infer<typeof contactFormSchema>) {
@@ -54,8 +58,6 @@ function ContactForm() {
                     visible: { opacity: 1, x: 0 },
                 }}
             >
-                <Title title="Send me a quick message" size="h3" />
-
                 <FormField
                     control={form.control}
                     name="name"

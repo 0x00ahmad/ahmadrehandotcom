@@ -37,11 +37,10 @@ function WhyWorkWithMe() {
     ];
 
     return (
-        <MaxWidthWrapper className="flex flex-col gap-12">
+        <MaxWidthWrapper className="flex flex-col gap-12" id="resume">
             <SectionTitle title="Why Work With Me" />
-
-      <div className="grid grid-cols-1 place-items-center gap-8 lg:grid-cols-3 lg:place-items-start">
-                <div className="flex flex-col gap-8 h-full">
+            <div className="grid grid-cols-1 place-items-center gap-8 lg:grid-cols-3 lg:place-items-start">
+                <div className="flex h-full flex-col gap-8">
                     {firstTwoReasons.map((reason, i) => (
                         <motion.div
                             key={i}
@@ -94,7 +93,7 @@ function WhyWorkWithMe() {
                     />
                 </motion.div>
 
-                <div className="flex flex-col gap-8 h-full">
+                <div className="flex h-full flex-col gap-8">
                     {secondTwoReasons.map((reason, i) => (
                         <motion.div
                             key={i}

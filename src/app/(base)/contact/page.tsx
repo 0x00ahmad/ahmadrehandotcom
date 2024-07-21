@@ -10,7 +10,9 @@ import { CONTACT_EMAIL, socials } from "@/lib/constants";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-function ContactSection() {
+function ContactPage({ searchParams }: { searchParams: { service?: string } }) {
+    const service = searchParams.service;
+
     return (
         <MaxWidthWrapper className="grid place-items-center gap-14 py-56">
             <SectionTitle title="Let's work together" />
@@ -87,10 +89,10 @@ function ContactSection() {
                     </div>
                 </div>
 
-                <ContactForm />
+                <ContactForm defaultSubject={service} />
             </div>
         </MaxWidthWrapper>
     );
 }
 
-export default ContactSection;
+export default ContactPage;

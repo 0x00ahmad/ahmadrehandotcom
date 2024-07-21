@@ -21,8 +21,6 @@ function BGSplashText() {
         }, 100);
     }, [pathname, window.innerWidth, window.innerHeight, window.outerWidth]);
 
-    console.log(pageHeight);
-
     return (
         !changingPath && (
             <div

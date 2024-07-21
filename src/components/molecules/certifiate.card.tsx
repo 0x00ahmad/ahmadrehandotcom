@@ -29,7 +29,9 @@ function CertificateCard({ index, item }: { index: number; item: any }) {
                     className="h-auto w-12"
                 />
 
-                <p className="whitespace-nowrap">5 courses</p>
+                <p className="whitespace-nowrap">
+                    {item.courses.length} courses
+                </p>
             </div>
 
             <div className="flex w-full flex-col justify-between gap-12">

@@ -10,18 +10,17 @@ import { cn } from "@/lib/utils";
 function Footer() {
     return (
         <MaxWidthWrapper>
-            <footer className="flex w-full flex-col items-center gap-12 py-16">
+            <footer className="flex w-full flex-col items-center gap-4 py-16 md:gap-6 lg:gap-8 xl:gap-12">
                 <div className="h-0.5 w-full bg-neutral-300"></div>
                 <div className="grid w-full grid-cols-1 items-center justify-between gap-8 md:grid-cols-2">
                     <div className="flex flex-col gap-8">
                         <h2 className="text-4xl font-semibold text-brand-950 md:text-5xl xl:text-6xl">
                             Let's work together
                         </h2>
-                        <Link href={"/contact"}>
+                        <Link href={"/contact"} className="w-max">
                             <Button
                                 className="group flex w-max items-center gap-2 transition-transform"
                                 size={"lg"}
-                                variant={"muted"}
                             >
                                 <span>Get in touch</span>
                                 <GoArrowUpRight className="h-auto w-6 transition-transform group-hover:rotate-45" />
@@ -44,14 +43,13 @@ function Footer() {
                             ))}
                         </div>
                     </div>
-
                 </div>
 
-                <div className="flex w-full flex-col justify-between gap-8 pt-20 md:flex-row md:items-center">
+                <div className="flex w-full flex-col justify-between gap-8 pt-8 md:flex-row md:items-center md:pt-20">
                     <Logo full={true} />
-                    <div className="flex flex-col gap-8 md:flex-row">
+                    <div className="flex flex-col items-center gap-8 md:flex-row">
                         {navLinks.map((link, i) => (
-                            <a
+                            <Link
                                 key={i}
                                 href={link.href}
                                 className={cn(
@@ -60,8 +58,11 @@ function Footer() {
                                 )}
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
+                        <Button className="w-full" variant={"muted"}>
+                            Sign Up
+                        </Button>
                     </div>
                 </div>
 
@@ -72,7 +73,7 @@ function Footer() {
                     </span>
                 </div>
             </footer>
-        </MaxWidthWrapper >
+        </MaxWidthWrapper>
     );
 }
 

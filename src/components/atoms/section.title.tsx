@@ -8,18 +8,20 @@ import { cn } from "@/lib/utils";
 function SectionTitle({
     title,
     cta,
+    center,
 }: {
     title: string;
     cta?: {
         children: React.ReactNode;
         link: string;
     };
+    center?: boolean;
 }) {
     return (
         <div
             className={cn(
                 "gap-8",
-                !!cta
+                !!cta || !center
                     ? "flex flex-col md:flex-row md:items-center md:justify-between"
                     : "grid place-items-center",
             )}

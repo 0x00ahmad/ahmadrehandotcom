@@ -3,16 +3,18 @@ import { LuGithub } from "react-icons/lu";
 
 export const TRANSITION_COLORS = "transition-colors duration-150";
 
+export const BULLET_LIST_STYLE = "list-disc pl-4 gap-2 flex flex-col py-2";
+
 export const defaultSender = "ar.com@derivativeui.com";
 
 export const CONTACT_EMAIL = "contact@ahmadrehan.com";
 
 export const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/#services", label: "Services" },
-    { href: "/#resume", label: "Resume" },
+    { href: "/services", label: "Services" },
     { href: "/work", label: "Work" },
-    { href: "/about", label: "About" },
+    { href: "/#resume", label: "Resume" },
+    { href: "/contact", label: "Contact" },
 ];
 
 export const socials = [

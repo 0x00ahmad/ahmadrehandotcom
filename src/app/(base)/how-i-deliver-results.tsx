@@ -8,8 +8,32 @@ import { LuArrowDown, LuStopCircle } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Step from "@/components/atoms/step";
+import Image from "next/image";
 
 const commonListStyle = "list-disc pl-4 gap-2 flex flex-col py-2";
+
+const vectors = [
+    {
+        link: "/assets/triangle.svg",
+        className: "w-12 h-auto absolute left-32 top-32",
+    },
+    {
+        link: "/assets/circle.svg",
+        className: "w-12 h-auto absolute right-64 top-1/4",
+    },
+    {
+        link: "/assets/signature.svg",
+        className: "w-auto h-12 absolute left-64 top-1/3",
+    },
+    {
+        link: "/assets/line-squiggly.svg",
+        className: "w-auto h-12 absolute right-32 bottom-1/2",
+    },
+    {
+        link: "/assets/arrow-up.svg",
+        className: "w-auto h-20 absolute left-1/4 bottom-1/4",
+    },
+];
 
 const steps = [
     {
@@ -151,8 +175,20 @@ function StepCard(props: {
 
 function HowIDeliverResults() {
     return (
-        <MaxWidthWrapper className="flex flex-col gap-12">
-            <SectionTitle title="How I Deliver Results" />
+        <MaxWidthWrapper className="relative flex flex-col gap-12">
+            <SectionTitle title="How I Deliver Results" center />
+
+            {vectors.map((v, i) => (
+                <Image
+                    key={i}
+                    src={v.link}
+                    alt=""
+                    width={0}
+                    height={0}
+                    sizes="100%"
+                    className={cn("hidden lg:block", v.className)}
+                />
+            ))}
 
             <div className="flex w-full flex-col lg:hidden">
                 <div className="grid grid-cols-7 place-items-center">
@@ -168,7 +204,7 @@ function HowIDeliverResults() {
                             className="grid grid-cols-7 place-items-center"
                         >
                             <Step topLine content={<p>{`0${i}`}</p>} />
-                            <StepCard cls="col-span-6 my-2" {...step} />
+                            <StepCard cls="col-span-6 my-4" {...step} />
                         </div>
                     );
                 })}

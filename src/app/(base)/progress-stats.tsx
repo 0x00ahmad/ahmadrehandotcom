@@ -6,16 +6,16 @@ import React from "react";
 function ProgressStats() {
     const stats = [
         {
-            title: "Years of experience",
-            value: 4,
-        },
-        {
             title: "Clients closed",
-            value: 12,
+            value: 10,
         },
         {
             title: "Problems solved",
-            value: 40,
+            value: 20,
+        },
+        {
+            title: "Years of experience",
+            value: 3,
         },
     ];
     return (
@@ -26,7 +26,7 @@ function ProgressStats() {
                 {stats.map((stat, i) => (
                     <div
                         key={i}
-                        className="flex flex-col justify-end gap-4 rounded-lg bg-brand-50/20 border border-brand-100 backdrop-blur-md p-8 shadow-md"
+                        className="flex flex-col justify-end gap-4 rounded-lg border border-brand-100 bg-brand-50/20 p-8 shadow-md backdrop-blur-md"
                     >
                         <div className="flex items-center gap-1 text-7xl font-bold text-brand-900">
                             <NumberTicker

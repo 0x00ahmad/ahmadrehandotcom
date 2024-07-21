@@ -41,3 +41,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* add smooth scroll */
+html {
+  scroll-behavior: smooth;
+}

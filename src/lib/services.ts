@@ -1,7 +1,10 @@
 import { CgWebsite } from "react-icons/cg";
 import { HiOutlineDeviceMobile } from "react-icons/hi";
 import { FiFileText } from "react-icons/fi";
-import { LucideStore } from "lucide-react";
+import { LucideStore, Server } from "lucide-react";
+import { BsInfinity } from "react-icons/bs";
+
+export type Service = (typeof services)[number];
 
 export const services = [
     {
@@ -17,6 +20,12 @@ export const services = [
             "Building mobile applications for both Android and iOS platforms that will help you reach your audience.",
     },
     {
+        icon: Server,
+        title: "Server Management",
+        description:
+            "Managing your servers and ensuring they are up and running 24/7 to provide a seamless experience for your users.",
+    },
+    {
         icon: LucideStore,
         title: "E-commerce",
         description:
@@ -27,5 +36,11 @@ export const services = [
         title: "Copywriting",
         description:
             "Writing compelling content for your website, mobile app, or e-commerce store that will engage your audience.",
+    },
+    {
+        icon: BsInfinity,
+        title: "DevOps",
+        description:
+            "Stepping in and streamlining your development and operations processes to enhance efficiency and accelerate deployment.",
     },
 ];

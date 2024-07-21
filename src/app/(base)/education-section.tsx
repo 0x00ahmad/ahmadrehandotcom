@@ -45,18 +45,7 @@ const education = [
 function EducationSection() {
     return (
         <MaxWidthWrapper className="flex w-full flex-col gap-12">
-            <SectionTitle
-                title="My Education"
-                cta={{
-                    children: (
-                        <div className="flex h-full w-full items-center gap-2">
-                            <p>View all</p>
-                            <LuArrowRight className="h-4 w-auto" />
-                        </div>
-                    ),
-                    link: "/certifications",
-                }}
-            />
+            <SectionTitle title="My Education" />
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 {education.map((item, index) => (

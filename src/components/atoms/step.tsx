@@ -23,7 +23,7 @@ function Step(props: {
             {!!props.topLine && (
                 <div className="h-full min-h-32 w-0.5 bg-brand-300"></div>
             )}
-            <div className="grid h-10 w-10 place-items-center rounded-full border border-brand-300 bg-brand-50 p-2 text-sm font-semibold text-brand-800 sm:h-14 sm:w-14 sm:p-4 sm:text-lg">
+            <div className="grid h-10 w-10 place-items-center rounded-full border border-brand-300 bg-brand-50 p-2 text-sm font-semibold text-brand-800 sm:h-14 sm:w-14 sm:py-3 sm:text-lg">
                 {props.content}
             </div>
             {!props.noBottomLine && (
