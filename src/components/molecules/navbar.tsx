@@ -17,7 +17,7 @@ function Navbar() {
             <nav className="fixed top-0 z-30 flex w-screen justify-between gap-8 bg-gradient-to-b from-white to-transparent px-8 pt-4">
                 <Logo showSubtitle />
 
-                <ul className="flex flex-col items-end justify-center gap-4">
+                <ul className="flex flex-col items-end justify-center gap-2 lg:gap-4">
                     {navLinks.map((nl, i) => (
                         <motion.li
                             key={i}

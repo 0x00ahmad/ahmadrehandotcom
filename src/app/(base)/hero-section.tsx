@@ -13,7 +13,7 @@ import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 
 function HeroSection() {
     return (
-        <MaxWidthWrapper className="relative grid h-full grid-cols-1 place-items-center overflow-x-hidden md:h-screen md:grid-cols-2">
+        <MaxWidthWrapper className="relative grid h-full grid-cols-1 place-items-center overflow-hidden md:h-screen md:grid-cols-2">
             <Image
                 src={"/assets/developer.svg"}
                 alt=""
@@ -39,24 +39,24 @@ function HeroSection() {
                 <div className="flex w-full flex-col gap-8 rounded-lg">
                     <div className="max-w-2xl space-y-4">
                         <div className="flex flex-col items-start gap-2">
-                            <div className="flex items-center gap-2 rounded-full bg-brand-200 px-4 py-2 text-brand-950">
+                            <div className="flex items-center gap-2 rounded-full bg-brand-200 px-4 py-2 text-brand-800">
                                 <HiOutlineLocationMarker className="h-auto w-7" />
-                                <p>Finland</p>
+                                <p className="tracking-wide font-medium">Finland</p>
                             </div>
-
-                            <Title
-                                color="primary900"
-                                title="Malik Ahmad Rehan"
-                                weight="normal"
-                                size="h4"
-                                uppercase
-                            />
                         </div>
                         <Title
                             title="Software Engineer & Solutions Designer"
                             color="gradientPrimary"
                             size="h1"
                             weight="medium"
+                        />
+
+                        <Title
+                            color="primary"
+                            title="Malik Ahmad Rehan"
+                            weight="normal"
+                            size="h4"
+                            uppercase
                         />
                         <p className="font-medium tracking-wide text-brand-950 md:text-lg xl:text-xl">
                             Designing solutions for focused businesses seeking
