@@ -43,11 +43,7 @@ function WorkCard({
             />
 
             <div className="absolute left-4 top-4 flex flex-col gap-2 md:left-8 md:top-8">
-                <Title
-                    title={`${item.title} - ${item.punchline}`}
-                    size="h2"
-                    weight="medium"
-                />
+                <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl">{`${item.title} - ${item.punchline}`}</h2>
             </div>
 
             <Link href={`/work/${item.title}`}>

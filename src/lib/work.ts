@@ -53,7 +53,8 @@ To follow DRY principles and re-use logic between the 4 apps.
     },
     {
         thumbnail: "/images/work/horizon-banking-mockup.png",
-        casestudyThumbnail: "/images/work/horizon-banking-casestudy-thumbnail.png",
+        casestudyThumbnail:
+            "/images/work/horizon-banking-casestudy-thumbnail.png",
         title: "Horizon Banking",
         punchline: "Personal Finance Management",
         description:
@@ -103,7 +104,8 @@ The test credential have been already embedded on the sign in page, so you can u
     },
     {
         thumbnail: "/images/work/caseityourself-mockup.png",
-        casestudyThumbnail: "/images/work/caseityourself-casestudy-thumbnail.png",
+        casestudyThumbnail:
+            "/images/work/caseityourself-casestudy-thumbnail.png",
         title: "CaseItYourself",
         punchline: "Custom iPhone Case E-Commerce",
         description:
@@ -131,7 +133,8 @@ The primary objective is to demonstrate the ability to build a fully functional 
     },
     {
         thumbnail: "/images/work/becometaxpayer-mockup.png",
-        casestudyThumbnail: "/images/work/becometaxpayer-casestudy-thumbnail.png",
+        casestudyThumbnail:
+            "/images/work/becometaxpayer-casestudy-thumbnail.png",
         title: "Become Tax Payer",
         punchline: "Taxation and Legal Management",
         description:
