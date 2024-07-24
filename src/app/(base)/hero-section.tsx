@@ -90,7 +90,7 @@ function HeroSection() {
             </motion.div>
 
             <motion.div
-                className="absolute bottom-1/4 right-8 z-[-1] grid w-full h-full place-items-end sm:bottom-0"
+                className="absolute bottom-1/4 right-8 z-[-1] grid h-full w-full place-items-end sm:bottom-0"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
@@ -106,7 +106,7 @@ function HeroSection() {
                     width={0}
                     height={0}
                     sizes="100%"
-                    className="h-full w-[30rem] max-w-4xl object-contain md:w-full"
+                    className="w-[30rem] max-w-4xl object-contain md:h-full md:w-full"
                 />
             </motion.div>
         </MaxWidthWrapper>
