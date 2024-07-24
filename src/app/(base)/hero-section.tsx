@@ -12,7 +12,7 @@ import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 
 function HeroSection() {
     return (
-        <MaxWidthWrapper className="relative grid h-full w-full grid-cols-1 place-items-center overflow-hidden md:h-screen md:grid-cols-2">
+        <MaxWidthWrapper className="relative grid h-full w-full grid-cols-1 place-items-center overflow-hidden md:min-h-screen md:grid-cols-2">
             <Image
                 src={"/assets/developer.svg"}
                 alt=""
@@ -89,26 +89,14 @@ function HeroSection() {
                 </div>
             </motion.div>
 
-            <motion.div
-                className="absolute bottom-1/4 right-8 z-[-1] grid h-full w-full place-items-end sm:bottom-0"
-                whileInView={"visible"}
-                viewport={{ once: true }}
-                initial={"hidden"}
-                transition={{ duration: 0.5 }}
-                variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                }}
-            >
-                <Image
-                    src={"/images/image.png"}
-                    alt="image"
-                    width={0}
-                    height={0}
-                    sizes="100%"
-                    className="w-[30rem] max-w-4xl object-contain md:h-full md:w-full"
-                />
-            </motion.div>
+            <Image
+                src={"/images/image.png"}
+                alt="image"
+                width={0}
+                height={0}
+                sizes="100%"
+                className="absolute bottom-1/4 right-8 z-[-1] w-[30rem] max-w-4xl object-contain sm:bottom-0 md:h-full md:w-full"
+            />
         </MaxWidthWrapper>
     );
 }
