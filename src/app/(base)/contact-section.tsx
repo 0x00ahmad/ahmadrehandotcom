@@ -14,8 +14,8 @@ function ContactSection() {
             id="contact"
             className="grid grid-cols-1 gap-12 md:grid-cols-2"
         >
-            <div className="space-y-8">
-                <h1 className="text-5xl font-semibold md:text-6xl lg:text-7xl">
+            <div className="space-y-8 w-full">
+                <h1 className="text-5xl font-semibold md:text-6xl">
                     Let&apos;s do something together
                 </h1>
 

@@ -17,7 +17,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         <Link href={"/contact?service=" + service.title}>
             <motion.div
                 className={cn(
-                    "group relative flex h-full flex-col items-center justify-center gap-4 rounded-lg border-2 border-brand-100 bg-brand-50/20 p-8 pt-16 text-center text-brand-950 shadow-md backdrop-blur-lg",
+                    "group relative flex h-full flex-col items-center gap-4 rounded-lg border-2 border-brand-100 bg-brand-50/20 p-8 pt-16 text-center text-brand-950 shadow-md backdrop-blur-lg",
                     TRANSITION_COLORS,
                 )}
                 whileHover={{ scale: 1.05 }}

@@ -49,7 +49,7 @@ function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
         <Form {...form}>
             <motion.form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex w-full max-w-2xl flex-col gap-6 rounded-xl border-2 border-brand-100 bg-brand-50/50 p-6 shadow-md backdrop-blur-sm md:p-8"
+                className="flex w-full max-w-2xl flex-col gap-6 rounded-xl"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
@@ -59,7 +59,7 @@ function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
                     visible: { opacity: 1, x: 0 },
                 }}
             >
-            <Title title="Send me a line." size="h2" color="primary900" weight="medium" />
+                <Title title="Send me a line" size="h2" />
                 <FormField
                     control={form.control}
                     name="name"
@@ -117,7 +117,7 @@ function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
                 />
 
                 <Button variant={"default"} type="submit">
-                    Send Message
+                    Send message
                 </Button>
             </motion.form>
         </Form>

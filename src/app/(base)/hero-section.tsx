@@ -89,13 +89,21 @@ function HeroSection() {
                 </div>
             </motion.div>
 
-            <Image
+            <motion.img
                 src={"/images/image.png"}
                 alt="image"
                 width={0}
                 height={0}
                 sizes="100%"
                 className="absolute bottom-1/4 right-8 z-[-1] w-[30rem] max-w-4xl object-contain sm:bottom-0 md:h-full md:w-full"
+                whileInView={"visible"}
+                viewport={{ once: true }}
+                initial={"hidden"}
+                transition={{ duration: 0.3 }}
+                variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 },
+                }}
             />
         </MaxWidthWrapper>
     );
