@@ -2,7 +2,6 @@ import HeroSection from "./hero-section";
 import ServicesList from "./services-list";
 import RecentWork from "./recent-work";
 import CertificationsSection from "./certifications-section";
-import EducationSection from "./education-section";
 import TextRevealByWord from "@/components/other/text.reveal";
 import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 import SkillsetSection from "./skillset-section";
