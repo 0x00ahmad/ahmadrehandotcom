@@ -25,7 +25,7 @@ function RecentWork() {
                 }}
             />
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 {work.slice(0, 2).map((item, i) => (
                     <WorkCard key={i} item={item} i={i} router={router} />
                 ))}

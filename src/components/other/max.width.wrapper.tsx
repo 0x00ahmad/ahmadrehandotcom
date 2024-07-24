@@ -1,14 +1,17 @@
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
+import React from "react";
 
 const MaxWidthWrapper = ({
     className,
     children,
     id,
+    style,
 }: {
     className?: string;
     children: ReactNode;
     id?: string;
+    style?: React.CSSProperties;
 }) => {
     return (
         <div
@@ -17,6 +20,7 @@ const MaxWidthWrapper = ({
                 className,
             )}
             id={id}
+            style={style}
         >
             {children}
         </div>

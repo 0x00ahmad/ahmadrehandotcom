@@ -32,7 +32,7 @@ const TextRevealByWord: FC<{
         >
             <div
                 className={
-                    "sticky top-0 mx-auto flex h-[50%] items-center bg-transparent"
+                    "sticky top-0 mx-auto h-[50%] flex items-center bg-transparent"
                 }
             >
                 <p

@@ -12,7 +12,7 @@ import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 
 function HeroSection() {
     return (
-        <MaxWidthWrapper className="relative grid h-full grid-cols-1 place-items-center overflow-hidden md:h-screen md:grid-cols-2">
+        <MaxWidthWrapper className="relative grid h-full w-full grid-cols-1 place-items-center overflow-hidden md:h-screen md:grid-cols-2">
             <Image
                 src={"/assets/developer.svg"}
                 alt=""
@@ -25,7 +25,7 @@ function HeroSection() {
             />
 
             <motion.div
-                className="w-full pt-96 md:left-24 md:pt-80"
+                className="w-full pt-96 md:left-24 md:pt-[60vh]"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
@@ -90,7 +90,7 @@ function HeroSection() {
             </motion.div>
 
             <motion.div
-                className="absolute bottom-1/4 right-8 z-[-1] grid h-full w-full place-items-end sm:bottom-0"
+                className="absolute bottom-1/4 right-8 z-[-1] grid w-full h-full place-items-end sm:bottom-0"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
@@ -100,13 +100,13 @@ function HeroSection() {
                     visible: { opacity: 1 },
                 }}
             >
-                <motion.img
+                <Image
                     src={"/images/image.png"}
                     alt="image"
                     width={0}
                     height={0}
                     sizes="100%"
-                    className="h-auto w-[30rem] max-w-4xl object-cover md:w-full"
+                    className="h-full w-[30rem] max-w-4xl object-contain md:w-full"
                 />
             </motion.div>
         </MaxWidthWrapper>

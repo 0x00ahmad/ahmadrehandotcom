@@ -87,6 +87,7 @@ function ServiceDetailPage({ params }: { params: { cid: string } }) {
 
             <SectionTitle center title={`${cert.what}`} />
 
+            {/* Mobile View */}
             <div className="flex w-full flex-col lg:hidden">
                 <div className="grid grid-cols-7 place-items-center">
                     <Step content={<LuArrowDown className="h-6 w-5" />} />
