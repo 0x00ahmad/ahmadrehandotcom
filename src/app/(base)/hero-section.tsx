@@ -20,7 +20,7 @@ function HeroSection() {
                 height={0}
                 sizes="100%"
                 className={
-                    "top-1/4 z-[-1] hidden h-auto w-screen md:absolute md:block"
+                    "top-1/4 z-[-1] h-auto w-screen absolute"
                 }
             />
 
