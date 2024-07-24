@@ -87,7 +87,7 @@ function HeroSection() {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="absolute bottom-[4rem] z-[-1] w-[30rem] max-w-4xl object-contain sm:bottom-0 md:right-0 md:h-full md:w-full"
+                className="absolute bottom-[7rem] z-[-1] w-[30rem] max-w-4xl object-contain sm:bottom-0 md:right-0 md:h-full md:w-full"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
