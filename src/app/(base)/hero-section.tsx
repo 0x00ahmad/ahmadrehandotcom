@@ -51,14 +51,6 @@ function HeroSection() {
                             size="h1"
                             weight="medium"
                         />
-
-                        <Title
-                            color="primary"
-                            title="Malik Ahmad Rehan"
-                            weight="normal"
-                            size="h4"
-                            uppercase
-                        />
                         <p className="font-medium tracking-wide text-brand-950 md:text-lg xl:text-xl">
                             Designing solutions for focused businesses seeking
                             to improve their digital presence and efficiency.

@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Head from "next/head";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
                 )}
             >
                 {children}
+                <Toaster />
             </body>
         </html>
     );

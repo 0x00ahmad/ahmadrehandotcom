@@ -2,10 +2,9 @@ import React from "react";
 import MaxWidthWrapper from "../other/max.width.wrapper";
 import Logo from "../atoms/logo";
 import { navLinks, socials, TRANSITION_COLORS } from "@/lib/constants";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Calendar } from "lucide-react";
+import CalComButton from "./cal.com.button";
 
 function Footer() {
     return (
@@ -16,19 +15,7 @@ function Footer() {
                         <h2 className="text-4xl font-semibold text-brand-950 md:text-5xl xl:text-6xl">
                             Want to have a chat?
                         </h2>
-                        <Link
-                            href={"https://cal.com/ahmad-rehan/a-quick-chat"}
-                            className="w-max"
-                        >
-                            <Button
-                                className="group flex w-max items-center gap-2 transition-transform"
-                                size={"lg"}
-                                variant={"muted"}
-                            >
-                                <span>Let&apos;s talk</span>
-                                <Calendar className="h-auto w-6 transition-transform group-hover:-rotate-12" />
-                            </Button>
-                        </Link>
+                        <CalComButton />
                     </div>
 
                     <div className="grid w-full md:place-items-end">

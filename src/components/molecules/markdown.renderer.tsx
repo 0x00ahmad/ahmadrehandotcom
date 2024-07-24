@@ -4,11 +4,10 @@ import remarkGfm from "remark-gfm";
 
 function MarkdownRenderer({ markdownContent }: { markdownContent: string }) {
     return (
-        <div className="markdown-container prose">
-            <ReactMarkdown
-                children={markdownContent}
-                remarkPlugins={[remarkGfm]}
-            />
+        <div className="markdown-container prose text-lg">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {markdownContent}
+            </ReactMarkdown>
         </div>
     );
 }

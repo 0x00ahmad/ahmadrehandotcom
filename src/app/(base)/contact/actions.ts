@@ -1,3 +1,5 @@
+"use server";
+
 import { Result } from "@/lib/data.types";
 import { logger } from "@/lib/logger";
 import { ContactFormModel, contactFormSchema } from "@/lib/models";
@@ -25,7 +27,6 @@ export async function sendContactRequest(
         subject: `ARCR - ${name} <${email}> | ${subject}`,
         to: ["ahmad.rehan.v01@gmail.com"],
     });
-
     logger.info(`Email sent: ${JSON.stringify(out)}`);
 
     return { data: true };

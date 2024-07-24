@@ -19,6 +19,7 @@ import { contactFormSchema } from "@/lib/models";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import Title from "@/components/atoms/title";
+import { sendContactRequest } from "./actions";
 
 function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
     const form = useForm<z.infer<typeof contactFormSchema>>({
@@ -32,16 +33,14 @@ function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
     });
 
     async function onSubmit(data: z.infer<typeof contactFormSchema>) {
-        const response = await fetch("/api/contact.json", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: { "Content-Type": "application/json" },
-        });
-        if (response.ok) {
+        const response = await sendContactRequest(data);
+        if (!!response.data) {
             form.reset();
-            toast(
+            toast.success(
                 "Thank you for sending me a message! I'll reach back to you very soon",
             );
+        } else {
+            toast.error("Something went wrong. Please try again later.");
         }
     }
 
@@ -116,7 +115,11 @@ function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
                     )}
                 />
 
-                <Button variant={"default"} type="submit">
+                <Button
+                    variant={"default"}
+                    type="submit"
+                    disabled={form.formState.isSubmitting}
+                >
                     Send message
                 </Button>
             </motion.form>
