@@ -9,10 +9,11 @@ import { PiFilePdf } from "react-icons/pi";
 import { motion } from "framer-motion";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import Title from "@/components/atoms/title";
+import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 
 function HeroSection() {
     return (
-        <section className="relative grid h-full grid-cols-1 place-items-center md:h-screen md:grid-cols-2">
+        <MaxWidthWrapper className="relative grid h-full grid-cols-1 place-items-center overflow-x-hidden md:h-screen md:grid-cols-2">
             <Image
                 src={"/assets/developer.svg"}
                 alt=""
@@ -25,7 +26,7 @@ function HeroSection() {
             />
 
             <motion.div
-                className="w-full px-8 pt-96 md:left-24 md:pt-80"
+                className="w-full pt-96 md:left-24 md:pt-80"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
@@ -35,7 +36,7 @@ function HeroSection() {
                     visible: { opacity: 1, x: 0 },
                 }}
             >
-                <div className="flex w-full flex-col gap-8 p-8 rounded-lg">
+                <div className="flex w-full flex-col gap-8 rounded-lg">
                     <div className="max-w-2xl space-y-4">
                         <div className="flex flex-col items-start gap-2">
                             <div className="flex items-center gap-2 rounded-full bg-brand-200 px-4 py-2 text-brand-950">
@@ -53,6 +54,7 @@ function HeroSection() {
                         </div>
                         <Title
                             title="Software Engineer & Solutions Designer"
+                            color="gradientPrimary"
                             size="h1"
                             weight="medium"
                         />
@@ -106,7 +108,7 @@ function HeroSection() {
                     className="h-auto w-[30rem] max-w-4xl object-cover md:w-full"
                 />
             </motion.div>
-        </section>
+        </MaxWidthWrapper>
     );
 }
 
@@ -133,7 +135,7 @@ function DedHeroSection() {
                     visible: { opacity: 1, x: 0 },
                 }}
             >
-                <div className="space-y-4">
+                <div className="space-y-0">
                     <div className="flex flex-col items-start gap-2">
                         <Image
                             src={"/assets/signature.svg"}

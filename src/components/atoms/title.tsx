@@ -15,7 +15,7 @@ const colors = {
     secondary: "text-sgreen",
     muted: "text-neutral-400",
     gradientPrimary:
-        "bg-gradient-to-br from-brand-400 to-brand-900 dark:from-brand-100 dark:to-brand-300 inline-block text-transparent bg-clip-text",
+        "bg-gradient-to-br from-brand-400 to-brand-900 inline-block text-transparent bg-clip-text",
     destructive: "text-rose-700",
 };
 

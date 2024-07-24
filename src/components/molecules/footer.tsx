@@ -49,7 +49,7 @@ function Footer() {
                 </div>
 
                 <div className="flex w-full flex-col justify-between gap-8 pt-8 md:flex-row md:items-center md:pt-20">
-                    <Logo />
+                    <Logo noAnimations />
                     <div className="flex flex-col items-center gap-8 md:flex-row">
                         {navLinks.map((link, i) => (
                             <Link
@@ -63,9 +63,6 @@ function Footer() {
                                 {link.label}
                             </Link>
                         ))}
-                        <Button className="w-full" variant={"muted"}>
-                            Sign Up
-                        </Button>
                     </div>
                 </div>
 
