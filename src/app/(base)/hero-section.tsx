@@ -24,8 +24,25 @@ function HeroSection() {
                 }
             />
 
+            <motion.img
+                src={"/images/image.png"}
+                alt="image"
+                width={0}
+                height={0}
+                sizes="100%"
+                className="z-[-1] h-auto w-full max-w-4xl object-contain pt-24 md:hidden"
+                whileInView={"visible"}
+                viewport={{ once: true }}
+                initial={"hidden"}
+                transition={{ duration: 0.3 }}
+                variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 },
+                }}
+            />
+
             <motion.div
-                className="w-full pt-96 md:left-24 md:pt-[60vh]"
+                className="w-full md:left-24 md:pt-[60vh]"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
@@ -87,7 +104,7 @@ function HeroSection() {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="absolute bottom-[7rem] z-[-1] w-[30rem] max-w-4xl object-contain sm:bottom-0 md:right-0 md:h-full md:w-full"
+                className="absolute bottom-[7rem] z-[-1] hidden w-[30rem] max-w-4xl object-contain sm:bottom-0 md:right-0 md:block md:h-full md:w-full"
                 whileInView={"visible"}
                 viewport={{ once: true }}
                 initial={"hidden"}
