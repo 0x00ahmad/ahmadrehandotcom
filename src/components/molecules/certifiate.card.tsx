@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Title from "../atoms/title";
 
 function CertificateCard({ index, item }: { index: number; item: any }) {
@@ -13,32 +12,57 @@ function CertificateCard({ index, item }: { index: number; item: any }) {
             whileInView={"visible"}
             viewport={{ once: true }}
             initial={"hidden"}
-            transition={{ duration: 0.2 * (index + 1) }}
+            transition={{ duration: 0.2 }}
             variants={{
-                hidden: { opacity: 0, y: -50 },
-                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0.8, scale: 0.8 },
+                visible: { opacity: 1, scale: 1 },
             }}
         >
             <div className="flex w-max flex-col items-center justify-between gap-2">
-                <Image
+                <motion.img
                     src={"/assets/badge.svg"}
                     alt="badge"
-                    width={0}
-                    height={0}
-                    sizes="100%"
                     className="h-auto w-12"
+                    whileInView={"visible"}
+                    viewport={{ once: true }}
+                    initial={"hidden"}
+                    transition={{ duration: 0.5 }}
+                    variants={{
+                        hidden: { opacity: 0, x: -30, y: -30, scale: 0 },
+                        visible: { opacity: 1, x: 0, y: 0, scale: 1 },
+                    }}
                 />
 
-                <p className="whitespace-nowrap">
+                <motion.p
+                    className="whitespace-nowrap"
+                    whileInView={"visible"}
+                    viewport={{ once: true }}
+                    initial={"hidden"}
+                    transition={{ duration: 0.5 }}
+                    variants={{
+                        hidden: { opacity: 0, y: 50 },
+                        visible: { opacity: 1, y: 0 },
+                    }}
+                >
                     {item.courses.length} courses
-                </p>
+                </motion.p>
             </div>
 
             <div className="flex w-full flex-col justify-between gap-12">
-                <div className="flex w-full flex-col gap-2">
+                <motion.div
+                    className="flex w-full flex-col gap-2"
+                    whileInView={"visible"}
+                    viewport={{ once: true }}
+                    initial={"hidden"}
+                    transition={{ duration: 0.4 }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: { opacity: 1 },
+                    }}
+                >
                     <Title title={item.what} size="h2" />
                     <Title title={item.where} size="h4" />
-                </div>
+                </motion.div>
 
                 <div className="flex w-full flex-col items-end justify-end gap-4">
                     {item.explanation}

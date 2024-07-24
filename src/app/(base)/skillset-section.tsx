@@ -6,14 +6,12 @@ import MaxWidthWrapper from "@/components/other/max.width.wrapper";
 import React from "react";
 
 const skillSet = {
-    languages: [
+    "languages & frameworks": [
         { label: "Python", icon: "/assets/icons/python.svg" },
         { label: "Go", icon: "/assets/icons/go.svg" },
         { label: "TypeScript/Javascript", icon: "/assets/icons/ts.svg" },
         { label: "Kotlin", icon: "/assets/icons/kotlin.svg" },
         { label: "Java", icon: "/assets/icons/java.svg" },
-    ],
-    web: [
         { label: "React", icon: "/assets/icons/react.svg" },
         { label: "React Native", icon: "/assets/icons/react.svg" },
         { label: "NextJS", icon: "/assets/icons/nextjs.svg" },
@@ -26,12 +24,10 @@ const skillSet = {
         { label: "Flask", icon: "/assets/icons/flask.svg" },
         { label: "Fiber", icon: "/assets/icons/fiber.svg" },
     ],
-    databases: [
+    "DBMS & infrastructure": [
         { label: "SQL", icon: "/assets/icons/db.svg" },
         { label: "Redis", icon: "/assets/icons/redis.svg" },
         { label: "MongoDB", icon: "/assets/icons/mongodb.svg" },
-    ],
-    infrastructure: [
         { label: "Docker", icon: "/assets/icons/docker.svg" },
         { label: "VPS", icon: "/assets/icons/servers.svg" },
         { label: "AWS", icon: "/assets/icons/aws.svg" },
@@ -40,12 +36,14 @@ const skillSet = {
         { label: "Cloudflare", icon: "/assets/icons/cf.svg" },
         { label: "K8", icon: "/assets/icons/k8.svg" },
     ],
-    other: [
+    "tools & utilities": [
         { label: "Figma", icon: "/assets/icons/figma.svg" },
+        { label: "VSCode", icon: "/assets/icons/vscode.svg" },
+        { label: "NeoVim", icon: "/assets/icons/neovim.svg" },
         { label: "Linux", icon: "/assets/icons/tux.svg" },
         { label: "Shell", icon: "/assets/icons/shell.svg" },
     ],
-    "soft skills": [
+    "professional skills": [
         { label: "Communication", icon: "/assets/icons/communication.svg" },
         { label: "Teamwork", icon: "/assets/icons/team.svg" },
         { label: "Problem Solving", icon: "/assets/icons/solution.svg" },
@@ -58,7 +56,7 @@ function SkillsetSection() {
         <MaxWidthWrapper className="flex w-full flex-col gap-12">
             <SectionTitle title="My toolbox" />
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
                 {Object.entries(skillSet).map((e, i) => {
                     return <SkillCard key={i} title={e[0]} skills={e[1]} />;
                 })}

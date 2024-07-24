@@ -24,8 +24,8 @@ function ServicesList() {
                 }}
             />
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {services.slice(0, 6).map((service, i) => (
+            <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 sm:gap-10 xl:grid-cols-4">
+                {services.slice(0, 4).map((service, i) => (
                     <ServiceCard key={i} service={service} index={i} />
                 ))}
             </div>

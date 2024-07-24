@@ -1,39 +1,27 @@
-import Image from "next/image";
 import HeroSection from "./hero-section";
-import ProgressStats from "./progress-stats";
 import ServicesList from "./services-list";
-import HowIDeliverResults from "./how-i-deliver-results";
 import RecentWork from "./recent-work";
-import WhyWorkWithMe from "./why-work-with-me";
 import CertificationsSection from "./certifications-section";
 import EducationSection from "./education-section";
-import ExperienceSection from "./experience-section";
-import LandingGlyphs from "./landing.glyphs";
+import TextRevealByWord from "@/components/other/text.reveal";
+import MaxWidthWrapper from "@/components/other/max.width.wrapper";
+import SkillsetSection from "./skillset-section";
+import ContactSection from "./contact-section";
 
 export default function Home() {
     return (
         <>
-            <Image
-                src={"/assets/horizontal-line.svg"}
-                alt=""
-                width={0}
-                height={0}
-                sizes="100%"
-                className={"absolute top-1/2 z-[-1] h-auto w-screen"}
-            />
-
-            <LandingGlyphs />
-
             <HeroSection />
+
             <div className="flex w-full flex-col gap-32">
-                <ProgressStats />
-                <ServicesList />
-                <HowIDeliverResults />
+                <MaxWidthWrapper>
+                    <TextRevealByWord text="I’m a freelance software engineer & designer with a strong focus on producing awesome looking, easy-to-understand experiences." />
+                </MaxWidthWrapper>
                 <RecentWork />
-                <WhyWorkWithMe />
+                <ServicesList />
+                <SkillsetSection />
                 <CertificationsSection />
-                <EducationSection />
-                <ExperienceSection />
+                <ContactSection />
             </div>
         </>
     );

@@ -6,11 +6,13 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 function SectionTitle({
+    subtitle,
     title,
     cta,
     center,
 }: {
-    title: string;
+    subtitle?: string;
+    title?: string;
     cta?: {
         children: React.ReactNode;
         link: string;
@@ -35,7 +37,15 @@ function SectionTitle({
                     sizes="100%"
                     className={"h-8 w-auto"}
                 />
-                <Title color="primary" title={title} size="h2" />
+                {!!subtitle && (
+                    <Title
+                        color="primary300"
+                        title={subtitle}
+                        size="h4"
+                        uppercase
+                    />
+                )}
+                {!!title && <Title color="primary" title={title} size="h2" />}
             </div>
             {cta && (
                 <Link href={cta.link}>

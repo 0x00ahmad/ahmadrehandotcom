@@ -3,27 +3,30 @@ import MaxWidthWrapper from "../other/max.width.wrapper";
 import Logo from "../atoms/logo";
 import { navLinks, socials, TRANSITION_COLORS } from "@/lib/constants";
 import { Button } from "../ui/button";
-import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Calendar } from "lucide-react";
 
 function Footer() {
     return (
-        <MaxWidthWrapper>
+        <MaxWidthWrapper className="md:max-w-7xl">
             <footer className="flex w-full flex-col items-center gap-4 py-16 md:gap-6 lg:gap-8 xl:gap-12">
-                <div className="h-0.5 w-full bg-neutral-300"></div>
                 <div className="grid w-full grid-cols-1 items-center justify-between gap-8 md:grid-cols-2">
                     <div className="flex flex-col gap-8">
                         <h2 className="text-4xl font-semibold text-brand-950 md:text-5xl xl:text-6xl">
-                            Let&apos;s work together
+                            Want to have a chat?
                         </h2>
-                        <Link href={"/contact"} className="w-max">
+                        <Link
+                            href={"https://cal.com/ahmad-rehan/a-quick-chat"}
+                            className="w-max"
+                        >
                             <Button
                                 className="group flex w-max items-center gap-2 transition-transform"
                                 size={"lg"}
+                                variant={"muted"}
                             >
-                                <span>Get in touch</span>
-                                <GoArrowUpRight className="h-auto w-6 transition-transform group-hover:rotate-45" />
+                                <span>Let's talk</span>
+                                <Calendar className="h-auto w-6 transition-transform group-hover:-rotate-12" />
                             </Button>
                         </Link>
                     </div>
@@ -46,7 +49,7 @@ function Footer() {
                 </div>
 
                 <div className="flex w-full flex-col justify-between gap-8 pt-8 md:flex-row md:items-center md:pt-20">
-                    <Logo full={true} />
+                    <Logo />
                     <div className="flex flex-col items-center gap-8 md:flex-row">
                         {navLinks.map((link, i) => (
                             <Link
