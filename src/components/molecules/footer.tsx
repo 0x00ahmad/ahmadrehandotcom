@@ -25,7 +25,7 @@ function Footer() {
                                 size={"lg"}
                                 variant={"muted"}
                             >
-                                <span>Let's talk</span>
+                                <span>Let&apos;s talk</span>
                                 <Calendar className="h-auto w-6 transition-transform group-hover:-rotate-12" />
                             </Button>
                         </Link>

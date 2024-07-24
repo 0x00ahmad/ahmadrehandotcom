@@ -6,13 +6,9 @@ import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
 import ContactForm from "./contact/contact-form";
-import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 
 function ContactSection() {
-    const searchParams = useSearchParams();
-    const service = searchParams.get("service") || "";
-
     return (
         <MaxWidthWrapper
             id="contact"
@@ -20,7 +16,7 @@ function ContactSection() {
         >
             <div className="space-y-8">
                 <h1 className="text-5xl font-semibold md:text-6xl lg:text-7xl">
-                    Let's do something together
+                    Let&apos;s do something together
                 </h1>
 
                 <motion.img
@@ -71,7 +67,7 @@ function ContactSection() {
                 </motion.div>
             </div>
 
-            <ContactForm defaultSubject={service} />
+            <ContactForm />
         </MaxWidthWrapper>
     );
 }
