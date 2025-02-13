@@ -5,9 +5,9 @@ import Footer from "@/components/molecules/footer";
 function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <main>{children}</main>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }

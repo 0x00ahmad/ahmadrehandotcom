@@ -34,3 +34,4 @@ export const socials = [
         href: "https://www.linkedin.com/in/mahmadrehan",
     },
 ];
+
